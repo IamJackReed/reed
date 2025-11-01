@@ -1,0 +1,64 @@
+---
+layout: main
+permalink: /disclaimer/
+title: Before we continue
+no_header_footer: true
+---
+
+<section class="disclaimer-screen">
+  <div class="disclaimer-container">
+    <header class="disclaimer-header">
+      <h1 class="disclaimer-title">Before we continue</h1>
+      <p class="disclaimer-intro">
+        Quick legal thing. I’m sharing thoughts, opinions, experiments, and market notes.
+        Nothing here is financial, medical, or any other kind of “you told me to YOLO my pension” advice.
+      </p>
+    </header>
+
+    <div class="disclaimer-card">
+      <p>By continuing you confirm that:</p>
+      <ul>
+        <li>This site is for education and entertainment only.</li>
+        <li>You’ll make your own decisions and take your own risks.</li>
+        <li>You won’t treat anything here as a recommendation to buy, sell, or trade anything.</li>
+        <li>You’re not going to come back later and say “but you said…”</li>
+      </ul>
+
+      <p class="disclaimer-footnote">
+        If you don’t agree, please close this tab.
+      </p>
+
+      <div class="disclaimer-actions">
+        <button id="disclaimer-accept" class="disclaimer-button accept">
+          I Understand &amp; Agree
+        </button>
+        <a href="https://www.google.com" class="disclaimer-button decline">
+          I Don’t Agree
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    document.addEventListener('DOMContentLoaded', function () {
+      // Apply class to hide nav, header, etc.
+      document.body.classList.add('disclaimer-mode');
+    });
+
+    var btn = document.getElementById('disclaimer-accept');
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+      try {
+        localStorage.setItem('reedDisclaimerAccepted', 'true');
+      } catch (e) {
+        // ignore localStorage failure (private mode, etc.)
+      }
+
+      // Redirect to homepage (baseurl-aware)
+      window.location.href = "{{ site.baseurl }}/";
+    });
+  })();
+</script>
