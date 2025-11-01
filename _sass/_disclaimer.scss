@@ -1,7 +1,19 @@
-/* full-screen dark background that matches your site */
+/* ==========================================================================
+   Disclaimer Gate Styling (site theme)
+   ========================================================================== */
+
+:root {
+  --disclaimer-bg: #000;              /* page backdrop */
+  --disclaimer-card-bg: #141414;      /* card bg like hero overlay */
+  --disclaimer-text: #ddd;            /* body copy colour */
+  --disclaimer-accent: #e50914;       /* main red accent */
+  --disclaimer-accent-hover: #fff;    /* hover goes white like Netflix buttons */
+}
+
+/* Full-screen center layout */
 .disclaimer-screen {
-  background: #000; /* same dark header tone */
-  color: #fff;
+  background: var(--disclaimer-bg);
+  color: var(--disclaimer-text);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -12,42 +24,50 @@
   font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* card container */
+/* outer constraint */
 .disclaimer-card-shell {
-  max-width: 500px;
+  max-width: 520px;
   width: 100%;
 }
 
+/* the actual card */
 .disclaimer-card {
-  background: #141414;
-  border: 2px solid #fc64c9; /* your pink accent */
-  border-radius: 8px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.8);
-  padding: 1.5rem 1.5rem 2rem;
+  background: var(--disclaimer-card-bg);
+  border: 2px solid var(--disclaimer-accent);
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  padding: 2rem 2rem 2.5rem;
   line-height: 1.5;
   font-size: 0.95rem;
-  color: #ddd;
+  color: var(--disclaimer-text);
+  animation: disclaimerFadeInUp .5s ease-out;
 }
 
+/* headline */
 .disclaimer-title {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 1.2;
   font-weight: 700;
   color: #fff;
   margin: 0 0 1rem 0;
+  text-align: center;
 }
 
+/* intro text */
 .disclaimer-intro {
-  margin: 0 0 1rem 0;
-  color: #cfcfcf;
+  margin: 0 0 1.5rem 0;
+  color: #ccc;
+  text-align: center;
 }
 
+/* "By continuing..." line */
 .disclaimer-confirm {
   font-weight: 600;
   color: #fff;
-  margin: 1.5rem 0 .5rem 0;
+  margin: 1.5rem 0 .75rem 0;
 }
 
+/* bullets */
 .disclaimer-list {
   margin: 0 0 1rem 1.25rem;
   padding: 0;
@@ -59,56 +79,77 @@
   font-size: 0.9rem;
 }
 
+/* closing line */
 .disclaimer-exit {
   font-size: .8rem;
   color: #888;
   margin: 0 0 1.5rem 0;
+  text-align: center;
 }
 
-/* buttons */
+/* action row */
 .disclaimer-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
+/* primary CTA */
 .disclaimer-accept {
   appearance: none;
   cursor: pointer;
   border-radius: .4rem;
-  border: 2px solid #fc64c9;
-  background: #fc64c9;
-  color: #000;
+  border: 2px solid var(--disclaimer-accent);
+  background: var(--disclaimer-accent);
+  color: #fff;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: .8rem;
-  padding: .75rem 1rem;
+  font-size: .85rem;
+  padding: .75rem 1.25rem;
   line-height: 1;
+  transition: all .25s ease;
 }
 
 .disclaimer-accept:hover,
 .disclaimer-accept:focus {
-  background: #fff;
-  border-color: #fff;
+  background: var(--disclaimer-accent-hover);
+  color: #000;
+  border-color: var(--disclaimer-accent-hover);
   outline: none;
 }
 
+/* secondary link */
 .disclaimer-decline {
   color: #fff;
-  font-size: .8rem;
+  font-size: .85rem;
   line-height: 1;
   text-decoration: none;
   padding: .75rem 0;
+  transition: color .25s ease;
 }
 
 .disclaimer-decline:hover,
 .disclaimer-decline:focus {
-  color: #fc64c9;
+  color: var(--disclaimer-accent);
 }
 
-/* hide site chrome when we're in disclaimer mode */
+/* hide site chrome when in disclaimer mode */
 body.disclaimer-mode .bar-header,
 body.disclaimer-mode footer,
 body.disclaimer-mode .exploding-nav {
   display: none !important;
+}
+
+/* lil entrance animation */
+@keyframes disclaimerFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
