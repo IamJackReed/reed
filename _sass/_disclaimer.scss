@@ -1,0 +1,114 @@
+/* full-screen dark background that matches your site */
+.disclaimer-screen {
+  background: #000; /* same dark header tone */
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  z-index: 1000;
+  font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* card container */
+.disclaimer-card-shell {
+  max-width: 500px;
+  width: 100%;
+}
+
+.disclaimer-card {
+  background: #141414;
+  border: 2px solid #fc64c9; /* your pink accent */
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.8);
+  padding: 1.5rem 1.5rem 2rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+.disclaimer-title {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 1rem 0;
+}
+
+.disclaimer-intro {
+  margin: 0 0 1rem 0;
+  color: #cfcfcf;
+}
+
+.disclaimer-confirm {
+  font-weight: 600;
+  color: #fff;
+  margin: 1.5rem 0 .5rem 0;
+}
+
+.disclaimer-list {
+  margin: 0 0 1rem 1.25rem;
+  padding: 0;
+  color: #cfcfcf;
+}
+
+.disclaimer-list li {
+  margin: 0 0 .5rem 0;
+  font-size: 0.9rem;
+}
+
+.disclaimer-exit {
+  font-size: .8rem;
+  color: #888;
+  margin: 0 0 1.5rem 0;
+}
+
+/* buttons */
+.disclaimer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.disclaimer-accept {
+  appearance: none;
+  cursor: pointer;
+  border-radius: .4rem;
+  border: 2px solid #fc64c9;
+  background: #fc64c9;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: .8rem;
+  padding: .75rem 1rem;
+  line-height: 1;
+}
+
+.disclaimer-accept:hover,
+.disclaimer-accept:focus {
+  background: #fff;
+  border-color: #fff;
+  outline: none;
+}
+
+.disclaimer-decline {
+  color: #fff;
+  font-size: .8rem;
+  line-height: 1;
+  text-decoration: none;
+  padding: .75rem 0;
+}
+
+.disclaimer-decline:hover,
+.disclaimer-decline:focus {
+  color: #fc64c9;
+}
+
+/* hide site chrome when we're in disclaimer mode */
+body.disclaimer-mode .bar-header,
+body.disclaimer-mode footer,
+body.disclaimer-mode .exploding-nav {
+  display: none !important;
+}
