@@ -1,0 +1,49 @@
+<header class="bar-header">
+    <a id="menu" role="button">
+        <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
+    </a>
+
+    <h1 class="logo">
+        <a href="{{ site.baseurl }}/">
+            {% if site.use_logo %}
+                {% include logo.html %}
+            {% else %}
+                {{ site.name }} <span class="version">{{ site.version }}</span>
+            {% endif %}
+        </a>
+    </h1>
+
+    <a id="search" class="dosearch" role="button">
+        <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
+    </a>
+
+    <!-- Exploding nav -->
+    <div class="exploding-nav first-run" style="--navCount: 3">
+  <button class="exploding-nav-button" data-sound-hover="pop" data-sound-click="click">
+    <img class="face" src="{{ site.baseurl }}/assets/img/jason-brains.png" alt="Menu Icon" />
+    <span class="sr-only">Show Navigation</span>
+  </button>
+
+  <nav class="home-page-nav">
+    <a class="home-item" href="#practices" style="--offset: 1">
+      Patterns &amp; Practices
+      <img src="{{ site.baseurl }}/assets/img/camera.png" alt="">
+    </a>
+    <a class="home-item" href="#lab" style="--offset: 2">
+      The Lab
+      <img src="{{ site.baseurl }}/assets/img/terminal.png" alt="">
+    </a>
+    <a class="home-item" href="#Markets" style="--offset: 3">
+      Market Diary
+      <img src="{{ site.baseurl }}/assets/img/newsletter.png" alt="">
+    </a>
+  </nav>
+</div>
+
+    <!-- /Exploding nav -->
+</header>
+
+<div id="mask" class="overlay"></div>
+
+{% include menu.html %}
+{% include search.html %}

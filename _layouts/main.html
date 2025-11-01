@@ -1,0 +1,40 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html lang="{{ site.language }}" class="no-js">
+  {% include head.html %}
+  <body class="main-page has-push-menu">
+
+    {% include svg-icons.html %}
+    {% include header.html %}
+
+    <section class="content">
+      {{ content }}
+    </section>
+
+    {% include footer.html %}
+
+    <!-- Theme core JS (menu toggle, search overlay, preload images, etc.) -->
+    <script src="{{ site.baseurl }}/assets/js/scripts.min.js"></script>
+
+    <!-- Exploding head nav behavior -->
+    <script src="{{ site.baseurl }}/assets/js/exploding-nav.js"></script>
+
+    <!-- Netlify Identity (login redirect for /admin) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function(user) {
+          if (!user) {
+            window.netlifyIdentity.on("login", function() {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
+  </body>
+</html>

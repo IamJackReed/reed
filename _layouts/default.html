@@ -1,0 +1,54 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html lang="{{ site.language }}" class="no-js">
+  {% include head.html %}
+  <body class="main-page has-push-menu">
+
+    {% include svg-icons.html %}
+    {% include header.html %}
+
+    <section class="content">
+      {{ content }}
+    </section>
+
+    {% include footer.html %}
+
+    <!-- Netlify Identity (from theme) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Theme scripts -->
+    <script src="{{ site.baseurl }}/assets/js/scripts.min.js"></script>
+
+    <!-- Exploding head menu script -->
+    <script src="{{ site.baseurl }}/assets/js/exploding-nav.js"></script>
+
+    <!-- Google Analytics (theme default) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXX-X"></script>
+    <script>
+      var host = window.location.hostname;
+      if (host != 'localhost') {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXXXXX-X');
+      }
+    </script>
+
+    <!-- Extra theme script for Netlify redirect -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function(user) {
+          if (!user) {
+            window.netlifyIdentity.on("login", function() {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
+  </body>
+</html>
