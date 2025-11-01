@@ -5,8 +5,42 @@ layout: compress
 <!DOCTYPE html>
 <html lang="{{ site.language }}" class="no-js">
   {% include head.html %}
-  <body class="main-page has-push-menu">
 
+  <!-- DISCLAIMER GATE (runs before body renders) -->
+  <script>
+    (function () {
+      var accepted = false;
+
+      // 1. Did they already agree?
+      try {
+        accepted = localStorage.getItem('reedDisclaimerAccepted') === 'true';
+      } catch (e) {
+        accepted = false;
+      }
+
+      // 2. Are we currently on the disclaimer page?
+      // site.baseurl is "/reed" on GitHub Pages, "" locally.
+      var base = "{{ site.baseurl }}"; 
+      var path = window.location.pathname;
+
+      // strip the base "/reed" if it's there
+      if (base && path.indexOf(base) === 0) {
+        path = path.slice(base.length);
+      }
+
+      var onDisclaimer =
+        path === "/disclaimer" ||
+        path === "/disclaimer/";
+
+      // 3. If NOT accepted, and NOT already on disclaimer page: hard redirect.
+      if (!accepted && !onDisclaimer) {
+        window.location.replace(base + "/disclaimer/");
+      }
+    })();
+  </script>
+  <!-- /DISCLAIMER GATE -->
+
+  <body class="main-page has-push-menu">
     {% include svg-icons.html %}
     {% include header.html %}
 
@@ -23,7 +57,6 @@ layout: compress
     <script src="{{ site.baseurl }}/assets/js/exploding-nav.js"></script>
 
     <!-- Netlify Identity (login redirect for /admin) -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", function(user) {
@@ -35,6 +68,5 @@ layout: compress
         });
       }
     </script>
-
   </body>
 </html>
