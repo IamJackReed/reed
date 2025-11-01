@@ -1,16 +1,22 @@
 /* ==========================================================================
-   Disclaimer Gate Styling (site theme)
+   Disclaimer Styling (matches Jekflix dark + red theme)
    ========================================================================== */
 
 :root {
-  --disclaimer-bg: #000;              /* page backdrop */
-  --disclaimer-card-bg: #141414;      /* card bg like hero overlay */
-  --disclaimer-text: #ddd;            /* body copy colour */
-  --disclaimer-accent: #e50914;       /* main red accent */
-  --disclaimer-accent-hover: #fff;    /* hover goes white like Netflix buttons */
+  --disclaimer-bg: #000;
+  --disclaimer-card-bg: #141414;
+  --disclaimer-text: #ddd;
+  --disclaimer-accent: #e50914; /* site red */
+  --disclaimer-accent-hover: #fff;
 }
 
-/* Full-screen center layout */
+body.disclaimer-mode .bar-header,
+body.disclaimer-mode footer,
+body.disclaimer-mode .exploding-nav {
+  display: none !important;
+}
+
+/* full-screen layout */
 .disclaimer-screen {
   background: var(--disclaimer-bg);
   color: var(--disclaimer-text);
@@ -19,131 +25,98 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  position: relative;
-  z-index: 1000;
-  font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
-/* outer constraint */
+/* centered card */
 .disclaimer-card-shell {
   max-width: 520px;
   width: 100%;
 }
 
-/* the actual card */
 .disclaimer-card {
   background: var(--disclaimer-card-bg);
   border: 2px solid var(--disclaimer-accent);
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
   padding: 2rem 2rem 2.5rem;
-  line-height: 1.5;
-  font-size: 0.95rem;
   color: var(--disclaimer-text);
-  animation: disclaimerFadeInUp .5s ease-out;
+  animation: fadeInUp 0.6s ease-out;
 }
 
-/* headline */
+/* titles */
 .disclaimer-title {
   font-size: 1.6rem;
-  line-height: 1.2;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 1rem 0;
-  text-align: center;
+  margin-bottom: 1rem;
 }
 
-/* intro text */
 .disclaimer-intro {
-  margin: 0 0 1.5rem 0;
   color: #ccc;
-  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-/* "By continuing..." line */
 .disclaimer-confirm {
   font-weight: 600;
   color: #fff;
-  margin: 1.5rem 0 .75rem 0;
+  margin-bottom: 0.75rem;
 }
 
-/* bullets */
 .disclaimer-list {
-  margin: 0 0 1rem 1.25rem;
-  padding: 0;
-  color: #cfcfcf;
+  margin: 0 0 1.5rem 1.25rem;
 }
 
 .disclaimer-list li {
-  margin: 0 0 .5rem 0;
+  margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
 
-/* closing line */
 .disclaimer-exit {
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #888;
-  margin: 0 0 1.5rem 0;
-  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-/* action row */
+/* buttons */
 .disclaimer-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1.5rem;
 }
 
-/* primary CTA */
 .disclaimer-accept {
-  appearance: none;
-  cursor: pointer;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   border: 2px solid var(--disclaimer-accent);
   background: var(--disclaimer-accent);
   color: #fff;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: .85rem;
-  padding: .75rem 1.25rem;
-  line-height: 1;
-  transition: all .25s ease;
+  font-size: 0.85rem;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .disclaimer-accept:hover,
 .disclaimer-accept:focus {
   background: var(--disclaimer-accent-hover);
   color: #000;
-  border-color: var(--disclaimer-accent-hover);
-  outline: none;
 }
 
-/* secondary link */
 .disclaimer-decline {
   color: #fff;
-  font-size: .85rem;
-  line-height: 1;
+  font-size: 0.85rem;
   text-decoration: none;
-  padding: .75rem 0;
-  transition: color .25s ease;
+  transition: color 0.3s ease;
 }
 
-.disclaimer-decline:hover,
-.disclaimer-decline:focus {
+.disclaimer-decline:hover {
   color: var(--disclaimer-accent);
 }
 
-/* hide site chrome when in disclaimer mode */
-body.disclaimer-mode .bar-header,
-body.disclaimer-mode footer,
-body.disclaimer-mode .exploding-nav {
-  display: none !important;
-}
-
-/* lil entrance animation */
-@keyframes disclaimerFadeInUp {
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
