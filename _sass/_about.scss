@@ -239,3 +239,12 @@
     transform: translateY(0);
   }
 }
+
+/* Kill broken heading icons added by the theme */
+.about-body .anchor,
+.about-body img[alt="link"],
+.about-body h2 > a,
+.about-body h3 > a {
+  display: none !important;
+  content: none !important;
+}
