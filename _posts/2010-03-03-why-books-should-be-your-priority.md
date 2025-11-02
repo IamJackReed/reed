@@ -1,15 +1,15 @@
 ---
-date: 2018-11-22 12:26:40
+date: 2025-11-02 11:00:00
 layout: post
-title: Why books should be your priority?
+title: Why alignment should the priority?
 subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 image: https://res.cloudinary.com/dm7h7e8xj/image/upload/v1559822138/theme9_v273a9.jpg
 optimized_image: https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1559822138/theme9_v273a9.jpg
-category: life
+category: Tools
 tags:
-  - books
-  - read
+  - coaching
+  - emphathy 
 author: mranderson
 paginate: true
 ---
