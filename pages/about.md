@@ -1,72 +1,48 @@
 ---
-layout: page
+layout: about
 menu: false
-title: About
+date: '2020-02-27 01:53:59'
+title: Jack Reed
+tagline: Systems thinker · BJJ bruiser · Market tinkerer
+description: Who I am and what this site is for.
 permalink: /about/
-description: Who I am, what this is, and what it definitely isn’t.
+image: /assets/img/uploads/profile.png
 ---
 
-<section class="about-screen">
-  <div class="about-card-shell">
-    <article class="about-card">
-      <header class="about-header">
-        <div class="about-headline-row">
-          <div class="about-text-block">
-            <h1 class="about-title">About</h1>
-            <p class="about-tagline">
-              I'm Jack. I experiment with systems, markets, tech, and people.
-              I write so I can think — you're just watching the rehearsal footage.
-            </p>
-          </div>
+### What this is
 
-          <div class="about-avatar-block">
-            <img
-              class="about-avatar"
-              src="{{ '/assets/img/uploads/profile.png' | prepend: site.baseurl }}"
-              alt="Jack Reed">
-          </div>
-        </div>
-      </header>
+This site is where I dump working ideas: trading notes, experiments in systems thinking,
+things I’ve tried with teams, tech builds, and the occasional bad decision so you
+don’t have to repeat it.
 
-      <section class="about-body">
-        <p>
-          This site is where I dump signal:
-          trading notes, experiments, things I’ve broken, things I’ve fixed,
-          patterns that actually work in teams, and the occasional rant about delivery,
-          risk, or attention.
-        </p>
+It’s not polished marketing. It’s a running lab book.
 
-        <p>
-          It’s not polished marketing content. It’s field notes.
-          That means some of it will age badly, some of it will contradict other posts,
-          and some of it will be uncomfortably honest.
-        </p>
+---
 
-        <p>
-          A couple of things this is <strong>not</strong>:
-        </p>
+### What I actually do
 
-        <ul class="about-list">
-          <li>It’s not investment advice, trading advice, or career advice.</li>
-          <li>It’s not “10 tips to get rich in 5 minutes.”</li>
-          <li>It’s not sponsored, optimised for clicks, or pretending to be neutral.</li>
-        </ul>
+- I work in delivery / product / org design.
+- I care about cycle time, flow, feedback loops, and incentives.
+- I build tools and visualisations that show why teams really slow down (hint: it’s almost never “the team”).
 
-        <p>
-          A couple of things this <strong>is</strong>:
-        </p>
+Outside work:
+- Brazilian Jiu-Jitsu, which is equal parts problem-solving and getting strangled.
+- Writing about markets — not “get rich fast,” more “here’s what I’m watching and why.”
 
-        <ul class="about-list">
-          <li>Real situations from work, delivery, and markets.</li>
-          <li>Notes on what I’d try again (and what I wouldn’t).</li>
-          <li>Tools and patterns that help humans move faster without frying themselves.</li>
-        </ul>
+---
 
-        <p class="about-outro">
-          If you want glossy, there are other sites. If you want actual thinking-in-progress,
-          welcome.
-        </p>
-      </section>
-    </article>
-  </div>
-</section>
+### Ground rules
+
+Nothing on this site is financial advice, career advice, health advice, relationship advice, or legal advice.
+It’s context, not instruction.
+
+If you copy/paste something from here directly into your life, you own the consequences.
+Cool? Cool.
+
+---
+
+### You want more?
+
+Best place to start is the homepage, or the Patterns & Practices section.
+
+Or just come say hi at training.
