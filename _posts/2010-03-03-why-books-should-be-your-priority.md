@@ -1,5 +1,5 @@
 ---
-date: 2025-11-02 11:00:00
+date: 2017-11-02 11:00:00
 layout: post
 title: Why alignment should the priority?
 subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
