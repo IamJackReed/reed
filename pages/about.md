@@ -1,7 +1,5 @@
 ---
 layout: about
-menu: false
-date: '2020-02-27 01:53:59'
 title: Jack Reed
 tagline: Systems thinker · BJJ bruiser · Market tinkerer
 description: Who I am and what this site is for.
