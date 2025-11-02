@@ -1,0 +1,173 @@
+/* ==========================================================================
+   About Page Styling
+   Matches site dark theme + disclaimer card style
+   ========================================================================== */
+
+:root {
+  --about-bg: #000;
+  --about-card-bg: #141414;
+  --about-text: #ddd;
+  --about-accent: #e50914; /* same red you're using */
+}
+
+.about-screen {
+  background: var(--about-bg);
+  color: var(--about-text);
+  min-height: calc(100vh - 4rem); /* let footer sit below card if page is short */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+  font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.about-card-shell {
+  width: 100%;
+  max-width: 760px;
+}
+
+.about-card {
+  background: var(--about-card-bg);
+  border: 2px solid var(--about-accent);
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.8);
+  padding: 2rem;
+  color: var(--about-text);
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/* header row: text + avatar side by side on desktop */
+.about-headline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-text-block {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.about-title {
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 .5rem 0;
+}
+
+.about-tagline {
+  color: #ccc;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* avatar block */
+.about-avatar-block {
+  flex: 0 0 auto;
+}
+
+.about-avatar {
+  display: block;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid var(--about-accent);
+  box-shadow: 0 10px 30px rgba(0,0,0,.8);
+  background: #000;
+}
+
+/* body text */
+.about-body p {
+  margin: 0 0 1rem 0;
+  color: var(--about-text);
+  font-size: 1rem;
+}
+
+.about-body strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.about-list {
+  margin: 0 0 1.25rem 1.25rem;
+  padding: 0;
+  color: #ccc;
+  font-size: .95rem;
+}
+
+.about-list li {
+  margin: 0 0 .5rem 0;
+}
+
+/* outro paragraph, slight highlight */
+.about-outro {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* footer */
+.about-footer {
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: .9rem;
+  color: #aaa;
+}
+
+.about-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.about-social-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .9rem;
+  line-height: 1;
+  border-bottom: 2px solid var(--about-accent);
+  padding-bottom: 2px;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.about-social-link:hover,
+.about-social-link:focus {
+  color: #000;
+  background: var(--about-accent);
+  border-color: var(--about-accent);
+  outline: none;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+/* responsive tweaks */
+@media (max-width: 500px) {
+  .about-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .about-title {
+    font-size: 1.4rem;
+  }
+
+  .about-tagline {
+    font-size: .95rem;
+  }
+
+  .about-card {
+    padding: 1.5rem;
+  }
+}
