@@ -11,10 +11,11 @@
   --about-accent-hover: #fff;
 }
 
+/* Outer wrapper (page background) */
 .about-screen {
   background: var(--about-bg);
   color: var(--about-text);
-  min-height: calc(100vh - 4rem); /* let footer sit below card if page is short */
+  min-height: calc(100vh - 4rem); /* footer sits below card even if short */
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -23,11 +24,13 @@
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* Width limiter */
 .about-card-shell {
   width: 100%;
   max-width: 760px;
 }
 
+/* Main card */
 .about-card {
   background: var(--about-card-bg);
   border: 2px solid var(--about-accent);
@@ -40,7 +43,8 @@
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* header row: text + avatar side by side on desktop */
+/* ===== Header row: avatar + intro ===== */
+
 .about-headline-row {
   display: flex;
   flex-wrap: wrap;
@@ -72,7 +76,7 @@
   font-weight: 400;
 }
 
-/* avatar block */
+/* Avatar block */
 .about-avatar-block {
   flex: 0 0 auto;
 }
@@ -91,17 +95,20 @@
 
 .about-avatar:hover,
 .about-avatar:focus {
-  box-shadow: 0 0 16px rgba(229, 9, 20, 0.6),
-              0 20px 60px rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 0 16px rgba(229, 9, 20, 0.6),
+    0 20px 60px rgba(0, 0, 0, 0.8);
   outline: none;
 }
 
-/* body text */
+/* ===== Body content ===== */
+
 .about-body {
   color: var(--about-text);
   font-size: 1rem;
 }
 
+/* paragraphs */
 .about-body p {
   margin: 0 0 1rem 0;
   color: var(--about-text);
@@ -113,27 +120,30 @@
   font-weight: 700;
 }
 
-/* section headings in body */
+/* section headings */
 .about-body h2,
 .about-body h3,
 .about-body h4 {
+  position: relative;
   color: #fff;
   font-weight: 700;
   line-height: 1.3;
   margin: 2rem 0 1rem 0;
   font-size: 1.05rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: flex-start;
 }
 
+/* tighten first heading after the intro block */
 .about-body h2:first-child,
 .about-body h3:first-child,
 .about-body h4:first-child {
-  /* tighten first heading after intro */
   margin-top: 1rem;
 }
 
-/* little red dot before headings */
+/* red dot before each heading label */
 .about-body h2::before,
 .about-body h3::before,
 .about-body h4::before {
@@ -149,7 +159,7 @@
   flex-shrink: 0;
 }
 
-/* bullet lists */
+/* lists */
 .about-list {
   margin: 0 0 1.25rem 1.25rem;
   padding: 0;
@@ -161,7 +171,7 @@
   margin: 0 0 0.5rem 0;
 }
 
-/* outro paragraph, slight highlight */
+/* "outside work" / outro highlight lines */
 .about-outro {
   color: #fff;
   font-weight: 600;
@@ -169,7 +179,8 @@
   margin-top: 1.5rem;
 }
 
-/* footer area at bottom of card */
+/* ===== Bottom mini-footer (links etc) ===== */
+
 .about-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 2rem;
@@ -195,7 +206,10 @@
   line-height: 1;
   border-bottom: 2px solid var(--about-accent);
   padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
   border-radius: 4px;
 }
 
@@ -208,7 +222,8 @@
   padding: 2px 6px;
 }
 
-/* responsive tweaks */
+/* ===== Responsive tweaks ===== */
+
 @media (max-width: 500px) {
   .about-avatar {
     width: 80px;
@@ -228,7 +243,8 @@
   }
 }
 
-/* subtle entrance animation (same vibe as disclaimer) */
+/* ===== Subtle entrance animation (same vibe as disclaimer) ===== */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -240,11 +256,13 @@
   }
 }
 
-/* Kill broken heading icons added by the theme */
+/* ===== Kill broken heading/link icons injected by theme ===== */
+
 .about-body .anchor,
 .about-body img[alt="link"],
 .about-body h2 > a,
-.about-body h3 > a {
+.about-body h3 > a,
+.about-body h4 > a {
   display: none !important;
   content: none !important;
 }
