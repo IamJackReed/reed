@@ -1,5 +1,5 @@
 ---
-date: 
+date: 2011-06-06 12:00:00
 layout: post
 title: Market Diary
 subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
