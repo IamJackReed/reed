@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Tips
-slug: tips
-description: A category for tips.
+title: Tools
+slug: tools
+description: A category for tools.
 ---
