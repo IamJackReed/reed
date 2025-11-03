@@ -4,6 +4,7 @@ title: Market Diary
 permalink: /market-diary/
 description: Running log of trades, entries, exits and P/L.
 ---
+
 <div class="mdiary-screen">
   <div class="mdiary-card">
     <header class="mdiary-header">
