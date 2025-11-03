@@ -22,6 +22,9 @@ menu:
     url: /patterns&Practices
   - title: The Lab
     url: /lab
+  - title: "Market Diary"
+    url: /market-diary/
+
 # email: youremail@test.com
 # See: https://disqus.com/
 # disqus_username: disqus_username
