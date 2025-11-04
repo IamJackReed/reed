@@ -4,7 +4,11 @@ layout: post
 title: Challenging Beliefs: ABCDEF Model
 description: A reflective look at using the ABCDEF model to challenge limiting beliefs in Agile coaching, from startups to enterprise environments.
 image: /assets/img/posts/abcdef-popart.png
-tags: [Agile Coaching, Systems Thinking, Cognitive Behavioural Coaching, Reflection, Transformation, Beliefs]
+category: life
+tags:
+  - life
+  - tips
+author: Goes here
 ---
 
 <section class="post-card">
