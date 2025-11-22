@@ -1,130 +1,137 @@
 ---
-date: 2025-01-10 09:00:00
+date: 2018-07-20 12:26:40
 layout: post
-title: Driving Faster Doesn’t Mean You’re Going Somewhere
-subtitle: Why real agility isn’t about speed — it’s about sensing, slack, and value.
-description: >
-  A reflective look at agility through systems thinking, sustainable pace,
-  and the difference between moving fast and actually going somewhere meaningful.
-image: "{{ site.baseurl }}/assets/img/driving.png"
-optimized_image: assets/img/driving.png
-category: blog
-tags: 
-  - agile
-  - scrum
-  - systems-thinking
-  - product
-author: jackreed
-paginate: true
+title: A wonderful serenity has taken possession of my entire soul
+subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+image: https://res.cloudinary.com/dm7h7e8xj/image/upload/v1559820489/js-code_n83m7a.jpg
+optimized_image: https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1559820489/js-code_n83m7a.jpg
+category: code
+tags:
+  - platform
+  - javascript
+  - vscode
+author: mranderson
 ---
 
-I once sat in a meeting where someone cheerfully announced that we needed to *“accelerate our agile journey.”*  
-Nobody questioned the sentence — which, if you think about it, is suspicious. Like saying *“we need to breathe more oxygen to breathe better.”*  
-This is how a lot of organisations approach *agile*: **faster, faster, faster**, as if the system is a racetrack, the people are Formula 1 drivers, and the product backlog is a series of increasingly stressful hairpin turns.
+Cas sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 
-But anyone who’s spent time thinking about complexity (Ackoff), systems variation (Deming), or change (Kotter) knows:  
-**Speed doesn’t guarantee progress. Sometimes it only accelerates confusion.**
+> Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
 
----
+Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
 
-## The Illusion of Speed
+## Inline HTML elements
 
-Teams sprint. Velocity charts slope neatly downward. Boards look satisfyingly green.  
-And yet someone inevitably asks:
+HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
 
-> “Yes… but what value did we actually deliver?”
+- **To bold text**, use `<strong>`.
+- *To italicize text*, use `<em>`.
+- Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
+- Citations, like <cite>&mdash; Thomas A. Anderson</cite>, should use `<cite>`.
+- <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
+- Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
 
-It’s like driving at 90 mph down a motorway while ignoring every signpost.  
-Agile isn’t meant to be a blur of motion — it’s meant to be a method of *sense-making*. One that helps humans navigate complexity rather than drown in it.
+Most of these elements are styled by browsers with few modifications on our part.
 
-This is where the **Yerkes–Dodson law** quietly taps you on the shoulder. A little pressure sharpens us; too much pressure turns us into a chaotic bag of cortisol and guesswork.  
-Run a team at 100% utilisation and you’ll get the same result you’d get from boiling pasta on maximum heat: a starchy explosion, now stuck to the ceiling.
+# Heading 1
 
----
+## Heading 2
 
-## Slack, Autonomy & the Art of Actually Knowing What’s Going On
+### Heading 3
 
-Systems thinkers get twitchy when they hear phrases like “keep people fully utilised.”  
-Deming told us that overloading a system increases variation. Ackoff would remind us that purposeful systems require time to reflect on purpose.
+#### Heading 4
 
-Slack isn’t indulgence.  
-Slack is **your ability to notice reality**.
+Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 
-A team without slack is like a sailor who’s taped open their eyelids so they can stare directly at the sails: very alert, very committed, and very doomed.
+## Code
 
-Autonomy works the same way. Not “you do you” chaos, but the kind that lets a team notice, learn, decide, and adapt.  
-A team that always has to escalate decisions is like a satnav that needs permission to recalculate the route.
+Cum sociis natoque penatibus et magnis dis `code element` montes, nascetur ridiculus mus.
 
----
+```js
+// Example can be run directly in your JavaScript console
 
-## Outcomes Over Outputs (The Ancient Battle)
+// Create a function that takes two arguments and returns the sum of those arguments
+var adder = new Function("a", "b", "return a + b");
 
-Scrum.org calls this out repeatedly: **outputs are not outcomes**.
+// Call the function
+adder(2, 6);
+// > 8
+```
 
-Shipping 10 features means nothing if none of them shift behaviour, improve flow, help a user, or reduce risk.  
-If anything, more features often mean more maintenance, more complexity, more potential for chaos.
+Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
 
-As Ackoff famously said:
+## Lists
 
-> *“Managers who don’t know how to measure what they want settle for wanting what they can measure.”*
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
 
-Velocity is easy to measure.  
-Value is harder.  
-That’s why the former is printed on dashboards and the latter is printed on PowerPoint slides after the fact.
+* Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+* Donec id elit non mi porta gravida at eget metus.
+* Nulla vitae elit libero, a pharetra augue.
 
-Ever heard of **Cost of Delay**?  
-It’s the difference between delivering something that matters *now* and delivering something irrelevant *perfectly on time*.  
-A team optimising for speed alone will miss windows of opportunity as efficiently as possible.
+Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
 
----
+1. Vestibulum id ligula porta felis euismod semper.
+2. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+3. Maecenas sed diam eget risus varius blandit sit amet non magna.
 
-## The Human System: Messy, Brilliant, Unpredictable
+Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
 
-Scrum Masters quickly learn a secret: it’s never really about the process.  
-It’s about the dynamics *under* the process.
+Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.
 
-Biases.  
-Safety.  
-Trust.  
-Cross-team dependencies.  
-The quiet politics of influence.  
-The system surrounding the team — not the team itself — explains most variation.
+## Images
 
-Stewart Lee might say something like:
+Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
 
-*“At this point the organisation wants to be more agile — which is impressive, because they’ve still not decided what they actually want.”*
+![placeholder](https://placehold.it/800x400 "Large example image")
+![placeholder](https://placehold.it/400x200 "Medium example image")
+![placeholder](https://placehold.it/200x200 "Small example image")
 
-The job isn’t to enforce rituals.  
-The job is to help a team become a *purposeful system* that can sense, think, and act.
+## Tables
 
----
+Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-## Some Practical Nudges (Without the Agile Pom-Poms)
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Upvotes</th>
+      <th>Downvotes</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td>Totals</td>
+      <td>21</td>
+      <td>23</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <td>Alice</td>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>Bob</td>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Charlie</td>
+      <td>7</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
 
-Try these:
+Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
 
-* Ask your team at the end of a day: “What did we learn that changes what we’ll do tomorrow?”
-* Block an hour every sprint that *cannot* be used for delivery — only reflection, observation, or alignment.
-* In sprint reviews: “How did this increment deliver value?” Not: “How many stories closed?”
-* In retros: “What system forces shaped our decisions? Which ones can we influence?”
 
-These aren’t rituals.  
-They’re invitations to notice.
 
----
 
-## Are You Moving Fast, or Are You Going Somewhere?
 
-If your team is busy and efficient and everything’s “green” — great.  
-But busyness is not progress. Efficiency is not learning. Motion is not purpose.
 
-Real agility is a way of **seeing**, not a way of **speeding**.
 
-Next time someone says, “We need to go faster,” just smile politely and ask:
 
-> “Faster towards what?”
 
-If the answer is silence, congratulations — you’ve just exposed a systems problem.
-
-Now you can finally start doing the real work.
 
