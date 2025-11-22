@@ -6,7 +6,7 @@ subtitle: Why real agility isn’t about speed — it’s about sensing, slack, 
 description: >
   A reflective look at agility through systems thinking, sustainable pace,
   and the difference between moving fast and actually going somewhere meaningful.
-image: assets/img/driving.png
+image: "{{ site.baseurl }}/assets/img/driving.png"
 optimized_image: assets/img/driving.png
 category: blog
 tags: 
