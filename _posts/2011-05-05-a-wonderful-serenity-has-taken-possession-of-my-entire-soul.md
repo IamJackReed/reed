@@ -1,137 +1,158 @@
 ---
-date: 2018-07-20 12:26:40
+date: 2025-01-20 12:26:40
 layout: post
-title: A wonderful serenity has taken possession of my entire soul
-subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+title: "Scrum Mastery Coaching Tools: The ABCDEF Model"
+subtitle: "A cognitive-behavioural framework for challenging and reframing self-limiting beliefs."
+description: "A practical guide to the ABCDEF cognitive-behavioural coaching model, its origins, and why it is invaluable for Agile Coaches and Scrum Masters working at all organisational levels."
 image: https://res.cloudinary.com/dm7h7e8xj/image/upload/v1559820489/js-code_n83m7a.jpg
 optimized_image: https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1559820489/js-code_n83m7a.jpg
 category: code
 tags:
-  - platform
-  - javascript
-  - vscode
-author: mranderson
+  - coaching
+  - mindset
+  - change
+author: Jack Reed
 ---
 
-Cas sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+# **Scrum Mastery Coaching Tools: The ABCDEF Model**
 
-> Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+## **Introduction**
 
-Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+Scrum Masters and Agile Coaches spend much of their time helping individuals, teams, and leaders navigate uncertainty, conflict, and change. Often the biggest blockers to progress are not processes or frameworks—they are the self-limiting beliefs people hold about themselves or their environment. The **ABCDEF model** is a powerful, structured coaching tool rooted in cognitive-behavioural theory that helps challenge and reframe these beliefs.
 
-## Inline HTML elements
+Originally developed as the **ABCDE** model within **Rational Emotive Behaviour Therapy (REBT)** by psychologist Albert Ellis (1962), the framework has since been adapted for coaching contexts, with an added **F** stage to reinforce the emotional shift that comes from adopting healthier beliefs. In Agile environments—where psychological flexibility, empiricism, and continuous improvement are key—this tool fits naturally into developmental conversations at all levels of an organisation.
 
-HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+---
 
-- **To bold text**, use `<strong>`.
-- *To italicize text*, use `<em>`.
-- Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
-- Citations, like <cite>&mdash; Thomas A. Anderson</cite>, should use `<cite>`.
-- <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
-- Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
+## **Table of Contents**
 
-Most of these elements are styled by browsers with few modifications on our part.
+1. What is the ABCDEF Tool?  
+2. Origins of the Model  
+3. How to Use the Tool  
+4. Examples in Agile & Scrum Contexts  
+5. Summary  
+6. References  
 
-# Heading 1
+---
 
-## Heading 2
+## **1. What Is the ABCDEF Tool?**
 
-### Heading 3
+The ABCDEF model is a **cognitive-behavioural coaching framework** that helps individuals identify, examine, and ultimately reframe unhelpful or self-limiting beliefs. It divides the conversation into two halves:
 
-#### Heading 4
+- **A–C:** Understanding the present situation and beliefs  
+- **D–F:** Challenging and replacing unhelpful beliefs with more effective ones  
 
-Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Used well, the model creates insight, builds emotional resilience, and encourages growth—all essential attributes for high-performing Agile teams.
 
-## Code
+---
 
-Cum sociis natoque penatibus et magnis dis `code element` montes, nascetur ridiculus mus.
+## **2. Origins of the Model**
 
-```js
-// Example can be run directly in your JavaScript console
+The ABCDEF tool has its roots in **Rational Emotive Behaviour Therapy (REBT)**, developed by **Albert Ellis** in the 1950s and formalised in the 1960s (Ellis, 1962). The original **ABCDE** sequence described how:
 
-// Create a function that takes two arguments and returns the sum of those arguments
-var adder = new Function("a", "b", "return a + b");
+- **A**ctivating events trigger  
+- **B**eliefs, which lead to  
+- **C**onsequences (emotional and behavioural), and  
+- **D**isputing irrational beliefs leads to  
+- **E**ffective new beliefs  
 
-// Call the function
-adder(2, 6);
-// > 8
-```
+Modern coaching practice often adds:
 
-Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
+- **F** – **New Feelings** arising from the shift in mindset  
 
-## Lists
+This extension is widely used in executive and performance coaching to create a stronger link between cognitive reframing and emotional experience (Passmore & Nguyen, 2019).
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+---
 
-* Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-* Donec id elit non mi porta gravida at eget metus.
-* Nulla vitae elit libero, a pharetra augue.
+## **3. How to Use the Tool**
 
-Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+During a coaching conversation, guide your client through the six stages:
 
-1. Vestibulum id ligula porta felis euismod semper.
-2. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-3. Maecenas sed diam eget risus varius blandit sit amet non magna.
+### **A — Activating Event or Situation**
 
-Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
+Identify the triggering scenario.  
+*Example: “I need to present the sprint goals to senior leadership.”*
 
-Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.
+### **B — Beliefs (Often Self-Limiting)**
 
-## Images
+Explore what the person tells themselves about the event.  
+*“If I don’t present perfectly, they’ll think I’m incompetent.”*
 
-Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
+### **C — Consequences**
 
-![placeholder](https://placehold.it/800x400 "Large example image")
-![placeholder](https://placehold.it/400x200 "Medium example image")
-![placeholder](https://placehold.it/200x200 "Small example image")
+Identify emotional, behavioural, or performance impacts.  
+*Anxiety, avoidance, over-preparation, or reduced confidence.*
 
-## Tables
+### **D — Disputing the Beliefs**
 
-Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Gently challenge the accuracy, usefulness, and rationality of the beliefs:
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
+- *“What evidence supports this belief?”*  
+- *“What’s the worst that could realistically happen?”*  
+- *“How is this belief helping or hindering you?”*
 
-Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
+### **E — Effective New Beliefs**
 
+Encourage the person to develop healthier, more productive beliefs.  
+*“This presentation is an opportunity to engage people and share value.”*
 
+### **F — New Feelings**
 
+Identify the emotional shifts associated with the new beliefs.  
+*Increased confidence, reduced anxiety, a sense of challenge rather than threat.*
 
+---
 
+## **4. Examples in Agile & Scrum Contexts**
 
+Here are practical scenarios showing how the ABCDEF model benefits Agile Coaches and Scrum Masters at multiple levels of an organisation.
 
+### **A. Helping a Developer Afraid of Pair Programming**
 
+- **A:** Team introduces pair programming.  
+- **B:** “Others will think I’m slow or not good enough.”  
+- **C:** Avoids pairing, works in isolation.  
+- **D:** Challenge assumptions: “What feedback have you actually received?”  
+- **E:** “Pairing is a way to learn and produce better code.”  
+- **F:** More open, collaborative, willing to try.  
 
+### **B. Improving Leadership Engagement in an Agile Transformation**
 
+- **A:** Leadership asked to attend sprint reviews.  
+- **B:** “This is a waste of my time; the team won’t benefit.”  
+- **C:** Leaders disengage; teams feel unsupported.  
+- **D:** Explore organisational impact: “What message does non-attendance send?”  
+- **E:** “My presence reinforces alignment and psychological safety.”  
+- **F:** Leaders become more intentionally involved.  
+
+### **C. Coaching a Product Owner Struggling with Stakeholder Conflict**
+
+- **A:** PO must negotiate priorities with demanding stakeholders.  
+- **B:** “If I push back, they’ll be angry or escalate.”  
+- **C:** Over-commits the team; scope inflation; stress.  
+- **D:** Review evidence: “When have you negotiated successfully before?”  
+- **E:** “Clear boundaries lead to better outcomes for everyone.”  
+- **F:** Increased certainty and assertiveness.  
+
+### **D. Supporting a Team New to Scrum Ceremonies**
+
+- **A:** First retrospective approaching.  
+- **B:** “We shouldn’t discuss problems; it will create conflict.”  
+- **C:** Shallow discussions, no transparency.  
+- **D:** Reframe: “Psychological safety is built through honesty.”  
+- **E:** “Retrospectives help us grow without blame.”  
+- **F:** Team becomes more open and trusting.  
+
+---
+
+## **5. Summary**
+
+The ABCDEF model provides Scrum Masters and Agile Coaches with a practical, psychologically grounded method for helping individuals reshape limiting beliefs and unlock more effective behaviours. By supporting emotional resilience and cognitive flexibility, the model strengthens team dynamics, enhances collaboration, and reinforces a culture of continuous improvement across the organisation.
+
+---
+
+## **6. References**
+
+Ellis, A. (1962). *Reason and emotion in psychotherapy*. Lyle Stuart.  
+
+Passmore, J., & Nguyen, T. (2019). Cognitive behavioural coaching. In J. Passmore (Ed.), *The Coaches’ Handbook: The Definitive Guide to the Process, Principles and Skills of Personal Coaching* (pp. 297–306). Kogan Page.
