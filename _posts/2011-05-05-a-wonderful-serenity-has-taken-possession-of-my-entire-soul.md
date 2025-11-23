@@ -127,6 +127,5 @@ The ABCDEF model provides Scrum Masters and Agile Coaches with a practical, psyc
 
 ---
 ## **6. References**
-Ellis, A. (1962). *Reason and emotion in psychotherapy*. Lyle Stuart.  
-
-Passmore, J., & Nguyen, T. (2019). Cognitive behavioural coaching. In J. Passmore (Ed.), *The Coaches’ Handbook: The Definitive Guide to the Process, Principles and Skills of Personal Coaching* (pp. 297–306). Kogan Page.
+- Ellis, A. (1962). Reason and emotion in psychotherapy. Lyle Stuart.
+- Passmore, J., & Nguyen, T. (2019). Cognitive behavioural coaching. In J. Passmore (Ed.), The Coaches’ Handbook: The Definitive Guide to the Process, Principles and Skills of Personal Coaching (pp. 297–306). Kogan Page.
