@@ -1,8 +1,9 @@
 ---
 date: 2025-01-20 12:26:40
-layout: "ABCDEF"
+layout: post
+title: ABCDEF
 subtitle: "A cognitive-behavioural framework for challenging and reframing self-limiting beliefs."
-description: "A practical guide to the ABCDEF cognitive-behavioural coaching model, its origins, and why it is invaluable for Agile Coaches and Scrum Masters working at all organisational levels."
+description: "A short practical guide to the ABCDEF cognitive-behavioural coaching model, its origins, and why it is invaluable for Agile Coaches and Scrum Masters working at all organisational levels."
 image: https://res.cloudinary.com/dm7h7e8xj/image/upload/v1559820489/js-code_n83m7a.jpg
 optimized_image: https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1559820489/js-code_n83m7a.jpg
 category: code
