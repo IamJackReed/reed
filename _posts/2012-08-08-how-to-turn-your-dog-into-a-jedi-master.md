@@ -1,5 +1,5 @@
 ---
-date: 2025-22-22 23:00:00
+date: 2018-02-03 12:26:40
 layout: post
 title: How to turn your dog into a Jedi master
 subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
