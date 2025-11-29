@@ -1,5 +1,5 @@
 ---
-date: 2018-03-12 12:26:40
+date: 2025-11-29 23:49:00
 layout: post
 title: Trust me, it will work
 subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
