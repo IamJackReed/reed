@@ -18,12 +18,12 @@ menu:
     url: /about
   - title: Posts
     url: /posts
-  - title: Patterns & Practices
-    url: /patterns&Practices
-  - title: The Lab
-    url: /lab
-  - title: "Market Diary"
-    url: /market-diary/
+  - title: People & Teams
+    url: /People&Teams
+  - title: Product
+    url: /Product
+  - title: Organisation & Change
+    url: /Organisation&Change
 
 # email: youremail@test.com
 # See: https://disqus.com/
