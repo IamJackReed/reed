@@ -15,6 +15,14 @@ layout: compress
 
     {% include footer.html %}
 
+    <!-- Disclaimer gate (GitHub Pages friendly). Must run before the rest of the site JS. -->
+    <script
+      src="{{ site.baseurl }}/assets/js/disclaimer-gate.js"
+      data-baseurl="{{ site.baseurl }}"
+      data-disclaimer-path="/disclaimer/"
+      data-storage-key="reedDisclaimerAccepted"
+    ></script>
+
     <!-- Theme core JS (menu toggle, search overlay, preload images, etc.) -->
     <script src="{{ site.baseurl }}/assets/js/scripts.min.js"></script>
 

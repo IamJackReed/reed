@@ -58,26 +58,45 @@ title: Before we continue
 
     <script>
       (function () {
+        var STORAGE_KEY = 'reedDisclaimerAccepted';
         var btn = document.getElementById('disclaimer-accept');
-        if (!btn) return;
 
-        function getReturnUrl() {
-          try {
-            var params = new URLSearchParams(window.location.search);
-            return params.get('return');
-          } catch (e) {
-            return null;
-          }
+        function getParams() {
+          try { return new URLSearchParams(window.location.search); } catch (e) { return null; }
         }
 
-        btn.addEventListener('click', function () {
-          try { sessionStorage.setItem('reedDisclaimerAccepted', 'true'); } catch (e) {}
+        function isAccepted() {
+          try { return localStorage.getItem(STORAGE_KEY) === 'true'; } catch (e) { return false; }
+        }
 
-          // Send them back to where they came from (if provided), otherwise home.
-          var returnTo = getReturnUrl();
-          var target = returnTo || "{{ site.baseurl }}/";
-          var sep = target.indexOf("?") >= 0 ? "&" : "?";
-          window.location.href = target + sep + "accept=1";
+        function getReturnPath() {
+          var params = getParams();
+          var r = params ? params.get('return') : null;
+          // Safety: only allow same-site relative paths.
+          if (r && r.indexOf('/') === 0) return r;
+          return "{{ site.baseurl }}/";
+        }
+
+        function shouldForceShow() {
+          var params = getParams();
+          return params ? params.get('force') === '1' : false;
+        }
+
+        // If they already accepted and didn't explicitly request to view this page, bounce them home.
+        if (isAccepted() && !shouldForceShow()) {
+          window.location.replace(getReturnPath());
+          return;
+        }
+
+        if (!btn) return;
+
+        btn.addEventListener('click', function () {
+          try {
+            localStorage.setItem(STORAGE_KEY, 'true');
+            localStorage.setItem(STORAGE_KEY + 'At', String(Date.now()));
+          } catch (e) {}
+
+          window.location.replace(getReturnPath());
         });
       })();
     </script>
