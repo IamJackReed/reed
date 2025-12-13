@@ -71,21 +71,7 @@ title: Before we continue
         }
 
         btn.addEventListener('click', function () {
-          try {
-            sessionStorage.setItem('reedDisclaimerAccepted', 'true');
-          } catch (e) {}
-
-          try {
-            localStorage.setItem('reedDisclaimerAccepted', 'true');
-          } catch (e) {}
-
-          try {
-            window.name = "reedDisclaimerAccepted";
-          } catch (e) {}
-
-          try {
-            window.name = "reedDisclaimerAccepted";
-          } catch (e) {}
+          try { window.name = "reedDisclaimerAccepted"; } catch (e) {}
 
           // Send them back to where they came from (if provided), otherwise home.
           var returnTo = getReturnUrl();

@@ -8,10 +8,10 @@
     return p;
   }
 
+  var ACCEPT_FLAG = "reedDisclaimerAccepted";
+
   function markAccepted() {
-    try { sessionStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
-    try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
-    try { window.name = "reedDisclaimerAccepted"; } catch (e) {}
+    try { window.name = ACCEPT_FLAG; } catch (e) {}
     document.documentElement.classList.add("disclaimer-clear");
   }
 
@@ -44,13 +44,7 @@
 
   function hasAccepted() {
     var accepted = false;
-    try { accepted = sessionStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
-    if (!accepted) {
-      try { accepted = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
-    }
-    if (!accepted) {
-      try { accepted = (window.name === "reedDisclaimerAccepted"); } catch (e) {}
-    }
+    try { accepted = (window.name === ACCEPT_FLAG); } catch (e) {}
     return accepted;
   }
 
@@ -93,10 +87,8 @@
   }
 
   if (!accepted && !onDisclaimer) {
-    var returnTo = window.location.pathname + window.location.search + window.location.hash;
-    // try to navigate immediately
+    var returnTo = window.location.href;
     sendToDisclaimer(returnTo);
-    // if that gets blocked/ignored, the static overlay in the layout will remain visible
   }
 
   if (!accepted && onDisclaimer) {

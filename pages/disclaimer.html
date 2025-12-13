@@ -62,23 +62,11 @@ title: Before we continue
   }
 
   btn.addEventListener('click', function () {
-    try {
-      sessionStorage.setItem('reedDisclaimerAccepted', 'true');
-    } catch (e) {}
-
-    try {
-      localStorage.setItem('reedDisclaimerAccepted', 'true');
-    } catch (e) {}
-
-    try {
-      window.name = "reedDisclaimerAccepted";
-    } catch (e) {}
+    try { window.name = "reedDisclaimerAccepted"; } catch (e) {}
 
     var returnTo = getReturnUrl();
     var target = returnTo || "{{ site.baseurl }}/";
-    var sep = target.indexOf("?") >= 0 ? "&" : "?";
-    // send them back, tagging acceptance so the gate won't re-fire
-    window.location.href = target + sep + "accept=1";
+    window.location.href = target + (target.indexOf("?") >= 0 ? "&" : "?") + "accept=1";
   });
 })();
 </script>
