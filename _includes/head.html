@@ -52,8 +52,7 @@
     document.documentElement.classList.add("disclaimer-clear");
   }
 
-  function sendToDisclaimer() {
-    var returnTo = window.location.pathname + window.location.search + window.location.hash;
+  function sendToDisclaimer(returnTo) {
     window.location.replace(disclaimerUrl + "?return=" + encodeURIComponent(returnTo));
   }
 
@@ -96,8 +95,15 @@
   }
 
   if (!accepted && !onDisclaimer) {
-    sendToDisclaimer();
-    return;
+    var returnTo = window.location.pathname + window.location.search + window.location.hash;
+    // try to navigate immediately
+    sendToDisclaimer(returnTo);
+    // if that gets blocked/ignored, build a visible overlay shortly after
+    setTimeout(function () {
+      if (!hasAccepted()) {
+        createOverlay(returnTo);
+      }
+    }, 400);
   }
 
   if (!accepted && onDisclaimer) {
