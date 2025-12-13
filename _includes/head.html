@@ -57,6 +57,44 @@
     window.location.replace(disclaimerUrl + "?return=" + encodeURIComponent(returnTo));
   }
 
+  function createOverlay(returnTo) {
+    if (document.getElementById("disclaimer-overlay")) return;
+
+    var overlay = document.createElement("div");
+    overlay.id = "disclaimer-overlay";
+    overlay.innerHTML = [
+      '<div class="disclaimer-overlay-card">',
+      '  <h2>Before we continue</h2>',
+      '  <p>This site shares opinions and experiments. Nothing here is advice.</p>',
+      '  <div class="disclaimer-overlay-actions">',
+      '    <button id="disclaimer-accept-overlay" type="button">I Understand &amp; Agree</button>',
+      '    <a id="disclaimer-read-overlay" href="' + disclaimerPath + '">Read full disclaimer</a>',
+      "  </div>",
+      '  <p style="margin-top:0.75rem;font-size:0.85rem;color:#aaa;">You’ll return to your page after accepting.</p>',
+      "</div>"
+    ].join("");
+
+    document.body.appendChild(overlay);
+    document.documentElement.classList.remove("disclaimer-clear");
+
+    var readLink = document.getElementById("disclaimer-read-overlay");
+    if (readLink) {
+      readLink.href = disclaimerPath + "?return=" + encodeURIComponent(returnTo);
+    }
+
+    var btn = document.getElementById("disclaimer-accept-overlay");
+    if (btn) {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (err) {}
+        try { document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000"; } catch (err) {}
+        document.documentElement.classList.add("disclaimer-clear");
+        overlay.parentNode && overlay.parentNode.removeChild(overlay);
+        window.location.href = returnTo || base + "/";
+      });
+    }
+  }
+
   if (!accepted && !onDisclaimer) {
     sendToDisclaimer();
     return;
@@ -68,10 +106,11 @@
     });
   }
 
-  // Safety net: if the early redirect was blocked for any reason, try again when DOM is ready.
+  // Safety net: if the early redirect was blocked for any reason, build an overlay instead.
   document.addEventListener("DOMContentLoaded", function () {
     if (!accepted && !onDisclaimer) {
-      sendToDisclaimer();
+      var returnTo = window.location.pathname + window.location.search + window.location.hash;
+      createOverlay(returnTo);
     }
   });
 })();
