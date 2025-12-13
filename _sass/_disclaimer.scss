@@ -72,13 +72,7 @@ body.disclaimer-mode .exploding-nav {
   transition: all 0.2s ease;
 }
 
-#disclaimer-overlay button:hover,
-#disclaimer-overlay button:focus {
-  background: var(--disclaimer-accent-hover);
-  color: var(--disclaimer-bg);
-}
-
-#disclaimer-overlay a.disclaimer-accept-overlay {
+#disclaimer-overlay button.disclaimer-accept-overlay {
   display: inline-block;
   border: 2px solid var(--disclaimer-accent);
   background: var(--disclaimer-accent);
@@ -91,8 +85,8 @@ body.disclaimer-mode .exploding-nav {
   transition: all 0.2s ease;
 }
 
-#disclaimer-overlay a.disclaimer-accept-overlay:hover,
-#disclaimer-overlay a.disclaimer-accept-overlay:focus {
+#disclaimer-overlay button.disclaimer-accept-overlay:hover,
+#disclaimer-overlay button.disclaimer-accept-overlay:focus {
   background: var(--disclaimer-accent-hover);
   color: var(--disclaimer-bg);
 }

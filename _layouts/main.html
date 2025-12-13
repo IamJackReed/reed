@@ -36,9 +36,9 @@ layout: compress
         <h2>Before we continue</h2>
         <p>This site shares opinions and experiments. Nothing here is advice.</p>
         <div class="disclaimer-overlay-actions">
-          <a id="disclaimer-accept-overlay" class="disclaimer-accept-overlay" href="{{ site.baseurl }}/?accept=1" role="button">
+          <button id="disclaimer-accept-overlay" class="disclaimer-accept-overlay" type="button">
             I Understand &amp; Agree
-          </a>
+          </button>
           <a id="disclaimer-read-overlay" href="{{ site.baseurl }}/disclaimer/">Read full disclaimer</a>
         </div>
         <p style="margin-top:0.75rem;font-size:0.85rem;color:#aaa;">You’ll return to your page after accepting.</p>
@@ -68,7 +68,7 @@ layout: compress
 
         function acceptAndProceed(targetUrl) {
           try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
-          try { document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000"; } catch (e) {}
+          try { document.cookie = "reedDisclaimerAccepted=true; path=/; max-age=31536000"; } catch (e) {}
           root.classList.add("disclaimer-clear");
           overlay.style.display = "none";
           if (targetUrl) {
@@ -76,24 +76,9 @@ layout: compress
           }
         }
 
-        // handle accept=1 in URL immediately
-        try {
-          var p = new URLSearchParams(window.location.search);
-          if (p.get("accept") === "1") {
-            var dest = p.get("return") || (base + "/");
-            p.delete("accept");
-            p.delete("return");
-            var cleaned = window.location.pathname + (p.toString() ? "?" + p.toString() : "") + window.location.hash;
-            try { window.history.replaceState({}, "", cleaned); } catch (e) {}
-            acceptAndProceed(dest);
-            return;
-          }
-        } catch (e) {}
-
         // If already accepted (head script sets class), hide overlay
         if (root.classList.contains("disclaimer-clear") || document.body.classList.contains("disclaimer-page") || hasAcceptedInline()) {
           overlay.style.display = "none";
-          return;
         }
 
         if (readLink) {
@@ -101,16 +86,11 @@ layout: compress
         }
 
         if (acceptBtn) {
-          // Always send them through the same URL with an accept=1 param so the head script can persist it.
-          try {
-            var params = new URLSearchParams(window.location.search);
-            params.set("accept", "1");
-            params.set("return", returnTo || (base + "/"));
-            acceptBtn.href = window.location.pathname + "?" + params.toString() + window.location.hash;
-          } catch (e) {
-            var fallback = returnTo || (base + "/");
-            acceptBtn.href = (fallback || "/") + (fallback.indexOf("?") >= 0 ? "&accept=1" : "?accept=1");
-          }
+          acceptBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            var target = returnTo || (base + "/");
+            acceptAndProceed(target);
+          });
         }
       })();
     </script>
