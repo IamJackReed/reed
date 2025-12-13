@@ -7,6 +7,57 @@ layout: compress
   {% include head.html %}
 
   <body class="main-page has-push-menu">
+    <!-- Persistent fallback overlay: shown by default until acceptance is stored -->
+    <div id="disclaimer-overlay">
+      <div class="disclaimer-overlay-card">
+        <h2>Before we continue</h2>
+        <p>This site shares opinions and experiments. Nothing here is advice.</p>
+        <div class="disclaimer-overlay-actions">
+          <button id="disclaimer-accept-overlay" type="button">I Understand &amp; Agree</button>
+          <a id="disclaimer-read-overlay" href="{{ site.baseurl }}/disclaimer/">Read full disclaimer</a>
+        </div>
+        <p style="margin-top:0.75rem;font-size:0.85rem;color:#aaa;">You’ll return to your page after accepting.</p>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var overlay = document.getElementById("disclaimer-overlay");
+        var readLink = document.getElementById("disclaimer-read-overlay");
+        var acceptBtn = document.getElementById("disclaimer-accept-overlay");
+        if (!overlay) return;
+
+        var base = "{{ site.baseurl }}";
+        var returnTo = window.location.pathname + window.location.search + window.location.hash;
+
+        // If already accepted (head script sets class), hide overlay
+        if (root.classList.contains("disclaimer-clear") || document.body.classList.contains("disclaimer-page")) {
+          overlay.style.display = "none";
+          return;
+        }
+
+        if (readLink) {
+          readLink.href = "{{ site.baseurl }}/disclaimer/?return=" + encodeURIComponent(returnTo);
+        }
+
+        function markAccepted() {
+          try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
+          try { document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000"; } catch (e) {}
+          root.classList.add("disclaimer-clear");
+          overlay.style.display = "none";
+        }
+
+        if (acceptBtn) {
+          acceptBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            markAccepted();
+            // keep them on the page they wanted
+            window.location.href = returnTo || base + "/";
+          });
+        }
+      })();
+    </script>
+
     {% include svg-icons.html %}
     {% include header.html %}
 
