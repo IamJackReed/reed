@@ -61,11 +61,27 @@ title: Before we continue
         var btn = document.getElementById('disclaimer-accept');
         if (!btn) return;
 
+        function getReturnUrl() {
+          try {
+            var params = new URLSearchParams(window.location.search);
+            return params.get('return');
+          } catch (e) {
+            return null;
+          }
+        }
+
         btn.addEventListener('click', function () {
           try {
             localStorage.setItem('reedDisclaimerAccepted', 'true');
           } catch (e) {}
-          window.location.href = "{{ site.baseurl }}/";
+
+          // Send them back to where they came from (if provided), otherwise home.
+          var returnTo = getReturnUrl();
+          if (returnTo) {
+            window.location.href = returnTo;
+          } else {
+            window.location.href = "{{ site.baseurl }}/";
+          }
         });
       })();
     </script>

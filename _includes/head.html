@@ -25,9 +25,15 @@
         var onDisclaimer = (path === "/disclaimer" || path === "/disclaimer/");
 
         // If user has NOT accepted and is NOT already on disclaimer,
-        // immediately bounce them to the disclaimer page
+        // immediately bounce them to the disclaimer page.
+        // Preserve where they were trying to go so we can send them back.
         if (!accepted && !onDisclaimer) {
-            window.location.replace(base + "/disclaimer/");
+            var returnTo = window.location.pathname + window.location.search + window.location.hash;
+            try {
+                window.location.replace(base + "/disclaimer/?return=" + encodeURIComponent(returnTo));
+            } catch (e) {
+                window.location.replace(base + "/disclaimer/");
+            }
             return;
         }
 
