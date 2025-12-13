@@ -7,6 +7,29 @@ layout: compress
   {% include head.html %}
 
   <body class="main-page has-push-menu">
+    <script>
+      // Early accept handling: if ?accept=1 is present, persist and clear overlay
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          if (params.get("accept") === "1") {
+            try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
+            try { document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000"; } catch (e) {}
+            document.documentElement.classList.add("disclaimer-clear");
+
+            var ret = params.get("return");
+            params.delete("accept");
+            params.delete("return");
+            var cleaned = window.location.pathname + (params.toString() ? "?" + params.toString() : "") + window.location.hash;
+            try { window.history.replaceState({}, "", cleaned); } catch (e) {}
+            if (ret) {
+              window.location.replace(ret);
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Persistent fallback overlay: shown by default until acceptance is stored -->
     <div id="disclaimer-overlay">
       <div class="disclaimer-overlay-card">
