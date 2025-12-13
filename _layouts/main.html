@@ -32,8 +32,43 @@ layout: compress
         var base = "{{ site.baseurl }}";
         var returnTo = window.location.pathname + window.location.search + window.location.hash;
 
+        function hasAcceptedInline() {
+          var ok = false;
+          try { ok = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
+          if (!ok) {
+            try {
+              ok = document.cookie.split(";").map(function (c) { return c.trim().toLowerCase(); }).some(function (c) { return c === "reeddisclaimeraccepted=true"; });
+            } catch (e) {}
+          }
+          return ok;
+        }
+
+        function acceptAndProceed(targetUrl) {
+          try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
+          try { document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000"; } catch (e) {}
+          root.classList.add("disclaimer-clear");
+          overlay.style.display = "none";
+          if (targetUrl) {
+            window.location.href = targetUrl;
+          }
+        }
+
+        // handle accept=1 in URL immediately
+        try {
+          var p = new URLSearchParams(window.location.search);
+          if (p.get("accept") === "1") {
+            var dest = p.get("return") || (base + "/");
+            p.delete("accept");
+            p.delete("return");
+            var cleaned = window.location.pathname + (p.toString() ? "?" + p.toString() : "") + window.location.hash;
+            try { window.history.replaceState({}, "", cleaned); } catch (e) {}
+            acceptAndProceed(dest);
+            return;
+          }
+        } catch (e) {}
+
         // If already accepted (head script sets class), hide overlay
-        if (root.classList.contains("disclaimer-clear") || document.body.classList.contains("disclaimer-page")) {
+        if (root.classList.contains("disclaimer-clear") || document.body.classList.contains("disclaimer-page") || hasAcceptedInline()) {
           overlay.style.display = "none";
           return;
         }
