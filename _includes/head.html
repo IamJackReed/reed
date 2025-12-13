@@ -48,34 +48,13 @@
     here === disclaimerPath ||
     here === disclaimerPath.replace(/\/$/, "");
 
+  if (accepted) {
+    document.documentElement.classList.add("disclaimer-clear");
+  }
+
   function sendToDisclaimer() {
     var returnTo = window.location.pathname + window.location.search + window.location.hash;
     window.location.replace(disclaimerUrl + "?return=" + encodeURIComponent(returnTo));
-  }
-
-  function injectFallbackOverlay() {
-    if (document.getElementById("disclaimer-overlay")) return;
-
-    var overlay = document.createElement("div");
-    overlay.id = "disclaimer-overlay";
-    overlay.innerHTML = [
-      '<div class="disclaimer-overlay-card">',
-      '  <h2>Before we continue</h2>',
-      '  <p>Please review the disclaimer before browsing.</p>',
-      '  <button id="disclaimer-overlay-cta" type="button">Go to disclaimer</button>',
-      "</div>"
-    ].join("");
-
-    document.body.appendChild(overlay);
-    document.documentElement.classList.add("disclaimer-overlay-open");
-
-    var btn = document.getElementById("disclaimer-overlay-cta");
-    if (btn) {
-      btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        sendToDisclaimer();
-      });
-    }
   }
 
   if (!accepted && !onDisclaimer) {
@@ -92,8 +71,6 @@
   // Safety net: if the early redirect was blocked for any reason, try again when DOM is ready.
   document.addEventListener("DOMContentLoaded", function () {
     if (!accepted && !onDisclaimer) {
-      // show an overlay immediately and try redirecting
-      injectFallbackOverlay();
       sendToDisclaimer();
     }
   });

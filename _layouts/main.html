@@ -7,6 +7,63 @@ layout: compress
   {% include head.html %}
 
   <body class="main-page has-push-menu">
+    <div id="disclaimer-overlay">
+      <div class="disclaimer-overlay-card">
+        <h2>Before we continue</h2>
+        <p>This site shares opinions and experiments. Nothing here is advice.</p>
+        <div class="disclaimer-overlay-actions">
+          <button id="disclaimer-accept-overlay" type="button">I Understand &amp; Agree</button>
+          <a id="disclaimer-read-overlay" href="{{ site.baseurl }}/disclaimer/">Read full disclaimer</a>
+        </div>
+        <p style="margin-top:0.75rem;font-size:0.85rem;color:#aaa;">You’ll return to your page after accepting.</p>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var overlay = document.getElementById("disclaimer-overlay");
+        if (!overlay) return;
+
+        function markAccepted() {
+          try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
+          try { document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000"; } catch (e) {}
+          root.classList.add("disclaimer-clear");
+          overlay.style.display = "none";
+        }
+
+        // if already cleared (set by head script), remove overlay and exit
+        if (root.classList.contains("disclaimer-clear")) {
+          overlay.parentNode && overlay.parentNode.removeChild(overlay);
+          return;
+        }
+
+        // do not cover the dedicated disclaimer page
+        var base = "{{ site.baseurl }}";
+        var path = window.location.pathname;
+        if (base && path.indexOf(base) === 0) path = path.slice(base.length);
+        if (path === "/disclaimer" || path === "/disclaimer/") {
+          overlay.parentNode && overlay.parentNode.removeChild(overlay);
+          return;
+        }
+
+        var returnTo = window.location.pathname + window.location.search + window.location.hash;
+        var readLink = document.getElementById("disclaimer-read-overlay");
+        if (readLink) {
+          readLink.href = "{{ site.baseurl }}/disclaimer/?return=" + encodeURIComponent(returnTo);
+        }
+
+        var btn = document.getElementById("disclaimer-accept-overlay");
+        if (btn) {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            markAccepted();
+            // take them back to where they wanted to go
+            window.location.href = returnTo || "{{ site.baseurl }}/";
+          });
+        }
+      })();
+    </script>
+
     {% include svg-icons.html %}
     {% include header.html %}
 
