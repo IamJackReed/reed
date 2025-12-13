@@ -13,7 +13,13 @@ layout: compress
         <h2>Before we continue</h2>
         <p>This site shares opinions and experiments. Nothing here is advice.</p>
         <div class="disclaimer-overlay-actions">
-          <button id="disclaimer-accept-overlay" type="button">I Understand &amp; Agree</button>
+          <button
+            id="disclaimer-accept-overlay"
+            type="button"
+            onclick="try{localStorage.setItem('reedDisclaimerAccepted','true');}catch(e){}try{document.cookie='reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000';}catch(e){}document.documentElement.classList.add('disclaimer-clear');var o=document.getElementById('disclaimer-overlay');if(o){o.style.display='none';}window.location.href='{{ site.baseurl }}/';"
+          >
+            I Understand &amp; Agree
+          </button>
           <a id="disclaimer-read-overlay" href="{{ site.baseurl }}/disclaimer/">Read full disclaimer</a>
         </div>
         <p style="margin-top:0.75rem;font-size:0.85rem;color:#aaa;">You’ll return to your page after accepting.</p>
@@ -54,6 +60,9 @@ layout: compress
             // keep them on the page they wanted
             window.location.href = returnTo || base + "/";
           });
+
+          // Inline fallback in case addEventListener is blocked
+          acceptBtn.setAttribute("onclick", "(function(){try{localStorage.setItem('reedDisclaimerAccepted','true');}catch(e){}try{document.cookie='reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000';}catch(e){}document.documentElement.classList.add('disclaimer-clear');var o=document.getElementById('disclaimer-overlay');if(o){o.style.display='none';}window.location.href='" + "{{ site.baseurl }}/" + "';})();");
         }
       })();
     </script>
