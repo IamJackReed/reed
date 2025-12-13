@@ -76,7 +76,11 @@ title: Before we continue
           } catch (e) {}
 
           try {
-            document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000";
+            document.cookie = "reedDisclaimerAccepted=true; path=/; max-age=31536000";
+          } catch (e) {}
+
+          try {
+            window.name = "reedDisclaimerAccepted";
           } catch (e) {}
 
           // Send them back to where they came from (if provided), otherwise home.

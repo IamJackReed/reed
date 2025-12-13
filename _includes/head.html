@@ -12,6 +12,7 @@
     try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
     // use root path so it works everywhere
     try { document.cookie = "reedDisclaimerAccepted=true; path=/; max-age=31536000"; } catch (e) {}
+    try { window.name = "reedDisclaimerAccepted"; } catch (e) {}
     document.documentElement.classList.add("disclaimer-clear");
   }
 
@@ -53,6 +54,10 @@
     var accepted = false;
 
     try { accepted = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
+
+    if (!accepted) {
+      try { accepted = (window.name === "reedDisclaimerAccepted"); } catch (e) {}
+    }
 
     // Cookie fallback (handles strict/private modes where localStorage is blocked)
     if (!accepted) {

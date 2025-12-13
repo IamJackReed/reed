@@ -88,6 +88,7 @@ layout: compress
         function acceptAndProceed(targetUrl) {
           try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
           try { document.cookie = "reedDisclaimerAccepted=true; path=/; max-age=31536000"; } catch (e) {}
+          try { window.name = "reedDisclaimerAccepted"; } catch (e) {}
           root.classList.add("disclaimer-clear");
           overlay.style.display = "none";
           if (targetUrl) {
@@ -110,6 +111,8 @@ layout: compress
             var target = returnTo || (base + "/");
             acceptAndProceed(target);
           });
+          // inline fallback if JS listeners are blocked
+          acceptBtn.setAttribute("onclick", "try{localStorage.setItem('reedDisclaimerAccepted','true');}catch(e){}try{document.cookie='reedDisclaimerAccepted=true; path=/; max-age=31536000';}catch(e){}try{window.name='reedDisclaimerAccepted';}catch(e){}document.documentElement.classList.add('disclaimer-clear');var o=document.getElementById('disclaimer-overlay');if(o){o.style.display='none';}window.location.href='" + "{{ site.baseurl }}/" + "';");
         }
       })();
     </script>
