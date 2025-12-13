@@ -72,11 +72,15 @@ title: Before we continue
 
         btn.addEventListener('click', function () {
           try {
+            sessionStorage.setItem('reedDisclaimerAccepted', 'true');
+          } catch (e) {}
+
+          try {
             localStorage.setItem('reedDisclaimerAccepted', 'true');
           } catch (e) {}
 
           try {
-            document.cookie = "reedDisclaimerAccepted=true; path=/; max-age=31536000";
+            window.name = "reedDisclaimerAccepted";
           } catch (e) {}
 
           try {

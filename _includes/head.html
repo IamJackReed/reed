@@ -9,9 +9,8 @@
   }
 
   function markAccepted() {
+    try { sessionStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
     try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
-    // use root path so it works everywhere
-    try { document.cookie = "reedDisclaimerAccepted=true; path=/; max-age=31536000"; } catch (e) {}
     try { window.name = "reedDisclaimerAccepted"; } catch (e) {}
     document.documentElement.classList.add("disclaimer-clear");
   }
@@ -36,40 +35,22 @@
       (params.toString() ? "?" + params.toString() : "") +
       window.location.hash;
 
-    // Clean the URL (drop accept/return) first
     try { window.history.replaceState({}, "", cleaned); } catch (e) { window.location.href = cleaned; return true; }
-
-    // If a return target exists, send them there now
     if (returnTo) {
-      try {
-        window.location.replace(returnTo);
-      } catch (e) {
-        window.location.href = returnTo;
-      }
+      try { window.location.replace(returnTo); } catch (e) { window.location.href = returnTo; }
     }
     return true;
   }
 
   function hasAccepted() {
     var accepted = false;
-
-    try { accepted = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
-
+    try { accepted = sessionStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
+    if (!accepted) {
+      try { accepted = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
+    }
     if (!accepted) {
       try { accepted = (window.name === "reedDisclaimerAccepted"); } catch (e) {}
     }
-
-    // Cookie fallback (handles strict/private modes where localStorage is blocked)
-    if (!accepted) {
-      try {
-        var match = document.cookie
-          .split(";")
-          .map(function (c) { return c.trim().toLowerCase(); })
-          .some(function (c) { return c === "reeddisclaimeraccepted=true"; });
-        accepted = match;
-      } catch (e) {}
-    }
-
     return accepted;
   }
 
@@ -124,7 +105,7 @@
     });
   }
 
-  // Ensure overlay is gone once we're accepted
+  // ensure any leftover overlay markup from old deploys is hidden
   document.addEventListener("DOMContentLoaded", function () {
     if (accepted) {
       document.documentElement.classList.add("disclaimer-clear");

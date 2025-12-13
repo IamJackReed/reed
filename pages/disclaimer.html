@@ -63,11 +63,11 @@ title: Before we continue
 
   btn.addEventListener('click', function () {
     try {
-      localStorage.setItem('reedDisclaimerAccepted', 'true');
+      sessionStorage.setItem('reedDisclaimerAccepted', 'true');
     } catch (e) {}
 
     try {
-      document.cookie = "reedDisclaimerAccepted=true; path=/; max-age=31536000";
+      localStorage.setItem('reedDisclaimerAccepted', 'true');
     } catch (e) {}
 
     try {
