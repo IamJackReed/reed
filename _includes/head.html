@@ -21,17 +21,31 @@
     } catch (e) {
       return false;
     }
-    if (params.get("accept") === "1") {
-      markAccepted();
-      params.delete("accept");
-      var cleaned =
-        window.location.pathname +
-        (params.toString() ? "?" + params.toString() : "") +
-        window.location.hash;
-      try { window.history.replaceState({}, "", cleaned); } catch (e) { window.location.href = cleaned; }
-      return true;
+    if (params.get("accept") !== "1") return false;
+
+    markAccepted();
+
+    var returnTo = params.get("return");
+    params.delete("accept");
+    params.delete("return");
+
+    var cleaned =
+      window.location.pathname +
+      (params.toString() ? "?" + params.toString() : "") +
+      window.location.hash;
+
+    // Clean the URL (drop accept/return) first
+    try { window.history.replaceState({}, "", cleaned); } catch (e) { window.location.href = cleaned; return true; }
+
+    // If a return target exists, send them there now
+    if (returnTo) {
+      try {
+        window.location.replace(returnTo);
+      } catch (e) {
+        window.location.href = returnTo;
+      }
     }
-    return false;
+    return true;
   }
 
   function hasAccepted() {

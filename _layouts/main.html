@@ -47,9 +47,11 @@ layout: compress
           try {
             var params = new URLSearchParams(window.location.search);
             params.set("accept", "1");
+            params.set("return", returnTo || (base + "/"));
             acceptBtn.href = window.location.pathname + "?" + params.toString() + window.location.hash;
           } catch (e) {
-            acceptBtn.href = (returnTo || (base + "/")) + (returnTo.indexOf("?") >= 0 ? "&accept=1" : "?accept=1");
+            var fallback = returnTo || (base + "/");
+            acceptBtn.href = (fallback || "/") + (fallback.indexOf("?") >= 0 ? "&accept=1" : "?accept=1");
           }
         }
       })();

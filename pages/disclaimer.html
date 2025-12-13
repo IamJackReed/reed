@@ -71,8 +71,10 @@ title: Before we continue
     } catch (e) {}
 
     var returnTo = getReturnUrl();
-    // send them back to the page they wanted, or home if missing
-    window.location.href = returnTo || "{{ site.baseurl }}/";
+    var target = returnTo || "{{ site.baseurl }}/";
+    var sep = target.indexOf("?") >= 0 ? "&" : "?";
+    // send them back, tagging acceptance so the gate won't re-fire
+    window.location.href = target + sep + "accept=1";
   });
 })();
 </script>
