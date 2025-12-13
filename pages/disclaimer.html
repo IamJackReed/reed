@@ -52,13 +52,23 @@ title: Before we continue
   var btn = document.getElementById('disclaimer-accept');
   if (!btn) return;
 
+  function getReturnUrl() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      return params.get('return');
+    } catch (e) {
+      return null;
+    }
+  }
+
   btn.addEventListener('click', function () {
     try {
       localStorage.setItem('reedDisclaimerAccepted', 'true');
     } catch (e) {}
 
-    // send them "home"
-    window.location.href = "{{ site.baseurl }}/";
+    var returnTo = getReturnUrl();
+    // send them back to the page they wanted, or home if missing
+    window.location.href = returnTo || "{{ site.baseurl }}/";
   });
 })();
 </script>

@@ -16,10 +16,12 @@
   if (base && base[0] !== "/") base = "/" + base;
   base = base.replace(/\/+$/g, ""); // "/reed" or ""
 
-  var disclaimerPath = norm(base + "/disclaimer.html"); // IMPORTANT: .html
+  // Page lives at /disclaimer/ (with or without trailing slash)
+  var disclaimerPath = norm(base + "/disclaimer/");
   var here = norm(window.location.pathname);
-
-  var onDisclaimer = (here === disclaimerPath);
+  var onDisclaimer =
+    here === disclaimerPath ||
+    here === disclaimerPath.replace(/\/$/, "");
 
   if (!accepted && !onDisclaimer) {
     var returnTo = window.location.pathname + window.location.search + window.location.hash;
