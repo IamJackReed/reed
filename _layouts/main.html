@@ -8,6 +8,25 @@ layout: compress
 
   <body class="main-page has-push-menu">
     <script>
+      // Pre-check acceptance before rendering overlay to prevent flicker
+      (function () {
+        var accepted = false;
+        try { accepted = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
+        if (!accepted) {
+          try {
+            accepted = document.cookie.split(";").map(function (c) { return c.trim().toLowerCase(); }).some(function (c) { return c === "reeddisclaimeraccepted=true"; });
+          } catch (e) {}
+        }
+        if (accepted) {
+          document.documentElement.classList.add("disclaimer-clear");
+          var style = document.createElement("style");
+          style.innerHTML = "#disclaimer-overlay{display:none!important;}";
+          document.head.appendChild(style);
+        }
+      })();
+    </script>
+
+    <script>
       // Early accept handling: if ?accept=1 is present, persist and clear overlay
       (function () {
         try {
@@ -72,7 +91,7 @@ layout: compress
           root.classList.add("disclaimer-clear");
           overlay.style.display = "none";
           if (targetUrl) {
-            window.location.href = targetUrl;
+            try { window.history.replaceState({}, "", targetUrl); } catch (e) { window.location.href = targetUrl; }
           }
         }
 
