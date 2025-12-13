@@ -1,94 +1,45 @@
 <!-- DISCLAIMER GATE (runs before anything else) -->
 <script>
 (function () {
-  function norm(p) {
-    if (!p) return "/";
-    if (p[0] !== "/") p = "/" + p;
-    p = p.replace(/\/{2,}/g, "/");
-    return p;
-  }
-
   var ACCEPT_FLAG = "reedDisclaimerAccepted";
-
-  function markAccepted() {
-    try { window.name = ACCEPT_FLAG; } catch (e) {}
-    document.documentElement.classList.add("disclaimer-clear");
-  }
-
-  function handleAcceptQuery() {
-    var params;
-    try {
-      params = new URLSearchParams(window.location.search);
-    } catch (e) {
-      return false;
-    }
-    if (params.get("accept") !== "1") return false;
-
-    markAccepted();
-
-    var returnTo = params.get("return");
-    params.delete("accept");
-    params.delete("return");
-
-    var cleaned =
-      window.location.pathname +
-      (params.toString() ? "?" + params.toString() : "") +
-      window.location.hash;
-
-    try { window.history.replaceState({}, "", cleaned); } catch (e) { window.location.href = cleaned; return true; }
-    if (returnTo) {
-      try { window.location.replace(returnTo); } catch (e) { window.location.href = returnTo; }
-    }
-    return true;
-  }
-
-  function hasAccepted() {
-    var accepted = false;
-    try { accepted = (window.name === ACCEPT_FLAG); } catch (e) {}
-    return accepted;
-  }
-
-  function getOrigin() {
-    if (window.location.origin) return window.location.origin;
-    return window.location.protocol + "//" + window.location.host;
-  }
-
-  var acceptedViaQuery = handleAcceptQuery();
-  var accepted = acceptedViaQuery;
-  try { accepted = accepted || hasAccepted(); } catch (e) {}
-
   var base = "{{ site.baseurl }}";
   base = (base || "").trim();
   if (base && base[0] !== "/") base = "/" + base;
   base = base.replace(/\/+$/g, ""); // "/reed" or ""
 
-  // Page lives at /disclaimer/ (with or without trailing slash)
-  var disclaimerPath = norm(base + "/disclaimer/");
-  var disclaimerUrl = getOrigin() + disclaimerPath;
-  var here = norm(window.location.pathname);
-  var onDisclaimer =
-    here === disclaimerPath ||
-    here === disclaimerPath.replace(/\/$/, "");
-
-  function removeOverlay() {
-    var ov = document.getElementById("disclaimer-overlay");
-    if (ov && ov.parentNode) {
-      ov.parentNode.removeChild(ov);
-    }
-  }
-
-  if (accepted) {
+  function markAccepted() {
+    try { sessionStorage.setItem(ACCEPT_FLAG, "true"); } catch (e) {}
     document.documentElement.classList.add("disclaimer-clear");
-    removeOverlay();
   }
 
-  function sendToDisclaimer(returnTo) {
-    window.location.replace(disclaimerUrl + "?return=" + encodeURIComponent(returnTo));
+  function handleAcceptQuery() {
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (e) { return false; }
+    if (params.get("accept") !== "1") return false;
+    markAccepted();
+    var returnTo = params.get("return");
+    params.delete("accept"); params.delete("return");
+    var cleaned = window.location.pathname + (params.toString() ? "?" + params.toString() : "") + window.location.hash;
+    try { window.history.replaceState({}, "", cleaned); } catch (e) { window.location.href = cleaned; return true; }
+    if (returnTo) { try { window.location.replace(returnTo); } catch (e) { window.location.href = returnTo; } }
+    return true;
   }
+
+  function hasAccepted() {
+    var accepted = false;
+    try { accepted = sessionStorage.getItem(ACCEPT_FLAG) === "true"; } catch (e) {}
+    return accepted;
+  }
+
+  var accepted = handleAcceptQuery() || hasAccepted();
+  var path = window.location.pathname || "/";
+  var onDisclaimer = path.indexOf("/disclaimer") !== -1;
+  var disclaimerUrl = base + "/disclaimer/";
 
   if (!accepted && !onDisclaimer) {
-    var returnTo = window.location.href;
-    sendToDisclaimer(returnTo);
+    var ret = window.location.href;
+    window.location.href = disclaimerUrl + "?return=" + encodeURIComponent(ret);
+    return;
   }
 
   if (!accepted && onDisclaimer) {
@@ -96,16 +47,6 @@
       document.body.classList.add("disclaimer-mode");
     });
   }
-
-  // ensure any leftover overlay markup from old deploys is hidden
-  document.addEventListener("DOMContentLoaded", function () {
-    if (accepted) {
-      document.documentElement.classList.add("disclaimer-clear");
-      removeOverlay();
-    }
-  });
-
-  // Safety net: if the early redirect was blocked for any reason, the static overlay is already present.
 })();
 </script>
 <!-- /DISCLAIMER GATE -->

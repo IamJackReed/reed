@@ -62,7 +62,7 @@ title: Before we continue
   }
 
   btn.addEventListener('click', function () {
-    try { window.name = "reedDisclaimerAccepted"; } catch (e) {}
+    try { sessionStorage.setItem('reedDisclaimerAccepted', 'true'); } catch (e) {}
 
     var returnTo = getReturnUrl();
     var target = returnTo || "{{ site.baseurl }}/";
