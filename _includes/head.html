@@ -89,8 +89,16 @@
     here === disclaimerPath ||
     here === disclaimerPath.replace(/\/$/, "");
 
+  function removeOverlay() {
+    var ov = document.getElementById("disclaimer-overlay");
+    if (ov && ov.parentNode) {
+      ov.parentNode.removeChild(ov);
+    }
+  }
+
   if (accepted) {
     document.documentElement.classList.add("disclaimer-clear");
+    removeOverlay();
   }
 
   function sendToDisclaimer(returnTo) {
@@ -109,6 +117,14 @@
       document.body.classList.add("disclaimer-mode");
     });
   }
+
+  // Ensure overlay is gone once we're accepted
+  document.addEventListener("DOMContentLoaded", function () {
+    if (accepted) {
+      document.documentElement.classList.add("disclaimer-clear");
+      removeOverlay();
+    }
+  });
 
   // Safety net: if the early redirect was blocked for any reason, the static overlay is already present.
 })();
