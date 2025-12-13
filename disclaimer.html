@@ -75,6 +75,10 @@ title: Before we continue
             localStorage.setItem('reedDisclaimerAccepted', 'true');
           } catch (e) {}
 
+          try {
+            document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000";
+          } catch (e) {}
+
           // Send them back to where they came from (if provided), otherwise home.
           var returnTo = getReturnUrl();
           if (returnTo) {

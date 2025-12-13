@@ -8,8 +8,32 @@
     return p;
   }
 
+  function hasAccepted() {
+    var accepted = false;
+
+    try { accepted = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
+
+    // Cookie fallback (handles strict/private modes where localStorage is blocked)
+    if (!accepted) {
+      try {
+        var match = document.cookie
+          .split(";")
+          .map(function (c) { return c.trim().toLowerCase(); })
+          .some(function (c) { return c === "reeddisclaimeraccepted=true"; });
+        accepted = match;
+      } catch (e) {}
+    }
+
+    return accepted;
+  }
+
+  function getOrigin() {
+    if (window.location.origin) return window.location.origin;
+    return window.location.protocol + "//" + window.location.host;
+  }
+
   var accepted = false;
-  try { accepted = localStorage.getItem("reedDisclaimerAccepted") === "true"; } catch (e) {}
+  try { accepted = hasAccepted(); } catch (e) {}
 
   var base = "{{ site.baseurl }}";
   base = (base || "").trim();
@@ -18,14 +42,19 @@
 
   // Page lives at /disclaimer/ (with or without trailing slash)
   var disclaimerPath = norm(base + "/disclaimer/");
+  var disclaimerUrl = getOrigin() + disclaimerPath;
   var here = norm(window.location.pathname);
   var onDisclaimer =
     here === disclaimerPath ||
     here === disclaimerPath.replace(/\/$/, "");
 
-  if (!accepted && !onDisclaimer) {
+  function sendToDisclaimer() {
     var returnTo = window.location.pathname + window.location.search + window.location.hash;
-    window.location.replace(disclaimerPath + "?return=" + encodeURIComponent(returnTo));
+    window.location.replace(disclaimerUrl + "?return=" + encodeURIComponent(returnTo));
+  }
+
+  if (!accepted && !onDisclaimer) {
+    sendToDisclaimer();
     return;
   }
 
@@ -34,6 +63,13 @@
       document.body.classList.add("disclaimer-mode");
     });
   }
+
+  // Safety net: if the early redirect was blocked for any reason, try again when DOM is ready.
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!accepted && !onDisclaimer) {
+      sendToDisclaimer();
+    }
+  });
 })();
 </script>
 <!-- /DISCLAIMER GATE -->

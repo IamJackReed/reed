@@ -2,34 +2,6 @@
 layout: main
 ---
 
-<!-- DISCLAIMER GATE: force first-time visitors to accept before viewing the homepage -->
-<script>
-  (function () {
-    var accepted = false;
-
-    // read the flag from localStorage
-    try {
-      accepted = localStorage.getItem('reedDisclaimerAccepted') === 'true';
-    } catch (e) {
-      accepted = false;
-    }
-
-    // where are we right now?
-    var path = window.location.pathname;
-
-    // we do NOT redirect if we're already on /disclaimer/
-    // (handle both local builds and github pages baseurl)
-    var onDisclaimer =
-      path.indexOf("/disclaimer") === 0 ||
-      path.indexOf("{{ site.baseurl }}/disclaimer") === 0;
-
-    if (!accepted && !onDisclaimer) {
-      // send them to the disclaimer
-      window.location.replace("{{ site.baseurl }}/disclaimer/");
-    }
-  })();
-</script>
-
 {% if site.paginate %}
     {% assign posts = paginator.posts | where_exp:"post","post.is_generated != true" %}
 {% else %}
