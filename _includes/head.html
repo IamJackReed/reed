@@ -8,6 +8,32 @@
     return p;
   }
 
+  function markAccepted() {
+    try { localStorage.setItem("reedDisclaimerAccepted", "true"); } catch (e) {}
+    try { document.cookie = "reedDisclaimerAccepted=true; path={{ site.baseurl | default: '/' }}; max-age=31536000"; } catch (e) {}
+    document.documentElement.classList.add("disclaimer-clear");
+  }
+
+  function handleAcceptQuery() {
+    var params;
+    try {
+      params = new URLSearchParams(window.location.search);
+    } catch (e) {
+      return false;
+    }
+    if (params.get("accept") === "1") {
+      markAccepted();
+      params.delete("accept");
+      var cleaned =
+        window.location.pathname +
+        (params.toString() ? "?" + params.toString() : "") +
+        window.location.hash;
+      try { window.history.replaceState({}, "", cleaned); } catch (e) { window.location.href = cleaned; }
+      return true;
+    }
+    return false;
+  }
+
   function hasAccepted() {
     var accepted = false;
 
@@ -32,8 +58,9 @@
     return window.location.protocol + "//" + window.location.host;
   }
 
-  var accepted = false;
-  try { accepted = hasAccepted(); } catch (e) {}
+  var acceptedViaQuery = handleAcceptQuery();
+  var accepted = acceptedViaQuery;
+  try { accepted = accepted || hasAccepted(); } catch (e) {}
 
   var base = "{{ site.baseurl }}";
   base = (base || "").trim();

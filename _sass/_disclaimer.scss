@@ -78,6 +78,25 @@ body.disclaimer-mode .exploding-nav {
   color: var(--disclaimer-bg);
 }
 
+#disclaimer-overlay a.disclaimer-accept-overlay {
+  display: inline-block;
+  border: 2px solid var(--disclaimer-accent);
+  background: var(--disclaimer-accent);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#disclaimer-overlay a.disclaimer-accept-overlay:hover,
+#disclaimer-overlay a.disclaimer-accept-overlay:focus {
+  background: var(--disclaimer-accent-hover);
+  color: var(--disclaimer-bg);
+}
+
 #disclaimer-overlay a {
   color: var(--disclaimer-accent);
   font-weight: 700;
