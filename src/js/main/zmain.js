@@ -73,13 +73,15 @@
       }
   });
   
-  if (document.getElementsByClassName('home').length >=1 ) {
-      new AnimOnScroll( document.getElementById( 'grid' ), {
-        minDuration : 0.4,
-        maxDuration : 0.7,
-        viewportFactor : 0.2
-      });
-  }
+  var grid = document.getElementById('grid');
+if (grid) {
+  new AnimOnScroll(grid, {
+    minDuration: 0.4,
+    maxDuration: 0.7,
+    viewportFactor: 0.2
+  });
+}
+
 
   // Init smooth scroll
   smoothScroll.init({
