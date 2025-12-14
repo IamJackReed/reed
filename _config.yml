@@ -86,6 +86,8 @@ paginate_content:
       is_generated: true
     last:
       is_generated: true
+    single:
+      is_generated: false # keep original posts visible in lists
 
 # SASS
 sass:
