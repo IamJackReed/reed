@@ -7,7 +7,7 @@ permalink: /posts/
 {% assign posts = site.posts | where_exp:"post","post.is_generated != true" %}
 
 <main class="home" role="main">
-  <section class="row flex-grid">
+  <section id="grid" class="row flex-grid">
     {% for post in posts %}
       <article class="box-item">
         <span class="category">
