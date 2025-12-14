@@ -17,7 +17,7 @@ menu:
   - title: About 
     url: /about
   - title: Posts
-    url: /posts
+    url: /posts/
   - title: People & Teams
     url: /People&Teams
   - title: Product
@@ -69,6 +69,7 @@ collections:
 paginate_path: "/page/:num/"
 show_get_theme_btn: true
 use_logo: false
+future: true
 
 # Content paginator
 paginate_content:
