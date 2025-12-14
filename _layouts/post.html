@@ -124,7 +124,7 @@
             "description": "{{ page.description }}",
             "image": "{{ page.image }}",
             "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-            "articleBody": "{{ content | strip_html | xml_escape | textilize }}",
+            "articleBody": "{{ content | strip_html | xml_escape }}",
             "wordcount": "{{ content | number_of_words }}",
             "inLanguage": "{{ site.language }}",
             "dateCreated": "{{ page.date | date: '%Y-%m-%d/' }}",
