@@ -10,8 +10,11 @@ permalink: /posts/
   <section id="grid" class="row flex-grid">
     {% for post in posts %}
       <article class="box-item">
+
         <span class="category">
-          <a href="{{ '/'+ (site.categories_folder | default: 'category') + '/' + post.category | relative_url }}">
+          {% assign cat_folder = site.categories_folder | default: 'category' %}
+          {% capture cat_path %}/{{ cat_folder }}/{{ post.category }}{% endcapture %}
+          <a href="{{ cat_path | relative_url }}">
             <span>{{ post.category }}</span>
           </a>
         </span>
