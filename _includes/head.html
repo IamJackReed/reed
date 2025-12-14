@@ -94,6 +94,8 @@
 
   <!-- JavaScript enabled/disabled -->
   <script>
-    document.querySelector('html').classList.remove('no-js');
+    var docEl = document.documentElement;
+    docEl.classList.remove('no-js');
+    docEl.classList.add('js');
   </script>
 </head>

@@ -1,12 +1,16 @@
 .flex-grid article {
-  opacity: 0;
-}
-
-.flex-grid article.shown {
   opacity: 1;
 }
 
-.flex-grid article.animate {
+.js .flex-grid article {
+  opacity: 0;
+}
+
+.js .flex-grid article.shown {
+  opacity: 1;
+}
+
+.js .flex-grid article.animate {
   animation: moveUp 0.65s;
   opacity: 1;
 }
