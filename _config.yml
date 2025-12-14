@@ -86,8 +86,6 @@ paginate_content:
       is_generated: true
     last:
       is_generated: true
-    single:
-      is_generated: false
 
 # SASS
 sass:
