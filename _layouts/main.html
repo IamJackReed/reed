@@ -6,6 +6,7 @@ layout: compress
 <html lang="{{ site.language }}" class="no-js">
   {% include head.html %}
   <body class="main-page has-push-menu">
+
     {% include svg-icons.html %}
     {% include header.html %}
 
@@ -14,23 +15,6 @@ layout: compress
     </section>
 
     {% include footer.html %}
-
-    <!-- Disclaimer gate (GitHub Pages friendly). Must run before the rest of the site JS. -->
-    <script
-      src="{{ site.baseurl }}/assets/js/disclaimer-gate.js"
-      data-baseurl="{{ site.baseurl }}"
-      data-disclaimer-path="/disclaimer/"
-      data-storage-key="reedDisclaimerAccepted"
-    ></script>
-
-    <!-- Theme core JS (menu toggle, search overlay, preload images, etc.) -->
-    <script src="{{ site.baseurl }}/assets/js/scripts.min.js"></script>
-
-    <!-- Home card visibility fallback (safety net if AnimOnScroll fails) -->
-    <script src="{{ site.baseurl }}/assets/js/home-cards-fallback.js"></script>
-
-    <!-- Exploding head nav behavior -->
-    <script src="{{ site.baseurl }}/assets/js/exploding-nav.js"></script>
 
     <!-- Netlify Identity (login redirect for /admin) -->
     <script>
@@ -44,5 +28,6 @@ layout: compress
         });
       }
     </script>
+
   </body>
 </html>
