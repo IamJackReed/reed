@@ -1,6 +1,6 @@
 # Site Settings
 name: Jack Reed
-title:  Jack Reed | Scrum Master
+title: Jack Reed | Scrum Master
 description: Jackflix is a template for Jekyll inspired by Netflix.
 
 tags:
@@ -14,7 +14,7 @@ show_hero: true
 menu:
   - title: Home
     url: /
-  - title: About 
+  - title: About
     url: /about
   - title: Posts
     url: /posts/
@@ -25,30 +25,15 @@ menu:
   - title: Organisation & Change
     url: /Organisation&Change
 
-# email: youremail@test.com
-# See: https://disqus.com/
-# disqus_username: disqus_username
-# Contact Form Setting
-# See: https://formspree.io/
-# formspree_form_id: formspree_form_id
-
-
 # Social Media Settings
-# Remove the item if you don't need it
-# github_username: github_username
-# facebook_username: facebook_username
-# twitter_username: twitter_username
 instagram_username: instagram_username
 linkedin_username: linkedin_username
-# medium_username: medium_username
-
 
 # Posts Settings
 show_time_bar: true
 show_modal_on_exit: false
 show_modal_on_finish_post: true
 two_columns_layout: true
-
 
 # Advanced Settings
 baseurl: "/reed" # the subpath of your site (starts with a slash, no trailing slash)
@@ -57,7 +42,6 @@ google_analytics: "UA-XXXXXXXX-X"
 language: "en"
 categories_folder: category
 sent_message_url: "/contact/message-sent/"
-
 
 # Build settings
 markdown: kramdown
@@ -71,32 +55,13 @@ show_get_theme_btn: true
 use_logo: false
 future: true
 
-# Content paginator
-paginate_content:
-  enabled: true
-  debug: false
-  collections:
-    - posts
-  auto: false
-  separator: "--page-break--"
-  permalink: "/:num/"
-  seo_canonical: true
-  properties:
-    part:
-      is_generated: true
-    last:
-      is_generated: true
-    single:
-      is_generated: false # keep original posts visible in lists
-
 # SASS
 sass:
   style: compressed
 
-# Plugins
+# Plugins (GitHub Pages supported)
 plugins:
   - jekyll-paginate
-  - jekyll-paginate-content
 
 # Exclude my node related stuff
 exclude: [
@@ -115,6 +80,3 @@ exclude: [
   'gulpfile.js',
   'README.md'
 ]
-
-# Theme
-#version: v3.1.2
