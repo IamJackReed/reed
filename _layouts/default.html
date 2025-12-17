@@ -16,28 +16,7 @@ layout: compress
 
     {% include footer.html %}
 
-    <!-- Netlify Identity (from theme) -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- Theme scripts -->
-    <script src="{{ site.baseurl }}/assets/js/scripts.min.js"></script>
-
-    <!-- Exploding head menu script -->
-    <script src="{{ site.baseurl }}/assets/js/exploding-nav.js"></script>
-
-    <!-- Google Analytics (theme default) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXX-X"></script>
-    <script>
-      var host = window.location.hostname;
-      if (host != 'localhost') {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-XXXXXXXX-X');
-      }
-    </script>
-
-    <!-- Extra theme script for Netlify redirect -->
+    <!-- Netlify Identity (login redirect for /admin) -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", function(user) {
@@ -52,4 +31,3 @@ layout: compress
 
   </body>
 </html>
-
