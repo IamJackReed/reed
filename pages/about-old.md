@@ -3,7 +3,7 @@ layout: about
 title: Jack Reed
 tagline: Systems thinker · BJJ bruiser · Market tinkerer
 description: Who I am and what this site is for.
-permalink: /about/
+permalink: permalink: /about-old/
 image: /assets/img/uploads/profile.png
 ---
 
