@@ -5,8 +5,8 @@ title: The Hidden Traps of Teamwork
 subtitle: '5 Counter-Intuitive Truths About Collaboration and Conflict'
 description: >-
   The Unseen Forces in Our Work.
-image: ![Image](/assets/img/hidden-traps-of-teamwork.png)
-optimized_image: ![Image](/assets/img/hidden-traps-of-teamwork.png)
+image: https://res.cloudinary.com/dj6poiukp/image/upload/v1766173772/hidden-traps-of-teamwork_vhw005.png
+optimized_image: https://res.cloudinary.com/dj6poiukp/image/upload/v1766173772/hidden-traps-of-teamwork_vhw005.png
 category: System Thinking
 tags:
   - welcome
