@@ -14,7 +14,7 @@ tags:
 author: Jack Reed
 paginate: true
 ---
-Does this sound familiar? Your team is full of talented, hard-working people. Everyone is putting in the hours. Yet, key projects seem to get stuck, deadlines are missed, and a feeling of disconnection persists despite everyone's best efforts. It’s a common frustration in today’s workplace, and the typical response—pushing harder—often only makes things worse.
+Does this sound familiar? Your team is full of talented, hard-working people. Everyone is putting in the hours. Yet, key projects seem to get stuck, deadlines are missed, and a feeling of disconnection persists despite everyone's best efforts. It’s a common frustration in today’s workplace, and the typical response, pushing harder, often only makes things worse.
 
 The problems we can see are often just symptoms of deeper, unseen system dynamics. The intricate web of relationships, feedback loops, and hidden assumptions that govern how we work together is far more powerful than any individual's effort.
 
@@ -26,7 +26,7 @@ When a project falls behind, the common assumption is that applying more pressur
 
 The counter-intuitive reality is that for knowledge workers, this approach achieves the exact opposite. Adding pressure doesn't create focus; it reduces available thinking power, the very resource needed for complex problem-solving. The result is not only lower-quality work but a creative process that slows down even more.
 
-Consider an organisation struggling to keep up with changing customer requirements. The leadership's response is to demand the teams work harder. This increases stress on the knowledge workers, which in turn reduces their capacity for innovation and lowers the quality of their output. The time it takes to get new features to market actually increases—the very outcome they were trying to avoid. In a world where creativity and adaptability are paramount, understanding this paradox is critical to creating an environment where people can do their best work.
+Consider an organisation struggling to keep up with changing customer requirements. The leadership's response is to demand the teams work harder. This increases stress on the knowledge workers, which in turn reduces their capacity for innovation and lowers the quality of their output. The time it takes to get new features to market actually increases,the very outcome they were trying to avoid. In a world where creativity and adaptability are paramount, understanding this paradox is critical to creating an environment where people can do their best work.
 
 ## Conflict Is a Creative Signal, Not a Sign of Failure
 
@@ -47,7 +47,7 @@ Identifying these behaviors is the first step; the next is to intentionally repl
 
 Our minds are trained to see simple, linear patterns of cause and effect. If A happens, then B will be the result. This works well for simple problems, but it fails spectacularly in complex environments like teams and organisations.
 
-_“The world is made in circles and we think in straight lines.”_ — **Peter Senge**
+_“The world is made in circles and we think in straight lines.”_ , **Peter Senge**
 
 In a system, everything is interconnected through circular feedback loops. An action doesn't just have one effect; it creates ripples that feed back and influence the original cause. A team isn't just a collection of individuals; it's an interdependent system. You can take a tool from a toolbox, and its function remains unchanged. But if you take a wheel from a car, you no longer have a functioning car, because all the parts must be present and working together.
 
@@ -55,7 +55,7 @@ Systems thinking is a language for talking about these complex, interdependent i
 
 ## The _"Working Alliance"_: Why Your Team's Best Agreement Will Start Shallow
 
-Many teams try to establish rules of engagement or a charter, but these documents often end up collecting dust. A _"Working Alliance"_ is a different approach—it's a living agreement on how a team wants to behave, relate to each other, and operate day-to-day. Its ultimate purpose is to create the psychological safety required for high performance, because we know that feeling psychologically safe when working together produces better results and is essential for innovation and collaboration.
+Many teams try to establish rules of engagement or a charter, but these documents often end up collecting dust. A _"Working Alliance"_ is a different approach,it's a living agreement on how a team wants to behave, relate to each other, and operate day-to-day. Its ultimate purpose is to create the psychological safety required for high performance, because we know that feeling psychologically safe when working together produces better results and is essential for innovation and collaboration.
 
 Here's the surprising part: the first draft of a Working Alliance is often _"shallow and not useful."_ This isn't a failure; it’s a natural and necessary starting point.
 
@@ -63,7 +63,7 @@ The real value of the alliance emerges over time. It is designed to grow and dee
 
 ## Mapping the Invisible: How to Visualize Your Team's System
 
-Some of the most powerful forces shaping a team's performance—like trust, engagement, or hidden loyalties—are invisible. How can you work with something you can't see? The answer is to make it visible using a simple but profound technique called "informal constellations."
+Some of the most powerful forces shaping a team's performance,like trust, engagement, or hidden loyalties,are invisible. How can you work with something you can't see? The answer is to make it visible using a simple but profound technique called "informal constellations."
 
 The core concept is that the position of things relative to each other has meaning. By using people, post-it notes, or even virtual shapes on a screen, a team can build a physical representation of its system. By positioning these pieces and then stepping back, everyone can visualize the relationships between them.
 
