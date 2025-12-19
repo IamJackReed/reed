@@ -26,7 +26,7 @@ When a project falls behind, the common assumption is that applying more pressur
 
 The counter-intuitive reality is that for knowledge workers, this approach achieves the exact opposite. Adding pressure doesn't create focus; it reduces available thinking power, the very resource needed for complex problem-solving. The result is not only lower-quality work but a creative process that slows down even more.
 
-Consider an organization struggling to keep up with changing customer requirements. The leadership's response is to demand the teams work harder. This increases stress on the knowledge workers, which in turn reduces their capacity for innovation and lowers the quality of their output. The time it takes to get new features to market actually increases—the very outcome they were trying to avoid. In a world where creativity and adaptability are paramount, understanding this paradox is critical to creating an environment where people can do their best work.
+Consider an organisation struggling to keep up with changing customer requirements. The leadership's response is to demand the teams work harder. This increases stress on the knowledge workers, which in turn reduces their capacity for innovation and lowers the quality of their output. The time it takes to get new features to market actually increases—the very outcome they were trying to avoid. In a world where creativity and adaptability are paramount, understanding this paradox is critical to creating an environment where people can do their best work.
 
 ## Conflict Is a Creative Signal, Not a Sign of Failure
 
@@ -45,9 +45,9 @@ Identifying these behaviors is the first step; the next is to intentionally repl
 
 ## You're Thinking in Straight Lines in a Circular World
 
-Our minds are trained to see simple, linear patterns of cause and effect. If A happens, then B will be the result. This works well for simple problems, but it fails spectacularly in complex environments like teams and organizations.
+Our minds are trained to see simple, linear patterns of cause and effect. If A happens, then B will be the result. This works well for simple problems, but it fails spectacularly in complex environments like teams and organisations.
 
-_“The world is made in circles and we think in straight lines.”_ — Peter Senge
+_“The world is made in circles and we think in straight lines.”_ — **Peter Senge**
 
 In a system, everything is interconnected through circular feedback loops. An action doesn't just have one effect; it creates ripples that feed back and influence the original cause. A team isn't just a collection of individuals; it's an interdependent system. You can take a tool from a toolbox, and its function remains unchanged. But if you take a wheel from a car, you no longer have a functioning car, because all the parts must be present and working together.
 
@@ -67,15 +67,15 @@ Some of the most powerful forces shaping a team's performance—like trust, enga
 
 The core concept is that the position of things relative to each other has meaning. By using people, post-it notes, or even virtual shapes on a screen, a team can build a physical representation of its system. By positioning these pieces and then stepping back, everyone can visualize the relationships between them.
 
-For example, a "Star constellation" can make engagement visible. A central point represents a key project, and team members position themselves closer or farther away to show how engaged they feel with it. Or, in a "Linear constellation," team members line up to show their level of experience with a new technology. Suddenly, a complex, unspoken dynamic becomes a clear picture that the whole team can see and discuss.
+For example, a "_Star constellation_" can make engagement visible. A central point represents a key project, and team members position themselves closer or farther away to show how engaged they feel with it. Or, in a "_Linear constellation_," team members line up to show their level of experience with a new technology. Suddenly, a complex, unspoken dynamic becomes a clear picture that the whole team can see and discuss.
 
-This works because of a phenomenon known as "representative perception." As Marcus Birkenkrahe of the Berlin School of Economics notes, "...representatives are able to make important statements about system dynamics and about information which they have not previously received verbally." The technique moves teams beyond just talking about a problem and allows them to see it, tapping into a deeper, non-verbal field of information to enable clearer, more effective decision-making.
+This works because of a phenomenon known as "_representative perception._" As Marcus Birkenkrahe of the Berlin School of Economics notes,"_...representatives are able to make important statements about system dynamics and about information which they have not previously received verbally._" The technique moves teams beyond just talking about a problem and allows them to see it, tapping into a deeper, non-verbal field of information to enable clearer, more effective decision-making.
 
 ## Seeing the Whole Picture
 
 So many of our biggest frustrations at work come from a single, fundamental mismatch: we apply simple, linear solutions to complex, circular systems. We try to fix the individual parts without seeing how they are connected to the whole.
 
-Embracing the counter-intuitive truths of systems thinking is an integrated practice. It starts by recognizing that our linear thinking is a trap (Takeaway 3) and that pushing harder on the parts only makes things worse (Takeaway 1). Instead, we must create psychological safety (Takeaway 4) so we can welcome conflict as the engine of new insights (Takeaway 2) and use new tools to make the invisible dynamics of the system visible to everyone (Takeaway 5). This integrated skillset is the key to unlocking more effective, resilient, and humane ways of working.
+Embracing the counter-intuitive truths of systems thinking is an integrated practice. It starts by recognizing that our linear thinking is a trap (**Point 3**) and that pushing harder on the parts only makes things worse (**Point 1**). Instead, we must create psychological safety (**Point 4**) so we can welcome conflict as the engine of new insights (**Point 2**) and use new tools to make the invisible dynamics of the system visible to everyone (**Point 5**). This integrated skillset is the key to unlocking more effective, resilient, and well.. just humane ways of working.
 
-As I back to your work, one powerful question I ponder one is: What is one "_straight line_" assumption I'm holding about my teams, and what "_circular_" reality might it be hiding?
+As I go back to my  work, one powerful question I'm reflecting one is: What is one "_straight line_" assumption I'm holding, and what "_circular_" reality might it be hiding?
 
