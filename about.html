@@ -7,6 +7,14 @@ permalink: /about/
 <style>
   /* About page is fully scoped to avoid breaking the rest of the site */
   .about-page { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+
+  /* Ensure readable text on your dark theme */
+  .about-page { color: rgba(255,255,255,0.92); }
+  .about-page a { color: rgba(255,255,255,0.92); }
+  .about-page .hero h1,
+  .about-page section h2,
+  .about-page h3 { color: #fff; }
+
   .about-page .hero { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
   .about-page .hero img { width: 220px; border-radius: 50%; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
   .about-page .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
@@ -17,7 +25,11 @@ permalink: /about/
   .about-page section p { max-width: 850px; line-height: 1.8; }
 
   .about-page .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-  .about-page .pillar { padding: 2rem; border-radius: 24px; background: rgba(0,0,0,0.04); }
+  .about-page .pillar {
+    padding: 2rem;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.06);
+  }
 
   .about-page .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 2rem; align-items: center; }
   .about-page .logos img { max-height: 60px; filter: grayscale(100%); opacity: 0.85; }
@@ -25,7 +37,13 @@ permalink: /about/
   .about-page .badges { display: flex; flex-wrap: wrap; gap: 1.5rem; }
   .about-page .badges img { height: 70px; }
 
-  .about-page .cta { margin-top: 4rem; padding: 3rem; border-radius: 32px; background: linear-gradient(135deg, #111, #333); color: #fff; }
+  .about-page .cta {
+    margin-top: 4rem;
+    padding: 3rem;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #111, #333);
+    color: #fff;
+  }
   .about-page .cta a { color: #fff; font-weight: bold; text-decoration: underline; }
 
   /* -----------------------------
@@ -44,29 +62,34 @@ permalink: /about/
   .about-page .logos img:hover { transform: translateY(-2px) scale(1.03); filter: grayscale(0%); opacity: 1; }
   .about-page .badges img:hover { transform: translateY(-2px) scale(1.04); }
 
-  /* Scroll reveal */
-  .about-page .reveal { opacity: 0; transform: translateY(14px); }
-  .about-page .reveal.in {
+  /* ---------- Reveal system ----------
+     Default: visible (so it never renders blank)
+     Motion-enabled: JS adds .motion to .about-page, then we animate
+  ----------------------------------- */
+  .about-page .reveal { opacity: 1; transform: none; }
+  .about-page .stagger > * { opacity: 1; transform: none; }
+
+  .about-page.motion .reveal { opacity: 0; transform: translateY(14px); }
+  .about-page.motion .reveal.in {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 600ms cubic-bezier(0.2, 0.9, 0.2, 1),
                 transform 600ms cubic-bezier(0.2, 0.9, 0.2, 1);
   }
 
-  /* Stagger for child items */
-  .about-page .stagger > * { opacity: 0; transform: translateY(10px); }
-  .about-page .stagger.in > * {
+  .about-page.motion .stagger > * { opacity: 0; transform: translateY(10px); }
+  .about-page.motion .stagger.in > * {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 520ms cubic-bezier(0.2, 0.9, 0.2, 1),
                 transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1);
   }
-  .about-page .stagger.in > *:nth-child(1) { transition-delay: 0ms; }
-  .about-page .stagger.in > *:nth-child(2) { transition-delay: 90ms; }
-  .about-page .stagger.in > *:nth-child(3) { transition-delay: 180ms; }
-  .about-page .stagger.in > *:nth-child(4) { transition-delay: 270ms; }
-  .about-page .stagger.in > *:nth-child(5) { transition-delay: 360ms; }
-  .about-page .stagger.in > *:nth-child(6) { transition-delay: 450ms; }
+  .about-page.motion .stagger.in > *:nth-child(1) { transition-delay: 0ms; }
+  .about-page.motion .stagger.in > *:nth-child(2) { transition-delay: 90ms; }
+  .about-page.motion .stagger.in > *:nth-child(3) { transition-delay: 180ms; }
+  .about-page.motion .stagger.in > *:nth-child(4) { transition-delay: 270ms; }
+  .about-page.motion .stagger.in > *:nth-child(5) { transition-delay: 360ms; }
+  .about-page.motion .stagger.in > *:nth-child(6) { transition-delay: 450ms; }
 
   /* Subtle avatar entrance */
   .about-page .hero img { animation: popIn 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both; }
@@ -173,45 +196,3 @@ permalink: /about/
       Alongside my work in Financial Services (8+ years), I have a strong interest in investing in businesses —
       evaluating them, backing founders, and supporting growth where I can. Occasionally, this even results
       in a profit.
-    </p>
-  </section>
-
-  <!-- BLOG / CTA -->
-  <div class="cta reveal">
-    <h2>Writing & Sense-Making</h2>
-    <p>
-      I share my views, experiences, and experiments on my blog at
-      <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>.
-      If you’re interested in systems thinking, agility, or the human side of change — you’ll feel at home.
-    </p>
-  </div>
-
-</div>
-
-<script>
-  // Lightweight scroll reveal (Framer Motion-ish feel)
-  (function () {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
-
-    const els = Array.from(document.querySelectorAll('.about-page .reveal, .about-page .stagger'));
-    if (!('IntersectionObserver' in window) || els.length === 0) {
-      els.forEach(el => el.classList.add('in'));
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in');
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-    );
-
-    els.forEach(el => io.observe(el));
-  })();
-</script>
