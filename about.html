@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+disable_exploding_nav: true
 ---
 
 <style>
@@ -66,13 +67,23 @@ permalink: /about/
     align-items: center;
   }
 
+  /* Avatar: show more of the photo (Framer-style portrait card) */
   .about-page .hero img {
-    width: 220px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    width: 240px;
+    aspect-ratio: 4 / 5;       /* portrait */
+    object-fit: cover;          /* keep it clean */
+    object-position: center 18%;/* bias upward so head stays in frame */
+    border-radius: 28px;        /* Framer card feel */
+
+    padding: 6px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.05));
+    box-shadow:
+      0 22px 50px rgba(0,0,0,0.35),
+      inset 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  
+    @media (max-width: 840px) {
+     .about-page .hero img { width: 200px; }
   }
 
   .about-page h1 { font-size: clamp(2.2rem, 3.4vw, 3.1rem); margin: 0 0 .75rem 0; }

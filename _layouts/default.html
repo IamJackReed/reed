@@ -22,8 +22,14 @@ layout: compress
     <!-- Theme scripts -->
     <script src="{{ site.baseurl }}/assets/js/scripts.min.js"></script>
 
-    <!-- Exploding head menu script -->
-    <script src="{{ site.baseurl }}/assets/js/exploding-nav.js"></script>
+    {% unless page.disable_exploding_nav %}
+      <!-- Exploding head nav markup -->
+      <!-- Paste your exploding nav HTML markup here -->
+      <!-- (The head image + button + "CLICK MY HEAD" etc.) -->
+
+      <!-- Exploding head menu script (only load when enabled) -->
+      <script src="{{ site.baseurl }}/assets/js/exploding-nav.js"></script>
+    {% endunless %}
 
     <!-- Google Analytics (theme default) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXX-X"></script>
