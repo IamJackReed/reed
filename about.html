@@ -180,6 +180,122 @@ permalink: /about/
   .about-page .cta p { color: var(--fg); }
   .about-page .cta a { font-weight: 700; text-decoration: underline; }
 
+  /* =========================
+   Timeline (Framer-ish)
+   ========================= */
+.about-page .timeline {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+/* The vertical line */
+.about-page .timeline::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255,255,255,0.22),
+    transparent
+  );
+}
+
+.about-page .t-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.about-page .t-dot {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  margin-top: 2px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+}
+
+.about-page .t-dot::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.45);
+  box-shadow: 0 0 0 6px rgba(255,255,255,0.06);
+  opacity: 0.9;
+}
+
+.about-page .t-card {
+  padding: 1.45rem;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.about-page .t-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem .85rem;
+  align-items: baseline;
+  margin-bottom: .55rem;
+}
+
+.about-page .t-role {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.about-page .t-meta {
+  color: rgba(255,255,255,0.66);
+  font-size: 0.98rem;
+}
+
+.about-page .t-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .9rem;
+}
+
+.about-page .t-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: .45rem .7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.70);
+  font-size: 0.92rem;
+  line-height: 1;
+}
+
+/* Slight hover lift like the rest of the page */
+.about-page .t-card {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+.about-page .t-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+}
+
+/* Mobile tweaks */
+@media (max-width: 840px) {
+  .about-page .timeline::before { left: 13px; }
+  .about-page .t-item { grid-template-columns: 32px 1fr; }
+  .about-page .t-card { padding: 1.25rem; }
+}
+
   /* -----------------------------
      Interactions + accessibility
      ----------------------------- */
@@ -343,6 +459,84 @@ permalink: /about/
       <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ih.svg" alt="IH" /></div>
     </div>
   </section>
+
+  <!-- TIMELINE -->
+<section class="reveal">
+  <div class="section-head">
+    <div class="kicker"><span class="dot"></span>Journey</div>
+    <h2>Career Timeline</h2>
+  </div>
+
+  <p class="lede" style="color: rgba(255,255,255,0.72);">
+    A quick view of the environments I’ve worked in and the problems I tend to get pulled into.
+  </p>
+
+  <div class="timeline stagger" aria-label="Career timeline">
+
+    <div class="t-item">
+      <div class="t-dot" aria-hidden="true"></div>
+      <div class="t-card">
+        <div class="t-top">
+          <div class="t-role">Government / Gov.UK</div>
+          <div class="t-meta">Large-scale services • policy-to-delivery • high accountability</div>
+        </div>
+        <p>
+          Coaching teams working on complex public-facing services where clarity, transparency,
+          and outcome focus matter more than ceremony. Lots of stakeholders, lots of constraints —
+          plenty of room for systems thinking.
+        </p>
+        <div class="t-tags" aria-label="Highlights">
+          <span class="t-tag">Service delivery</span>
+          <span class="t-tag">Stakeholder alignment</span>
+          <span class="t-tag">Lean flow</span>
+          <span class="t-tag">Pragmatic agility</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-dot" aria-hidden="true"></div>
+      <div class="t-card">
+        <div class="t-top">
+          <div class="t-role">Med-Tech</div>
+          <div class="t-meta">Regulated environments • quality • traceability</div>
+        </div>
+        <p>
+          Supporting delivery in contexts where safety, evidence, and compliance shape how change can happen.
+          Optimising feedback loops without compromising on what “good” must look like.
+        </p>
+        <div class="t-tags" aria-label="Highlights">
+          <span class="t-tag">Regulated delivery</span>
+          <span class="t-tag">Quality mindset</span>
+          <span class="t-tag">Risk management</span>
+          <span class="t-tag">Continuous improvement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-dot" aria-hidden="true"></div>
+      <div class="t-card">
+        <div class="t-top">
+          <div class="t-role">Financial Services</div>
+          <div class="t-meta">Institutional scale • complexity • long horizons</div>
+        </div>
+        <p>
+          Helping organisations deliver in complex systems with multiple teams, dependencies,
+          governance constraints, and long-term commitments. My focus is making progress visible,
+          reducing friction, and increasing learning speed.
+        </p>
+        <div class="t-tags" aria-label="Highlights">
+          <span class="t-tag">Operating models</span>
+          <span class="t-tag">Portfolio delivery</span>
+          <span class="t-tag">Systems thinking</span>
+          <span class="t-tag">Leadership coaching</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- CERTIFICATIONS -->
   <section class="reveal">
