@@ -5,67 +5,213 @@ permalink: /about/
 ---
 
 <style>
-  /* About page is fully scoped to avoid breaking the rest of the site */
-  .about-page { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+  /* =========================================================
+     About page — fully scoped (won't leak into the rest of site)
+     ========================================================= */
 
-  /* Ensure readable text on your dark theme */
-  .about-page { color: rgba(255,255,255,0.92); }
-  .about-page a { color: rgba(255,255,255,0.92); }
-  .about-page .hero h1,
-  .about-page section h2,
-  .about-page h3 { color: #fff; }
+  .about-page {
+    --fg: rgba(255,255,255,0.92);
+    --muted: rgba(255,255,255,0.68);
+    --soft: rgba(255,255,255,0.08);
+    --soft-2: rgba(255,255,255,0.12);
+    --border: rgba(255,255,255,0.10);
+    --shadow: 0 18px 50px rgba(0,0,0,0.35);
 
-  .about-page .hero { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
-  .about-page .hero img { width: 220px; border-radius: 50%; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-  .about-page .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-  .about-page .hero p { font-size: 1.1rem; line-height: 1.7; }
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
 
-  .about-page section { margin-top: 5rem; }
-  .about-page section h2 { font-size: 2rem; margin-bottom: 1.5rem; }
-  .about-page section p { max-width: 850px; line-height: 1.8; }
-
-  .about-page .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-  .about-page .pillar {
-    padding: 2rem;
-    border-radius: 24px;
-    background: rgba(255,255,255,0.06);
+    color: var(--fg);
   }
 
-  .about-page .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 2rem; align-items: center; }
-  .about-page .logos img { max-height: 60px; filter: grayscale(100%); opacity: 0.85; }
+  .about-page a { color: var(--fg); }
+  .about-page a:hover { opacity: 0.92; }
 
-  .about-page .badges { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-  .about-page .badges img { height: 70px; }
+  .about-page :is(h1,h2,h3) { color: #fff; letter-spacing: -0.01em; }
+  .about-page p { color: var(--fg); line-height: 1.85; max-width: 72ch; }
+  .about-page .lede { font-size: 1.08rem; color: var(--fg); max-width: 78ch; }
+
+  .about-page .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .about-page .kicker .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.06);
+  }
+
+  .about-page .panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 2.25rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+  }
+
+  .about-page .hero {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.25rem;
+    align-items: center;
+  }
+
+  .about-page .hero img {
+    width: 220px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .about-page h1 { font-size: clamp(2.2rem, 3.4vw, 3.1rem); margin: 0 0 .75rem 0; }
+  .about-page h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); margin: 0 0 1rem 0; }
+  .about-page h3 { font-size: 1.15rem; margin: 0 0 0.6rem 0; color: #fff; }
+
+  .about-page .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .about-page .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .55rem .85rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.06);
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .about-page .chip svg { opacity: 0.9; }
+
+  .about-page section { margin-top: 4.25rem; }
+  .about-page .section-head { margin-bottom: 1.25rem; }
+
+  .about-page .divider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    margin: 3.25rem 0 0 0;
+  }
+
+  .about-page .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .about-page .pillar {
+    padding: 1.6rem;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .about-page .logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.25rem;
+    align-items: center;
+    margin-top: 1.25rem;
+  }
+
+  .about-page .logos .logo {
+    display: grid;
+    place-items: center;
+    padding: 1.15rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .about-page .logos img {
+    max-height: 56px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.85;
+  }
+
+  .about-page .badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .about-page .badge {
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .about-page .badges img { height: 70px; width: auto; }
 
   .about-page .cta {
     margin-top: 4rem;
-    padding: 3rem;
-    border-radius: 32px;
-    background: linear-gradient(135deg, #111, #333);
-    color: #fff;
+    padding: 2.6rem;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: var(--shadow);
   }
-  .about-page .cta a { color: #fff; font-weight: bold; text-decoration: underline; }
+
+  .about-page .cta p { color: var(--fg); }
+  .about-page .cta a { font-weight: 700; text-decoration: underline; }
 
   /* -----------------------------
-     Micro-interactions (lightweight)
+     Interactions + accessibility
      ----------------------------- */
+  .about-page .pillar,
+  .about-page .logo,
+  .about-page .badge,
+  .about-page .cta {
+    transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+  }
+
+  .about-page .pillar:hover,
+  .about-page .logo:hover,
+  .about-page .badge:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+  }
+
+  .about-page :is(a, button, [tabindex]):focus-visible {
+    outline: 2px solid rgba(255,255,255,0.65);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .about-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   }
 
-  /* Hover polish */
-  .about-page .pillar, .about-page .cta { transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease; }
-  .about-page .pillar:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,0.12); }
-  .about-page .cta:hover { transform: translateY(-2px); box-shadow: 0 18px 46px rgba(0,0,0,0.25); }
-
-  .about-page .logos img, .about-page .badges img { transition: transform 220ms ease, filter 220ms ease, opacity 220ms ease; }
-  .about-page .logos img:hover { transform: translateY(-2px) scale(1.03); filter: grayscale(0%); opacity: 1; }
-  .about-page .badges img:hover { transform: translateY(-2px) scale(1.04); }
-
-  /* ---------- Reveal system ----------
-     Default: visible (so it never renders blank)
-     Motion-enabled: JS adds .motion to .about-page, then we animate
-  ----------------------------------- */
+  /* ---------- Reveal system (safe fallback) ----------
+     Default: visible (never blank)
+     Motion-enabled: JS adds .motion, then we animate
+  ---------------------------------------------------- */
   .about-page .reveal { opacity: 1; transform: none; }
   .about-page .stagger > * { opacity: 1; transform: none; }
 
@@ -73,8 +219,8 @@ permalink: /about/
   .about-page.motion .reveal.in {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 600ms cubic-bezier(0.2, 0.9, 0.2, 1),
-                transform 600ms cubic-bezier(0.2, 0.9, 0.2, 1);
+    transition: opacity 650ms cubic-bezier(0.2, 0.9, 0.2, 1),
+                transform 650ms cubic-bezier(0.2, 0.9, 0.2, 1);
   }
 
   .about-page.motion .stagger > * { opacity: 0; transform: translateY(10px); }
@@ -85,46 +231,55 @@ permalink: /about/
                 transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1);
   }
   .about-page.motion .stagger.in > *:nth-child(1) { transition-delay: 0ms; }
-  .about-page.motion .stagger.in > *:nth-child(2) { transition-delay: 90ms; }
-  .about-page.motion .stagger.in > *:nth-child(3) { transition-delay: 180ms; }
-  .about-page.motion .stagger.in > *:nth-child(4) { transition-delay: 270ms; }
-  .about-page.motion .stagger.in > *:nth-child(5) { transition-delay: 360ms; }
-  .about-page.motion .stagger.in > *:nth-child(6) { transition-delay: 450ms; }
-
-  /* Subtle avatar entrance */
-  .about-page .hero img { animation: popIn 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both; }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.96) translateY(8px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
+  .about-page.motion .stagger.in > *:nth-child(2) { transition-delay: 80ms; }
+  .about-page.motion .stagger.in > *:nth-child(3) { transition-delay: 160ms; }
+  .about-page.motion .stagger.in > *:nth-child(4) { transition-delay: 240ms; }
+  .about-page.motion .stagger.in > *:nth-child(5) { transition-delay: 320ms; }
+  .about-page.motion .stagger.in > *:nth-child(6) { transition-delay: 400ms; }
 
   /* Mobile */
   @media (max-width: 840px) {
     .about-page { padding: 3rem 1.25rem; }
-    .about-page .hero { grid-template-columns: 1fr; text-align: left; }
+    .about-page .hero { grid-template-columns: 1fr; }
     .about-page .hero img { width: 180px; }
-    .about-page .hero h1 { font-size: 2.4rem; }
+    .about-page .panel { padding: 1.75rem; }
   }
 </style>
 
 <div class="about-page">
 
   <!-- HERO -->
-  <div class="hero reveal">
-    <img src="{{ site.baseurl }}/assets/images/jack-avatar.jpg" alt="Jack Reed" />
-    <div>
-      <h1>Jack Reed</h1>
-      <p>
-        Scrum Master, Agile Coach, and Professional Coach with 14+ years of experience across
-        Transport, Gov.UK, Med-Tech, and Financial Services. I focus on the <strong>people side of change</strong>
-        and help organisations navigate complex work using empirical, humane, and systems-aware approaches.
-      </p>
+  <div class="panel reveal">
+    <div class="hero">
+      <img src="{{ site.baseurl }}/assets/images/jack-avatar.jpg" alt="Jack Reed" />
+      <div>
+        <div class="kicker"><span class="dot"></span>About</div>
+        <h1>Jack Reed</h1>
+        <p class="lede">
+          Scrum Master, Agile Coach, and Professional Coach with 14+ years of experience across
+          Transport, Gov.UK, Med-Tech, and Financial Services. I focus on the <strong>people side of change</strong>
+          and help organisations navigate complex work using empirical, humane, and systems-aware approaches.
+        </p>
+
+        <!-- Quick facts (optional, easy to tweak/remove) -->
+        <div class="meta stagger" aria-label="Quick facts">
+          <span class="chip">14+ years delivery</span>
+          <span class="chip">Systems thinking</span>
+          <span class="chip">Team & leadership coaching</span>
+          <span class="chip">Financial Services (8+ years)</span>
+        </div>
+      </div>
     </div>
   </div>
 
+  <div class="divider reveal" role="presentation"></div>
+
   <!-- PHILOSOPHY -->
   <section class="reveal">
-    <h2>How I Think About Change</h2>
+    <div class="section-head">
+      <div class="kicker"><span class="dot"></span>Philosophy</div>
+      <h2>How I Think About Change</h2>
+    </div>
     <p>
       I’m passionate about Scrum, Agile, and Professional Coaching — not as frameworks to be installed,
       but as lenses for learning. I remain deliberately humble in my work, recognising that
@@ -138,7 +293,11 @@ permalink: /about/
 
   <!-- PILLARS -->
   <section class="reveal">
-    <h2>What I Focus On</h2>
+    <div class="section-head">
+      <div class="kicker"><span class="dot"></span>Focus</div>
+      <h2>What I Focus On</h2>
+    </div>
+
     <div class="pillars stagger">
       <div class="pillar">
         <h3>Team Coaching</h3>
@@ -147,6 +306,7 @@ permalink: /about/
           I encourage small, high-value experiments that build learning momentum.
         </p>
       </div>
+
       <div class="pillar">
         <h3>Product & Value</h3>
         <p>
@@ -154,6 +314,7 @@ permalink: /about/
           of work, progress, technical debt, and outcomes.
         </p>
       </div>
+
       <div class="pillar">
         <h3>Systems & Strategy</h3>
         <p>
@@ -166,33 +327,112 @@ permalink: /about/
 
   <!-- INDUSTRIES -->
   <section class="reveal">
-    <h2>Industries & Organisations</h2>
-    <p>Logos shown represent organisations and sectors I’ve worked with.</p>
-    <div class="logos stagger">
-      <img src="{{ site.baseurl }}/assets/images/logos/legal-and-general.svg" alt="Legal & General" />
-      <img src="{{ site.baseurl }}/assets/images/logos/ministry-of-justice.svg" alt="Ministry of Justice" />
-      <img src="{{ site.baseurl }}/assets/images/logos/trapeze.svg" alt="Trapeze" />
-      <img src="{{ site.baseurl }}/assets/images/logos/iterate.svg" alt="Iterate" />
-      <img src="{{ site.baseurl }}/assets/images/logos/ih.svg" alt="IH" />
+    <div class="section-head">
+      <div class="kicker"><span class="dot"></span>Experience</div>
+      <h2>Industries & Organisations</h2>
+    </div>
+    <p class="lede" style="color: rgba(255,255,255,0.72);">
+      Logos shown represent organisations and sectors I’ve worked with.
+    </p>
+
+    <div class="logos stagger" aria-label="Organisations">
+      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/legal-and-general.svg" alt="Legal &amp; General" /></div>
+      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ministry-of-justice.svg" alt="Ministry of Justice" /></div>
+      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/trapeze.svg" alt="Trapeze" /></div>
+      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/iterate.svg" alt="Iterate" /></div>
+      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ih.svg" alt="IH" /></div>
     </div>
   </section>
 
   <!-- CERTIFICATIONS -->
   <section class="reveal">
-    <h2>Certifications & Badges</h2>
-    <div class="badges stagger">
-      <img src="{{ site.baseurl }}/assets/images/badges/psm.png" alt="PSM" />
-      <img src="{{ site.baseurl }}/assets/images/badges/psu.png" alt="PSU" />
-      <img src="{{ site.baseurl }}/assets/images/badges/psk.png" alt="PSK" />
-      <img src="{{ site.baseurl }}/assets/images/badges/sps.png" alt="SPS" />
-      <img src="{{ site.baseurl }}/assets/images/badges/icf.png" alt="ICF" />
+    <div class="section-head">
+      <div class="kicker"><span class="dot"></span>Credentials</div>
+      <h2>Certifications & Badges</h2>
+    </div>
+
+    <div class="badges stagger" aria-label="Certifications">
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/psm.png" alt="PSM" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/psu.png" alt="PSU" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/psk.png" alt="PSK" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/sps.png" alt="SPS" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/icf.png" alt="ICF" /></div>
     </div>
   </section>
 
   <!-- INVESTING -->
   <section class="reveal">
-    <h2>Beyond Coaching</h2>
+    <div class="section-head">
+      <div class="kicker"><span class="dot"></span>Also</div>
+      <h2>Beyond Coaching</h2>
+    </div>
     <p>
       Alongside my work in Financial Services (8+ years), I have a strong interest in investing in businesses —
       evaluating them, backing founders, and supporting growth where I can. Occasionally, this even results
       in a profit.
+    </p>
+  </section>
+
+  <!-- BLOG / CTA -->
+  <div class="cta reveal">
+    <div class="kicker"><span class="dot"></span>Writing</div>
+    <h2>Writing & Sense-Making</h2>
+    <p class="lede">
+      I share my views, experiences, and experiments on my blog at
+      <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>.
+      If you’re interested in systems thinking, agility, or the human side of change — you’ll feel at home.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  // Reveal (Framer-ish, safe fallback)
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    const page = document.querySelector('.about-page');
+    if (!page) return;
+
+    page.classList.add('motion');
+
+    const targets = Array.from(page.querySelectorAll('.reveal, .stagger'));
+    if (!('IntersectionObserver' in window) || targets.length === 0) {
+      targets.forEach(el => el.classList.add('in'));
+      return;
+    }
+
+    // Detect a scroll container (themes often scroll inside a div)
+    const scrollRoot = (function findScrollParent(el) {
+      let p = el.parentElement;
+      while (p) {
+        const s = getComputedStyle(p);
+        const canScroll = /(auto|scroll)/.test(s.overflowY) && p.scrollHeight > p.clientHeight;
+        if (canScroll) return p;
+        p = p.parentElement;
+      }
+      return null;
+    })(page);
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { root: scrollRoot, threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    targets.forEach(el => io.observe(el));
+
+    // Safety net: ensure nothing stays hidden
+    setTimeout(() => {
+      const stillHidden = targets.some(el => !el.classList.contains('in'));
+      if (stillHidden) targets.forEach(el => el.classList.add('in'));
+    }, 450);
+  })();
+</script>
