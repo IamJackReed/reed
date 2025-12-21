@@ -8,73 +8,59 @@ disable_exploding_nav: true
 <style>
   /* =========================================================
      About page — fully scoped (won't leak into the rest of site)
-     Dark-first with optional local light toggle (scoped)
      ========================================================= */
 
   .about-page {
-    /* Theme tokens (dark default) */
-    --bg-0: rgba(0,0,0,0.0);
+    /* Default: Dark mode */
+    --bg: rgba(0,0,0,0);
     --fg: rgba(255,255,255,0.92);
     --muted: rgba(255,255,255,0.68);
-    --lede: rgba(255,255,255,0.78);
-    --soft: rgba(255,255,255,0.06);
-    --soft-2: rgba(255,255,255,0.10);
-    --border: rgba(255,255,255,0.12);
-    --border-2: rgba(255,255,255,0.18);
-    --shadow: 0 18px 42px rgba(0,0,0,0.24);
-    --shadow-2: 0 18px 46px rgba(0,0,0,0.22);
+    --soft: rgba(255,255,255,0.08);
+    --soft-2: rgba(255,255,255,0.12);
+    --border: rgba(255,255,255,0.10);
+    --shadow: 0 18px 50px rgba(0,0,0,0.35);
+    --panel: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+    --panel-2: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+    --line: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    --dot: rgba(255,255,255,0.35);
+    --dot-ring: rgba(255,255,255,0.06);
 
     max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2rem;
     color: var(--fg);
-    position: relative;
-    z-index: 1;
+    background: var(--bg);
   }
 
-  /* Optional light mode (scoped to this page only) */
+  /* Light mode (About page only) */
   .about-page[data-theme="light"] {
-    --fg: rgba(10,10,12,0.92);
-    --muted: rgba(10,10,12,0.62);
-    --lede: rgba(10,10,12,0.74);
-    --soft: rgba(10,10,12,0.04);
-    --soft-2: rgba(10,10,12,0.06);
-    --border: rgba(10,10,12,0.12);
-    --border-2: rgba(10,10,12,0.18);
-    --shadow: 0 18px 42px rgba(0,0,0,0.10);
-    --shadow-2: 0 18px 46px rgba(0,0,0,0.12);
+    --fg: rgba(12,12,12,0.92);
+    --muted: rgba(12,12,12,0.62);
+    --soft: rgba(0,0,0,0.05);
+    --soft-2: rgba(0,0,0,0.08);
+    --border: rgba(0,0,0,0.10);
+    --shadow: 0 18px 50px rgba(0,0,0,0.12);
+    --panel: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78));
+    --panel-2: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,255,255,0.84));
+    --line: linear-gradient(90deg, transparent, rgba(0,0,0,0.14), transparent);
+    --dot: rgba(0,0,0,0.35);
+    --dot-ring: rgba(0,0,0,0.06);
   }
 
-  .about-page a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .about-page a { color: inherit; text-underline-offset: 3px; }
   .about-page a:hover { opacity: 0.92; }
 
-  .about-page :is(h1,h2,h3) { color: inherit; letter-spacing: -0.01em; }
-  .about-page h1 { font-size: clamp(2.25rem, 3.6vw, 3.25rem); margin: 0 0 .65rem 0; letter-spacing: -0.03em; line-height: 1.06; }
-  .about-page h2 { font-size: clamp(1.55rem, 2.2vw, 2.05rem); margin: 0 0 1rem 0; letter-spacing: -0.02em; }
-  .about-page h3 { font-size: 1.12rem; margin: 0 0 0.6rem 0; letter-spacing: -0.01em; }
-
-  .about-page p {
-    color: var(--fg);
-    line-height: 1.72;
-    max-width: 74ch;
-    margin: 0 0 1rem 0;
-  }
-
-  .about-page .lede {
-    font-size: clamp(1.05rem, 1.05vw, 1.25rem);
-    color: var(--lede);
-    max-width: 80ch;
-  }
-
-  .about-page .sublede { color: var(--muted); }
+  .about-page :is(h1,h2,h3) { color: currentColor; letter-spacing: -0.01em; }
+  .about-page p { color: var(--fg); line-height: 1.85; max-width: 72ch; }
+  .about-page .lede { font-size: 1.02rem; color: var(--fg); max-width: 78ch; }
 
   .about-page .kicker {
     display: inline-flex;
     align-items: center;
     gap: .55rem;
-    font-size: 0.92rem;
+    font-size: 0.82rem;
     color: var(--muted);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
@@ -82,33 +68,29 @@ disable_exploding_nav: true
   .about-page .kicker .dot {
     width: 7px;
     height: 7px;
-    border-radius: 999px;
-    background: color-mix(in srgb, currentColor 55%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 12%, transparent);
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: 0 0 0 4px var(--dot-ring);
   }
 
   .about-page .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 28px;
     padding: 2.25rem;
-    border: 1px solid var(--border);
     box-shadow: var(--shadow);
     backdrop-filter: blur(10px);
-    background: radial-gradient(1200px 600px at 20% 0%,
-      color-mix(in srgb, currentColor 16%, transparent),
-      color-mix(in srgb, currentColor 8%, transparent) 45%,
-      color-mix(in srgb, currentColor 5%, transparent)
-    );
   }
 
-  .about-page .about-hero {
+  .about-page .hero {
     display: grid;
     grid-template-columns: 240px 1fr;
     gap: 2.25rem;
     align-items: center;
   }
 
-  /* Portrait card avatar (Framer-ish) */
-  .about-page .about-hero img {
+  /* Avatar card */
+  .about-page .hero img {
     width: 240px;
     aspect-ratio: 4 / 5;
     object-fit: cover;
@@ -116,48 +98,42 @@ disable_exploding_nav: true
     border-radius: 28px;
 
     padding: 6px;
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, currentColor 16%, transparent),
-      color-mix(in srgb, currentColor 6%, transparent)
-    );
+    background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.05));
     box-shadow:
-      0 18px 44px rgba(0,0,0,0.30),
-      inset 0 0 0 1px color-mix(in srgb, currentColor 14%, transparent);
-    transform: translateZ(0);
+      0 22px 50px rgba(0,0,0,0.22),
+      inset 0 0 0 1px rgba(255,255,255,0.18);
   }
+
+  .about-page[data-theme="light"] .hero img {
+    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));
+    box-shadow:
+      0 22px 50px rgba(0,0,0,0.12),
+      inset 0 0 0 1px rgba(0,0,0,0.10);
+  }
+
+  .about-page h1 { font-size: clamp(2.2rem, 3.4vw, 3.1rem); margin: 0 0 .75rem 0; }
+  .about-page h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); margin: 0 0 1rem 0; }
+  .about-page h3 { font-size: 1.12rem; margin: 0 0 0.6rem 0; }
 
   .about-page .meta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 1.15rem;
+    margin-top: 1.25rem;
   }
 
   .about-page .chip {
     display: inline-flex;
     align-items: center;
-    gap: .55rem;
+    gap: .5rem;
     padding: .55rem .85rem;
     border-radius: 999px;
     border: 1px solid var(--border);
-    background: linear-gradient(180deg,
-      color-mix(in srgb, currentColor 10%, transparent),
-      color-mix(in srgb, currentColor 5%, transparent)
-    );
+    background: var(--soft);
     color: var(--muted);
     font-size: 0.92rem;
     line-height: 1;
     user-select: none;
-    white-space: nowrap;
-  }
-
-  .about-page .chip::before{
-    content:"";
-    width:6px;height:6px;border-radius:999px;
-    background: color-mix(in srgb, currentColor 45%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 10%, transparent);
-    opacity: 0.95;
   }
 
   .about-page section { margin-top: 4.25rem; }
@@ -166,7 +142,7 @@ disable_exploding_nav: true
   .about-page .divider {
     height: 1px;
     width: 100%;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, currentColor 18%, transparent), transparent);
+    background: var(--line);
     margin: 3.25rem 0 0 0;
   }
 
@@ -180,7 +156,7 @@ disable_exploding_nav: true
   .about-page .pillar {
     padding: 1.6rem;
     border-radius: 22px;
-    background: color-mix(in srgb, currentColor 6%, transparent);
+    background: var(--soft);
     border: 1px solid var(--border);
   }
 
@@ -197,7 +173,7 @@ disable_exploding_nav: true
     place-items: center;
     padding: 1.15rem;
     border-radius: 18px;
-    background: color-mix(in srgb, currentColor 5%, transparent);
+    background: var(--soft);
     border: 1px solid var(--border);
   }
 
@@ -206,13 +182,11 @@ disable_exploding_nav: true
     width: auto;
     filter: grayscale(100%);
     opacity: 0.85;
-    transition: filter 200ms ease, opacity 200ms ease, transform 200ms ease;
   }
 
-  .about-page .logo:hover img {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.03);
+  .about-page[data-theme="light"] .logos img {
+    filter: grayscale(100%);
+    opacity: 0.78;
   }
 
   .about-page .badges {
@@ -227,36 +201,22 @@ disable_exploding_nav: true
     place-items: center;
     padding: 1rem;
     border-radius: 18px;
-    background: color-mix(in srgb, currentColor 5%, transparent);
+    background: var(--soft);
     border: 1px solid var(--border);
-    min-height: 132px;
   }
 
-  .about-page .badge img {
-    max-width: 100%;
-    height: 96px;
-    object-fit: contain;
-  }
-
-  @media (min-width: 900px) {
-    .about-page .badge img { height: 110px; }
-  }
+  .about-page .badges img { height: 92px; width: auto; }
 
   .about-page .cta {
     margin-top: 4rem;
     padding: 2.6rem;
     border-radius: 28px;
-    background: radial-gradient(1200px 600px at 20% 0%,
-      color-mix(in srgb, currentColor 14%, transparent),
-      color-mix(in srgb, currentColor 7%, transparent) 45%,
-      color-mix(in srgb, currentColor 5%, transparent)
-    );
-    border: 1px solid var(--border-2);
+    background: var(--panel-2);
+    border: 1px solid var(--border);
     box-shadow: var(--shadow);
   }
 
-  .about-page .cta p { color: var(--lede); margin-bottom: 0; }
-  .about-page .cta a { font-weight: 750; text-decoration: underline; }
+  .about-page .cta a { font-weight: 700; }
 
   /* =========================
      Timeline (Framer-ish)
@@ -278,7 +238,15 @@ disable_exploding_nav: true
     background: linear-gradient(
       to bottom,
       transparent,
-      color-mix(in srgb, currentColor 22%, transparent),
+      rgba(255,255,255,0.22),
+      transparent
+    );
+  }
+  .about-page[data-theme="light"] .timeline::before {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0,0,0,0.18),
       transparent
     );
   }
@@ -297,9 +265,9 @@ disable_exploding_nav: true
     height: 28px;
     border-radius: 999px;
     margin-top: 2px;
-    border: 1px solid var(--border-2);
-    background: color-mix(in srgb, currentColor 8%, transparent);
-    box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+    border: 1px solid var(--border);
+    background: var(--soft);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.16);
   }
 
   .about-page .t-dot::after {
@@ -307,23 +275,19 @@ disable_exploding_nav: true
     position: absolute;
     inset: 7px;
     border-radius: 999px;
-    background: color-mix(in srgb, currentColor 55%, transparent);
-    box-shadow: 0 0 0 6px color-mix(in srgb, currentColor 8%, transparent);
-    opacity: 0.9;
+    background: currentColor;
+    opacity: 0.35;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.06);
+  }
+  .about-page[data-theme="light"] .t-dot::after {
+    box-shadow: 0 0 0 6px rgba(0,0,0,0.06);
   }
 
   .about-page .t-card {
     padding: 1.45rem;
     border-radius: 22px;
-    background: color-mix(in srgb, currentColor 6%, transparent);
+    background: var(--soft);
     border: 1px solid var(--border);
-    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
-  }
-
-  .about-page .t-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-2);
-    box-shadow: var(--shadow-2);
   }
 
   .about-page .t-top {
@@ -334,7 +298,7 @@ disable_exploding_nav: true
     margin-bottom: .55rem;
   }
 
-  .about-page .t-role { font-weight: 820; letter-spacing: -0.01em; }
+  .about-page .t-role { font-weight: 800; letter-spacing: -0.01em; }
   .about-page .t-meta { color: var(--muted); font-size: 0.98rem; }
 
   .about-page .t-tags {
@@ -350,10 +314,14 @@ disable_exploding_nav: true
     padding: .45rem .7rem;
     border-radius: 999px;
     border: 1px solid var(--border);
-    background: color-mix(in srgb, currentColor 5%, transparent);
+    background: rgba(255,255,255,0.04);
     color: var(--muted);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     line-height: 1;
+  }
+
+  .about-page[data-theme="light"] .t-tag {
+    background: rgba(0,0,0,0.03);
   }
 
   /* -----------------------------
@@ -363,38 +331,94 @@ disable_exploding_nav: true
   .about-page .logo,
   .about-page .badge,
   .about-page .cta,
-  .about-page .panel {
-    transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+  .about-page .t-card {
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
   }
 
   .about-page .pillar:hover,
   .about-page .logo:hover,
-  .about-page .badge:hover {
+  .about-page .badge:hover,
+  .about-page .t-card:hover {
     transform: translateY(-3px);
-    border-color: var(--border-2);
-    box-shadow: var(--shadow-2);
+    border-color: color-mix(in oklab, var(--border) 60%, currentColor 10%);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.18);
   }
 
   .about-page :is(a, button, [tabindex]):focus-visible {
-    outline: 2px solid color-mix(in srgb, currentColor 65%, transparent);
+    outline: 2px solid color-mix(in oklab, currentColor 40%, transparent);
     outline-offset: 3px;
     border-radius: 10px;
   }
 
+  /* -----------------------------
+     Page theme toggle (scoped)
+     ----------------------------- */
+  .about-page .topbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-page .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .55rem .8rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--soft);
+    color: var(--muted);
+    font-size: 0.92rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .about-page .theme-toggle:hover { transform: translateY(-1px); }
+
+  .about-page .theme-toggle .pill {
+    width: 40px;
+    height: 22px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.06);
+    position: relative;
+  }
+
+  .about-page[data-theme="light"] .theme-toggle .pill {
+    background: rgba(0,0,0,0.03);
+  }
+
+  .about-page .theme-toggle .knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.45;
+    transition: transform 220ms ease;
+  }
+
+  .about-page[data-theme="light"] .theme-toggle .knob {
+    transform: translateX(18px);
+    opacity: 0.55;
+  }
+
+  /* -----------------------------
+     Reveal system (safe fallback)
+     Default: visible (never blank)
+     Motion-enabled: JS adds .motion, then we animate
+     ----------------------------- */
   @media (prefers-reduced-motion: reduce) {
     .about-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   }
 
-  /* ---------- Reveal system (safe fallback) ----------
-     Default: visible (never blank)
-     Motion-enabled: JS adds .motion, then we animate
-  ---------------------------------------------------- */
   .about-page .reveal { opacity: 1; transform: none; }
   .about-page .stagger > * { opacity: 1; transform: none; }
 
   .about-page.motion .reveal { opacity: 0; transform: translateY(14px); }
-  .about-page.motion .reveal.in,
-  .about-page.motion .reveal.done {
+  .about-page.motion .reveal.in {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 650ms cubic-bezier(0.2, 0.9, 0.2, 1),
@@ -402,8 +426,7 @@ disable_exploding_nav: true
   }
 
   .about-page.motion .stagger > * { opacity: 0; transform: translateY(10px); }
-  .about-page.motion .stagger.in > *,
-  .about-page.motion .stagger.done > * {
+  .about-page.motion .stagger.in > * {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 520ms cubic-bezier(0.2, 0.9, 0.2, 1),
@@ -416,36 +439,15 @@ disable_exploding_nav: true
   .about-page.motion .stagger.in > *:nth-child(5) { transition-delay: 320ms; }
   .about-page.motion .stagger.in > *:nth-child(6) { transition-delay: 400ms; }
 
-  /* Toggle (scoped) */
-  .about-page .toggle-row {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1rem;
+  /* Responsive */
+  @media (max-width: 900px) {
+    .about-page .badges img { height: 104px; }
   }
-
-  .about-page .toggle {
-    border: 1px solid var(--border);
-    background: color-mix(in srgb, currentColor 6%, transparent);
-    color: var(--muted);
-    border-radius: 999px;
-    padding: .55rem .9rem;
-    cursor: pointer;
-    font-size: 0.92rem;
-    line-height: 1;
-    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-  }
-
-  .about-page .toggle:hover {
-    transform: translateY(-1px);
-    border-color: var(--border-2);
-  }
-
-  /* Mobile */
   @media (max-width: 840px) {
     .about-page { padding: 3rem 1.25rem; }
+    .about-page .hero { grid-template-columns: 1fr; }
+    .about-page .hero img { width: 200px; }
     .about-page .panel { padding: 1.75rem; }
-    .about-page .about-hero { grid-template-columns: 1fr; }
-    .about-page .about-hero img { width: 220px; }
     .about-page .timeline::before { left: 13px; }
     .about-page .t-item { grid-template-columns: 32px 1fr; }
     .about-page .t-card { padding: 1.25rem; }
@@ -454,36 +456,36 @@ disable_exploding_nav: true
 
 <div class="about-page" data-theme="dark">
 
-  <!-- Optional: page-only light toggle (safe + scoped). Remove this block if you don't want it. -->
-  <div class="toggle-row">
-    <button class="toggle" type="button" id="aboutThemeToggle" aria-label="Toggle theme for this page">
-      Toggle light
+  <!-- About-only theme toggle (safe + scoped) -->
+  <div class="topbar">
+    <button class="theme-toggle" id="aboutThemeToggle" type="button" aria-label="Toggle About page theme">
+      <span id="aboutThemeLabel">Dark</span>
+      <span class="pill" aria-hidden="true"><span class="knob"></span></span>
     </button>
   </div>
 
   <!-- HERO -->
   <div class="panel reveal">
-    <div class="about-hero">
+    <div class="hero">
       <img src="{{ site.baseurl }}/assets/images/profile/jack-avatar.png" alt="Jack Reed" />
       <div>
         <div class="kicker"><span class="dot"></span>About</div>
         <h1>Jack Reed</h1>
         <p class="lede">
-          I help people do better work in complex environments — not by installing frameworks,
-          but by improving how teams and leaders think, decide, and learn together.
+          I help people do better work in complex environments — not by installing frameworks, but by improving how teams and leaders think,
+          decide, and learn together.
         </p>
 
-        <p class="lede sublede" style="margin-top:.85rem;">
-          I work at the intersection of <strong>Scrum</strong>, <strong>Agile</strong>, <strong>Professional Coaching</strong>,
-          and <strong>systems thinking</strong>. Over 14+ years I’ve worked across Transport, Gov.UK, Med-tech,
-          Financial Services, and Government — with the last 8+ years primarily in highly regulated Financial Services.
+        <p class="lede" style="color: var(--muted); margin-top: .85rem;">
+          I work at the intersection of Scrum, Agile, Professional Coaching, and systems thinking. Over 14+ years I’ve worked across
+          Transport, Gov.UK, Med-tech, Financial Services, and Government — with the last 8+ years primarily in highly regulated Financial Services.
         </p>
 
         <div class="meta stagger" aria-label="Quick facts">
           <span class="chip">14+ years delivery</span>
           <span class="chip">Empirical change</span>
           <span class="chip">Systems thinking</span>
-          <span class="chip">Team & leadership coaching</span>
+          <span class="chip">Team &amp; leadership coaching</span>
           <span class="chip">Financial Services (8+ years)</span>
         </div>
       </div>
@@ -500,16 +502,13 @@ disable_exploding_nav: true
     </div>
 
     <p>
-      I’m deeply interested in the <strong>people side of change</strong>.
-      In my experience, most change efforts fail not because teams lack skill or motivation, but because problems are oversimplified,
-      decisions drift away from reality, and learning gets replaced by compliance.
+      I’m deeply interested in the people side of change. In my experience, most change efforts fail not because teams lack skill or motivation,
+      but because problems are oversimplified, decisions drift away from reality, and learning gets replaced by compliance.
     </p>
-
     <p>
-      I take an <strong>empirical approach</strong> to complex work — creating feedback loops, making work visible,
-      and treating uncertainty as something to explore rather than eliminate.
-      Lasting improvement rarely comes from adopting Scrum “properly”.
-      It comes from understanding the <strong>system of work</strong>, the incentives within it, and the behaviours it produces.
+      I take an empirical approach to complex work — creating feedback loops, making work visible, and treating uncertainty as something to explore
+      rather than eliminate. Lasting improvement rarely comes from adopting Scrum “properly”. It comes from understanding the system of work,
+      the incentives within it, and the behaviours it produces.
     </p>
   </section>
 
@@ -523,7 +522,7 @@ disable_exploding_nav: true
     <div class="pillars stagger">
       <div class="pillar">
         <h3>At the team level</h3>
-        <p class="sublede">
+        <p>
           I coach teams toward self-management, where leadership is an attitude rather than a role.
           We build shared ownership, improve flow, and run small, high-value experiments — even when things are going well.
         </p>
@@ -531,15 +530,15 @@ disable_exploding_nav: true
 
       <div class="pillar">
         <h3>At the product level</h3>
-        <p class="sublede">
-          I support Product Owners and product leaders to maximise value by improving visibility of work, outcomes,
-          constraints, and technical debt — so trade-offs become explicit and decisions improve.
+        <p>
+          I support Product Owners and product leaders to maximise value by improving visibility of work, outcomes, constraints,
+          and technical debt — so trade-offs become explicit and decisions improve.
         </p>
       </div>
 
       <div class="pillar">
         <h3>At the organisational level</h3>
-        <p class="sublede">
+        <p>
           I partner with leadership on strategy and operating-model change using agile-lean thinking and systems modelling.
           The goal is alignment between structures, incentives, and the behaviours needed to deliver.
         </p>
@@ -547,14 +546,14 @@ disable_exploding_nav: true
     </div>
   </section>
 
-  <!-- WHERE -->
+  <!-- CONTEXT -->
   <section class="reveal">
     <div class="section-head">
       <div class="kicker"><span class="dot"></span>Context</div>
       <h2>Where I’ve Done It</h2>
     </div>
 
-    <p class="lede sublede">
+    <p class="lede" style="color: var(--muted);">
       Logos shown represent organisations and sectors I’ve worked with.
     </p>
 
@@ -563,18 +562,18 @@ disable_exploding_nav: true
       <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ministry-of-justice.svg" alt="Ministry of Justice" /></div>
       <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/trapeze.svg" alt="Trapeze" /></div>
       <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/iterate.svg" alt="Iterate" /></div>
-      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ih.svg" alt="IH" /></div>
+      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ih.svg" alt="Infinity Health" /></div>
     </div>
   </section>
 
-  <!-- TIMELINE -->
+  <!-- JOURNEY -->
   <section class="reveal">
     <div class="section-head">
       <div class="kicker"><span class="dot"></span>Journey</div>
       <h2>Career Timeline</h2>
     </div>
 
-    <p class="lede sublede">
+    <p class="lede" style="color: var(--muted);">
       A quick view of the environments I’ve worked in and the problems I tend to get pulled into.
     </p>
 
@@ -586,9 +585,8 @@ disable_exploding_nav: true
             <div class="t-role">Government / Gov.UK</div>
             <div class="t-meta">Large-scale services • high accountability • complex stakeholders</div>
           </div>
-          <p class="sublede" style="margin:0;">
-            Coaching teams delivering public-facing services where transparency, outcome focus,
-            and pragmatic decision-making matter more than ceremony.
+          <p>
+            Coaching teams delivering public-facing services where transparency, outcome focus, and pragmatic decision-making matter more than ceremony.
           </p>
           <div class="t-tags" aria-label="Highlights">
             <span class="t-tag">Service delivery</span>
@@ -606,9 +604,8 @@ disable_exploding_nav: true
             <div class="t-role">Med-Tech</div>
             <div class="t-meta">Regulated environments • quality • traceability</div>
           </div>
-          <p class="sublede" style="margin:0;">
-            Supporting delivery where safety, evidence, and compliance shape how change can happen —
-            improving feedback loops without compromising what “good” must look like.
+          <p>
+            Supporting delivery where safety, evidence, and compliance shape how change can happen — improving feedback loops without compromising what “good” must look like.
           </p>
           <div class="t-tags" aria-label="Highlights">
             <span class="t-tag">Regulated delivery</span>
@@ -626,9 +623,8 @@ disable_exploding_nav: true
             <div class="t-role">Financial Services</div>
             <div class="t-meta">Institutional scale • long horizons • governance constraints</div>
           </div>
-          <p class="sublede" style="margin:0;">
-            Helping organisations deliver inside complex systems with multiple teams and dependencies —
-            making progress visible, reducing friction, and increasing learning speed.
+          <p>
+            Helping organisations deliver inside complex systems with multiple teams and dependencies — making progress visible, reducing friction, and increasing learning speed.
           </p>
           <div class="t-tags" aria-label="Highlights">
             <span class="t-tag">Operating models</span>
@@ -645,7 +641,7 @@ disable_exploding_nav: true
   <section class="reveal">
     <div class="section-head">
       <div class="kicker"><span class="dot"></span>Credentials</div>
-      <h2>Certifications & Badges</h2>
+      <h2>Certifications &amp; Badges</h2>
     </div>
 
     <div class="badges stagger" aria-label="Certifications">
@@ -653,34 +649,32 @@ disable_exploding_nav: true
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-ii-psm-ii.png" alt="Professional Scrum Master II" /></div>
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-i-psm-i.png" alt="Professional Scrum Master I" /></div>
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ii-pspo-ii.png" alt="Professional Scrum Product Owner II" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ai-essentials-pspo.png" alt="Professional Scrum Product Owner AI Essentials" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ai-essentials-pspo.png" alt="Professional Scrum Product Owner — AI Essentials" /></div>
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/scaled-professional-scrum-sps.png" alt="Scaled Professional Scrum" /></div>
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-kanban-i-psk-i.png" alt="Professional Scrum with Kanban I" /></div>
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-user-experience-i-psu-i.png" alt="Professional Scrum with User Experience I" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-product-discovery-and-validation.png" alt="Professional Product Discovery and Validation" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-product-discovery-and-validation.png" alt="Professional Product Discovery &amp; Validation" /></div>
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/icf-member-badge.png" alt="ICF Member" /></div>
     </div>
   </section>
 
-  <!-- BEYOND -->
+  <!-- ALSO -->
   <section class="reveal">
     <div class="section-head">
       <div class="kicker"><span class="dot"></span>Also</div>
       <h2>Beyond Work</h2>
     </div>
-
-    <p class="sublede">
-      Alongside my work in Financial Services, I have a strong interest in investing in businesses —
-      evaluating ideas, backing people, and occasionally supporting growth where I can.
-      I enjoy understanding how value is created over time, both inside organisations and in the wider market.
+    <p>
+      Alongside my work in Financial Services, I have a strong interest in investing in businesses — evaluating ideas, backing people, and occasionally
+      supporting growth where I can. I enjoy understanding how value is created over time, both inside organisations and in the wider market.
     </p>
   </section>
 
-  <!-- CTA -->
+  <!-- WRITING -->
   <div class="cta reveal">
     <div class="kicker"><span class="dot"></span>Writing</div>
-    <h2>Writing & Sense-Making</h2>
-    <p class="lede">
+    <h2>Writing &amp; Sense-Making</h2>
+    <p class="lede" style="color: var(--muted);">
       I use my blog as a place to think in public — reflecting on change, systems, leadership, and what actually works in practice.
       You can find it at <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>.
     </p>
@@ -689,47 +683,102 @@ disable_exploding_nav: true
 </div>
 
 <script>
+  // =========================================================
+  // About page theme toggle (scoped, won't affect rest of site)
+  // - Persists in localStorage
+  // - Attempts to sync with any existing global/site theme toggle
+  // =========================================================
   (function () {
     const page = document.querySelector('.about-page');
     if (!page) return;
 
-    // -------- Page-only theme toggle (safe + scoped) --------
-    const KEY = 'aboutTheme';
     const btn = document.getElementById('aboutThemeToggle');
+    const label = document.getElementById('aboutThemeLabel');
 
-    const applyTheme = (t) => {
-      page.setAttribute('data-theme', t);
-      if (btn) btn.textContent = (t === 'light') ? 'Toggle dark' : 'Toggle light';
-    };
+    const KEY = 'aboutTheme';
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
 
-    try {
-      const saved = localStorage.getItem(KEY);
-      if (saved === 'light' || saved === 'dark') applyTheme(saved);
-      else applyTheme('dark');
-    } catch (e) {
-      applyTheme('dark');
+    function setTheme(theme) {
+      page.setAttribute('data-theme', theme);
+      if (label) label.textContent = theme === 'light' ? 'Light' : 'Dark';
+      try { localStorage.setItem(KEY, theme); } catch (e) {}
     }
 
+    function getTheme() {
+      try {
+        const saved = localStorage.getItem(KEY);
+        if (saved === 'light' || saved === 'dark') return saved;
+      } catch (e) {}
+
+      // If your site already uses a global theme flag, try to mirror it
+      // Common patterns: data-theme on html/body, class "light", or localStorage "theme"
+      const html = document.documentElement;
+      const body = document.body;
+
+      const attrTheme = (html && html.getAttribute('data-theme')) || (body && body.getAttribute('data-theme'));
+      if (attrTheme === 'light' || attrTheme === 'dark') return attrTheme;
+
+      try {
+        const globalLS = localStorage.getItem('theme');
+        if (globalLS === 'light' || globalLS === 'dark') return globalLS;
+      } catch (e) {}
+
+      return prefersLight ? 'light' : 'dark';
+    }
+
+    // Initialize
+    setTheme(getTheme());
+
     if (btn) {
-      btn.addEventListener('click', () => {
-        const next = (page.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-        applyTheme(next);
-        try { localStorage.setItem(KEY, next); } catch (e) {}
+      btn.addEventListener('click', function () {
+        const cur = page.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        setTheme(cur === 'light' ? 'dark' : 'light');
       });
     }
 
-    // -------- Reveal / stagger (Framer-ish, safe fallback) --------
+    // Try to hook into an existing global toggle (if it exists)
+    // We listen for clicks on likely candidates and re-sync after.
+    const possibleToggles = [
+      '#theme-toggle',
+      '.theme-toggle',
+      '[data-theme-toggle]',
+      'button[aria-label*="Toggle"]',
+      'button[title*="Toggle"]',
+      'input[type="checkbox"][name*="theme"]',
+      'input[type="checkbox"][id*="theme"]'
+    ];
+
+    const globalToggle = document.querySelector(possibleToggles.join(','));
+    if (globalToggle) {
+      globalToggle.addEventListener('click', function () {
+        // allow site toggle JS to run first
+        setTimeout(function () { setTheme(getTheme()); }, 0);
+      });
+      globalToggle.addEventListener('change', function () {
+        setTimeout(function () { setTheme(getTheme()); }, 0);
+      });
+    }
+  })();
+
+  // =========================================================
+  // Reveal (Framer-ish, safe fallback)
+  // =========================================================
+  (function () {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return;
+
+    const page = document.querySelector('.about-page');
+    if (!page) return;
 
     page.classList.add('motion');
 
     const targets = Array.from(page.querySelectorAll('.reveal, .stagger'));
     if (!('IntersectionObserver' in window) || targets.length === 0) {
-      targets.forEach(el => el.classList.add('in', 'done'));
+      targets.forEach(el => el.classList.add('in'));
       return;
     }
 
+    // Detect a scroll container (themes often scroll inside a div)
     const scrollRoot = (function findScrollParent(el) {
       let p = el.parentElement;
       while (p) {
@@ -741,21 +790,24 @@ disable_exploding_nav: true
       return null;
     })(page);
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in', 'done');
-          io.unobserve(e.target);
-        }
-      });
-    }, { root: scrollRoot, threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { root: scrollRoot, threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
 
     targets.forEach(el => io.observe(el));
 
     // Safety net: ensure nothing stays hidden
     setTimeout(() => {
-      const stillHidden = targets.some(el => !el.classList.contains('done'));
-      if (stillHidden) targets.forEach(el => el.classList.add('in', 'done'));
+      const stillHidden = targets.some(el => !el.classList.contains('in'));
+      if (stillHidden) targets.forEach(el => el.classList.add('in'));
     }, 450);
   })();
 </script>
