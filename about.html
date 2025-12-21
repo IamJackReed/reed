@@ -22,8 +22,12 @@ disable_exploding_nav: true
     --panel: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
     --panel-2: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
     --line: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-    --dot: rgba(255,255,255,0.35);
-    --dot-ring: rgba(255,255,255,0.06);
+
+    /* Rail accent (matches your screenshot vibe) */
+    --accent: #ff4fd8;
+    --rail: color-mix(in oklab, var(--accent) 45%, rgba(255,255,255,0.10));
+    --dot: var(--accent);
+    --dot-ring: color-mix(in oklab, var(--accent) 18%, transparent);
 
     max-width: 1100px;
     margin: 0 auto;
@@ -43,8 +47,9 @@ disable_exploding_nav: true
     --panel: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78));
     --panel-2: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,255,255,0.84));
     --line: linear-gradient(90deg, transparent, rgba(0,0,0,0.14), transparent);
-    --dot: rgba(0,0,0,0.35);
-    --dot-ring: rgba(0,0,0,0.06);
+
+    --rail: color-mix(in oklab, var(--accent) 40%, rgba(0,0,0,0.10));
+    --dot-ring: color-mix(in oklab, var(--accent) 18%, transparent);
   }
 
   .about-page a { color: inherit; text-underline-offset: 3px; }
@@ -65,13 +70,8 @@ disable_exploding_nav: true
     margin-bottom: 0.75rem;
   }
 
-  .about-page .kicker .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--dot);
-    box-shadow: 0 0 0 4px var(--dot-ring);
-  }
+  /* Hide old mini-dot (rail dot replaces it) */
+  .about-page .kicker .dot { display: none; }
 
   .about-page .panel {
     background: var(--panel);
@@ -136,14 +136,58 @@ disable_exploding_nav: true
     user-select: none;
   }
 
-  .about-page section { margin-top: 4.25rem; }
+  /* ---------------------------------------------
+     Continuous rail layout (NEW)
+     --------------------------------------------- */
+  .about-page .about-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4.25rem;
+    padding-left: 0.25rem;
+  }
+
+  .about-page .about-timeline::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--rail), var(--rail), transparent);
+    border-radius: 999px;
+    pointer-events: none;
+  }
+
+  .about-page .about-section {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 1.75rem;
+    align-items: start;
+  }
+
+  .about-page .rail-marker {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: 0 0 0 6px var(--dot-ring), 0 14px 34px rgba(0,0,0,0.18);
+    margin-left: 9px;
+    margin-top: 0.35rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Reduce double vertical rhythms: sections no longer need margin-top */
+  .about-page section { margin-top: 0; }
+
   .about-page .section-head { margin-bottom: 1.25rem; }
 
   .about-page .divider {
     height: 1px;
     width: 100%;
     background: var(--line);
-    margin: 3.25rem 0 0 0;
+    margin: 0;
   }
 
   .about-page .pillars {
@@ -208,7 +252,7 @@ disable_exploding_nav: true
   .about-page .badges img { height: 92px; width: auto; }
 
   .about-page .cta {
-    margin-top: 4rem;
+    margin-top: 0;
     padding: 2.6rem;
     border-radius: 28px;
     background: var(--panel-2);
@@ -235,20 +279,10 @@ disable_exploding_nav: true
     top: 6px;
     bottom: 6px;
     width: 1px;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(255,255,255,0.22),
-      transparent
-    );
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.22), transparent);
   }
   .about-page[data-theme="light"] .timeline::before {
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(0,0,0,0.18),
-      transparent
-    );
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.18), transparent);
   }
 
   .about-page .t-item {
@@ -331,7 +365,8 @@ disable_exploding_nav: true
   .about-page .logo,
   .about-page .badge,
   .about-page .cta,
-  .about-page .t-card {
+  .about-page .t-card,
+  .about-page .theme-toggle {
     transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
   }
 
@@ -407,8 +442,6 @@ disable_exploding_nav: true
 
   /* -----------------------------
      Reveal system (safe fallback)
-     Default: visible (never blank)
-     Motion-enabled: JS adds .motion, then we animate
      ----------------------------- */
   @media (prefers-reduced-motion: reduce) {
     .about-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -448,6 +481,11 @@ disable_exploding_nav: true
     .about-page .hero { grid-template-columns: 1fr; }
     .about-page .hero img { width: 200px; }
     .about-page .panel { padding: 1.75rem; }
+
+    .about-page .about-timeline::before { left: 13px; }
+    .about-page .about-section { grid-template-columns: 32px 1fr; gap: 1.25rem; }
+    .about-page .rail-marker { margin-left: 8px; }
+
     .about-page .timeline::before { left: 13px; }
     .about-page .t-item { grid-template-columns: 32px 1fr; }
     .about-page .t-card { padding: 1.25rem; }
@@ -464,221 +502,254 @@ disable_exploding_nav: true
     </button>
   </div>
 
-  <!-- HERO -->
-  <div class="panel reveal">
-    <div class="hero">
-      <img src="{{ site.baseurl }}/assets/images/profile/jack-avatar.png" alt="Jack Reed" />
+  <!-- NEW: wrapper that lets the rail run the full height -->
+  <div class="about-timeline">
+
+    <!-- HERO -->
+    <div class="about-section">
+      <div class="rail-marker" aria-hidden="true"></div>
+      <div class="panel reveal">
+        <div class="hero">
+          <img src="{{ site.baseurl }}/assets/images/profile/jack-avatar.png" alt="Jack Reed" />
+          <div>
+            <div class="kicker">About</div>
+            <h1>Jack Reed</h1>
+            <p class="lede">
+              I help people do better work in complex environments — not by installing frameworks, but by improving how teams and leaders think,
+              decide, and learn together.
+            </p>
+
+            <p class="lede" style="color: var(--muted); margin-top: .85rem;">
+              I work at the intersection of Scrum, Agile, Professional Coaching, and systems thinking. Over 14+ years I’ve worked across
+              Transport, Gov.UK, Med-tech, Financial Services, and Government — with the last 8+ years primarily in highly regulated Financial Services.
+            </p>
+
+            <div class="meta stagger" aria-label="Quick facts">
+              <span class="chip">14+ years delivery</span>
+              <span class="chip">Empirical change</span>
+              <span class="chip">Systems thinking</span>
+              <span class="chip">Team &amp; leadership coaching</span>
+              <span class="chip">Financial Services (8+ years)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER (as its own rail item so the line feels continuous) -->
+    <div class="about-section" aria-hidden="true">
+      <div class="rail-marker"></div>
+      <div class="divider reveal" role="presentation"></div>
+    </div>
+
+    <!-- THINKING -->
+    <section class="about-section reveal">
+      <div class="rail-marker" aria-hidden="true"></div>
       <div>
-        <div class="kicker"><span class="dot"></span>About</div>
-        <h1>Jack Reed</h1>
-        <p class="lede">
-          I help people do better work in complex environments — not by installing frameworks, but by improving how teams and leaders think,
-          decide, and learn together.
-        </p>
-
-        <p class="lede" style="color: var(--muted); margin-top: .85rem;">
-          I work at the intersection of Scrum, Agile, Professional Coaching, and systems thinking. Over 14+ years I’ve worked across
-          Transport, Gov.UK, Med-tech, Financial Services, and Government — with the last 8+ years primarily in highly regulated Financial Services.
-        </p>
-
-        <div class="meta stagger" aria-label="Quick facts">
-          <span class="chip">14+ years delivery</span>
-          <span class="chip">Empirical change</span>
-          <span class="chip">Systems thinking</span>
-          <span class="chip">Team &amp; leadership coaching</span>
-          <span class="chip">Financial Services (8+ years)</span>
+        <div class="section-head">
+          <div class="kicker">Thinking</div>
+          <h2>How I Think About Change</h2>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="divider reveal" role="presentation"></div>
-
-  <!-- THINKING -->
-  <section class="reveal">
-    <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Thinking</div>
-      <h2>How I Think About Change</h2>
-    </div>
-
-    <p>
-      I’m deeply interested in the people side of change. In my experience, most change efforts fail not because teams lack skill or motivation,
-      but because problems are oversimplified, decisions drift away from reality, and learning gets replaced by compliance.
-    </p>
-    <p>
-      I take an empirical approach to complex work — creating feedback loops, making work visible, and treating uncertainty as something to explore
-      rather than eliminate. Lasting improvement rarely comes from adopting Scrum “properly”. It comes from understanding the system of work,
-      the incentives within it, and the behaviours it produces.
-    </p>
-  </section>
-
-  <!-- PRACTICE -->
-  <section class="reveal">
-    <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Practice</div>
-      <h2>How I Work</h2>
-    </div>
-
-    <div class="pillars stagger">
-      <div class="pillar">
-        <h3>At the team level</h3>
         <p>
-          I coach teams toward self-management, where leadership is an attitude rather than a role.
-          We build shared ownership, improve flow, and run small, high-value experiments — even when things are going well.
+          I’m deeply interested in the people side of change. In my experience, most change efforts fail not because teams lack skill or motivation,
+          but because problems are oversimplified, decisions drift away from reality, and learning gets replaced by compliance.
         </p>
-      </div>
-
-      <div class="pillar">
-        <h3>At the product level</h3>
         <p>
-          I support Product Owners and product leaders to maximise value by improving visibility of work, outcomes, constraints,
-          and technical debt — so trade-offs become explicit and decisions improve.
+          I take an empirical approach to complex work — creating feedback loops, making work visible, and treating uncertainty as something to explore
+          rather than eliminate. Lasting improvement rarely comes from adopting Scrum “properly”. It comes from understanding the system of work,
+          the incentives within it, and the behaviours it produces.
         </p>
       </div>
+    </section>
 
-      <div class="pillar">
-        <h3>At the organisational level</h3>
+    <!-- PRACTICE -->
+    <section class="about-section reveal">
+      <div class="rail-marker" aria-hidden="true"></div>
+      <div>
+        <div class="section-head">
+          <div class="kicker">Practice</div>
+          <h2>How I Work</h2>
+        </div>
+
+        <div class="pillars stagger">
+          <div class="pillar">
+            <h3>At the team level</h3>
+            <p>
+              I coach teams toward self-management, where leadership is an attitude rather than a role.
+              We build shared ownership, improve flow, and run small, high-value experiments — even when things are going well.
+            </p>
+          </div>
+
+          <div class="pillar">
+            <h3>At the product level</h3>
+            <p>
+              I support Product Owners and product leaders to maximise value by improving visibility of work, outcomes, constraints,
+              and technical debt — so trade-offs become explicit and decisions improve.
+            </p>
+          </div>
+
+          <div class="pillar">
+            <h3>At the organisational level</h3>
+            <p>
+              I partner with leadership on strategy and operating-model change using agile-lean thinking and systems modelling.
+              The goal is alignment between structures, incentives, and the behaviours needed to deliver.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTEXT -->
+    <section class="about-section reveal">
+      <div class="rail-marker" aria-hidden="true"></div>
+      <div>
+        <div class="section-head">
+          <div class="kicker">Context</div>
+          <h2>Where I’ve Done It</h2>
+        </div>
+
+        <p class="lede" style="color: var(--muted);">
+          Logos shown represent organisations and sectors I’ve worked with.
+        </p>
+
+        <div class="logos stagger" aria-label="Organisations">
+          <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/legal-and-general.svg" alt="Legal &amp; General" /></div>
+          <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ministry-of-justice.svg" alt="Ministry of Justice" /></div>
+          <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/trapeze.svg" alt="Trapeze" /></div>
+          <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/iterate.svg" alt="Iterate" /></div>
+          <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ih.svg" alt="Infinity Health" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="about-section reveal">
+      <div class="rail-marker" aria-hidden="true"></div>
+      <div>
+        <div class="section-head">
+          <div class="kicker">Journey</div>
+          <h2>Career Timeline</h2>
+        </div>
+
+        <p class="lede" style="color: var(--muted);">
+          A quick view of the environments I’ve worked in and the problems I tend to get pulled into.
+        </p>
+
+        <div class="timeline stagger" aria-label="Career timeline">
+          <div class="t-item">
+            <div class="t-dot" aria-hidden="true"></div>
+            <div class="t-card">
+              <div class="t-top">
+                <div class="t-role">Government / Gov.UK</div>
+                <div class="t-meta">Large-scale services • high accountability • complex stakeholders</div>
+              </div>
+              <p>
+                Coaching teams delivering public-facing services where transparency, outcome focus, and pragmatic decision-making matter more than ceremony.
+              </p>
+              <div class="t-tags" aria-label="Highlights">
+                <span class="t-tag">Service delivery</span>
+                <span class="t-tag">Alignment</span>
+                <span class="t-tag">Lean flow</span>
+                <span class="t-tag">Pragmatic agility</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-dot" aria-hidden="true"></div>
+            <div class="t-card">
+              <div class="t-top">
+                <div class="t-role">Med-Tech</div>
+                <div class="t-meta">Regulated environments • quality • traceability</div>
+              </div>
+              <p>
+                Supporting delivery where safety, evidence, and compliance shape how change can happen — improving feedback loops without compromising what “good” must look like.
+              </p>
+              <div class="t-tags" aria-label="Highlights">
+                <span class="t-tag">Regulated delivery</span>
+                <span class="t-tag">Quality mindset</span>
+                <span class="t-tag">Risk awareness</span>
+                <span class="t-tag">Continuous improvement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-dot" aria-hidden="true"></div>
+            <div class="t-card">
+              <div class="t-top">
+                <div class="t-role">Financial Services</div>
+                <div class="t-meta">Institutional scale • long horizons • governance constraints</div>
+              </div>
+              <p>
+                Helping organisations deliver inside complex systems with multiple teams and dependencies — making progress visible, reducing friction, and increasing learning speed.
+              </p>
+              <div class="t-tags" aria-label="Highlights">
+                <span class="t-tag">Operating models</span>
+                <span class="t-tag">Portfolio delivery</span>
+                <span class="t-tag">Systems thinking</span>
+                <span class="t-tag">Leadership coaching</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section class="about-section reveal">
+      <div class="rail-marker" aria-hidden="true"></div>
+      <div>
+        <div class="section-head">
+          <div class="kicker">Credentials</div>
+          <h2>Certifications &amp; Badges</h2>
+        </div>
+
+        <div class="badges stagger" aria-label="Certifications">
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-iii-psm-iii.png" alt="Professional Scrum Master III" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-ii-psm-ii.png" alt="Professional Scrum Master II" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-i-psm-i.png" alt="Professional Scrum Master I" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ii-pspo-ii.png" alt="Professional Scrum Product Owner II" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ai-essentials-pspo.png" alt="Professional Scrum Product Owner — AI Essentials" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/scaled-professional-scrum-sps.png" alt="Scaled Professional Scrum" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-kanban-i-psk-i.png" alt="Professional Scrum with Kanban I" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-user-experience-i-psu-i.png" alt="Professional Scrum with User Experience I" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-product-discovery-and-validation.png" alt="Professional Product Discovery &amp; Validation" /></div>
+          <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/icf-member-badge.png" alt="ICF Member" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALSO -->
+    <section class="about-section reveal">
+      <div class="rail-marker" aria-hidden="true"></div>
+      <div>
+        <div class="section-head">
+          <div class="kicker">Also</div>
+          <h2>Beyond Work</h2>
+        </div>
         <p>
-          I partner with leadership on strategy and operating-model change using agile-lean thinking and systems modelling.
-          The goal is alignment between structures, incentives, and the behaviours needed to deliver.
+          Alongside my work in Financial Services, I have a strong interest in investing in businesses — evaluating ideas, backing people, and occasionally
+          supporting growth where I can. I enjoy understanding how value is created over time, both inside organisations and in the wider market.
+        </p>
+      </div>
+    </section>
+
+    <!-- WRITING -->
+    <div class="about-section">
+      <div class="rail-marker" aria-hidden="true"></div>
+      <div class="cta reveal">
+        <div class="kicker">Writing</div>
+        <h2>Writing &amp; Sense-Making</h2>
+        <p class="lede" style="color: var(--muted);">
+          I use my blog as a place to think in public — reflecting on change, systems, leadership, and what actually works in practice.
+          You can find it at <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>.
         </p>
       </div>
     </div>
-  </section>
 
-  <!-- CONTEXT -->
-  <section class="reveal">
-    <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Context</div>
-      <h2>Where I’ve Done It</h2>
-    </div>
-
-    <p class="lede" style="color: var(--muted);">
-      Logos shown represent organisations and sectors I’ve worked with.
-    </p>
-
-    <div class="logos stagger" aria-label="Organisations">
-      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/legal-and-general.svg" alt="Legal &amp; General" /></div>
-      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ministry-of-justice.svg" alt="Ministry of Justice" /></div>
-      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/trapeze.svg" alt="Trapeze" /></div>
-      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/iterate.svg" alt="Iterate" /></div>
-      <div class="logo"><img src="{{ site.baseurl }}/assets/images/logos/ih.svg" alt="Infinity Health" /></div>
-    </div>
-  </section>
-
-  <!-- JOURNEY -->
-  <section class="reveal">
-    <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Journey</div>
-      <h2>Career Timeline</h2>
-    </div>
-
-    <p class="lede" style="color: var(--muted);">
-      A quick view of the environments I’ve worked in and the problems I tend to get pulled into.
-    </p>
-
-    <div class="timeline stagger" aria-label="Career timeline">
-      <div class="t-item">
-        <div class="t-dot" aria-hidden="true"></div>
-        <div class="t-card">
-          <div class="t-top">
-            <div class="t-role">Government / Gov.UK</div>
-            <div class="t-meta">Large-scale services • high accountability • complex stakeholders</div>
-          </div>
-          <p>
-            Coaching teams delivering public-facing services where transparency, outcome focus, and pragmatic decision-making matter more than ceremony.
-          </p>
-          <div class="t-tags" aria-label="Highlights">
-            <span class="t-tag">Service delivery</span>
-            <span class="t-tag">Alignment</span>
-            <span class="t-tag">Lean flow</span>
-            <span class="t-tag">Pragmatic agility</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="t-item">
-        <div class="t-dot" aria-hidden="true"></div>
-        <div class="t-card">
-          <div class="t-top">
-            <div class="t-role">Med-Tech</div>
-            <div class="t-meta">Regulated environments • quality • traceability</div>
-          </div>
-          <p>
-            Supporting delivery where safety, evidence, and compliance shape how change can happen — improving feedback loops without compromising what “good” must look like.
-          </p>
-          <div class="t-tags" aria-label="Highlights">
-            <span class="t-tag">Regulated delivery</span>
-            <span class="t-tag">Quality mindset</span>
-            <span class="t-tag">Risk awareness</span>
-            <span class="t-tag">Continuous improvement</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="t-item">
-        <div class="t-dot" aria-hidden="true"></div>
-        <div class="t-card">
-          <div class="t-top">
-            <div class="t-role">Financial Services</div>
-            <div class="t-meta">Institutional scale • long horizons • governance constraints</div>
-          </div>
-          <p>
-            Helping organisations deliver inside complex systems with multiple teams and dependencies — making progress visible, reducing friction, and increasing learning speed.
-          </p>
-          <div class="t-tags" aria-label="Highlights">
-            <span class="t-tag">Operating models</span>
-            <span class="t-tag">Portfolio delivery</span>
-            <span class="t-tag">Systems thinking</span>
-            <span class="t-tag">Leadership coaching</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CREDENTIALS -->
-  <section class="reveal">
-    <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Credentials</div>
-      <h2>Certifications &amp; Badges</h2>
-    </div>
-
-    <div class="badges stagger" aria-label="Certifications">
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-iii-psm-iii.png" alt="Professional Scrum Master III" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-ii-psm-ii.png" alt="Professional Scrum Master II" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-i-psm-i.png" alt="Professional Scrum Master I" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ii-pspo-ii.png" alt="Professional Scrum Product Owner II" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ai-essentials-pspo.png" alt="Professional Scrum Product Owner — AI Essentials" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/scaled-professional-scrum-sps.png" alt="Scaled Professional Scrum" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-kanban-i-psk-i.png" alt="Professional Scrum with Kanban I" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-user-experience-i-psu-i.png" alt="Professional Scrum with User Experience I" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-product-discovery-and-validation.png" alt="Professional Product Discovery &amp; Validation" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/icf-member-badge.png" alt="ICF Member" /></div>
-    </div>
-  </section>
-
-  <!-- ALSO -->
-  <section class="reveal">
-    <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Also</div>
-      <h2>Beyond Work</h2>
-    </div>
-    <p>
-      Alongside my work in Financial Services, I have a strong interest in investing in businesses — evaluating ideas, backing people, and occasionally
-      supporting growth where I can. I enjoy understanding how value is created over time, both inside organisations and in the wider market.
-    </p>
-  </section>
-
-  <!-- WRITING -->
-  <div class="cta reveal">
-    <div class="kicker"><span class="dot"></span>Writing</div>
-    <h2>Writing &amp; Sense-Making</h2>
-    <p class="lede" style="color: var(--muted);">
-      I use my blog as a place to think in public — reflecting on change, systems, leadership, and what actually works in practice.
-      You can find it at <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>.
-    </p>
-  </div>
+  </div><!-- /about-timeline -->
 
 </div>
 
