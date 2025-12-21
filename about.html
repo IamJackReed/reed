@@ -1,8 +1,7 @@
 ---
-layout: page
+layout: default
 title: About
 permalink: /about/
-disable_exploding_nav: true
 ---
 
 <style>
@@ -11,77 +10,118 @@ disable_exploding_nav: true
      ========================================================= */
 
   .about-page {
-    /* Default: Dark mode */
-    --bg: rgba(0,0,0,0);
+    /* theme tokens (defaults to DARK) */
+    --bg: rgba(10,10,12,0.72);
+    --panel: rgba(255,255,255,0.07);
+    --panel-2: rgba(255,255,255,0.05);
+    --border: rgba(255,255,255,0.12);
     --fg: rgba(255,255,255,0.92);
-    --muted: rgba(255,255,255,0.68);
-    --soft: rgba(255,255,255,0.08);
-    --soft-2: rgba(255,255,255,0.12);
-    --border: rgba(255,255,255,0.10);
+    --muted: rgba(255,255,255,0.70);
+    --muted2: rgba(255,255,255,0.60);
     --shadow: 0 18px 50px rgba(0,0,0,0.35);
-    --panel: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
-    --panel-2: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-    --line: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-    --dot: rgba(255,255,255,0.35);
-    --dot-ring: rgba(255,255,255,0.06);
 
     max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2rem;
     color: var(--fg);
-    background: var(--bg);
   }
 
-  /* Light mode (About page only) */
-  .about-page[data-theme="light"] {
-    --fg: rgba(12,12,12,0.92);
-    --muted: rgba(12,12,12,0.62);
-    --soft: rgba(0,0,0,0.05);
-    --soft-2: rgba(0,0,0,0.08);
+  /* Light mode (page-local) */
+  .about-page[data-theme="light"]{
+    --bg: rgba(255,255,255,0.70);
+    --panel: rgba(0,0,0,0.05);
+    --panel-2: rgba(0,0,0,0.035);
     --border: rgba(0,0,0,0.10);
-    --shadow: 0 18px 50px rgba(0,0,0,0.12);
-    --panel: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78));
-    --panel-2: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,255,255,0.84));
-    --line: linear-gradient(90deg, transparent, rgba(0,0,0,0.14), transparent);
-    --dot: rgba(0,0,0,0.35);
-    --dot-ring: rgba(0,0,0,0.06);
+    --fg: rgba(0,0,0,0.92);
+    --muted: rgba(0,0,0,0.68);
+    --muted2: rgba(0,0,0,0.56);
+    --shadow: 0 18px 50px rgba(0,0,0,0.18);
   }
 
-  .about-page a { color: inherit; text-underline-offset: 3px; }
+  .about-page a { color: var(--fg); text-decoration-thickness: 2px; text-underline-offset: 3px; }
   .about-page a:hover { opacity: 0.92; }
 
-  .about-page :is(h1,h2,h3) { color: currentColor; letter-spacing: -0.01em; }
+  .about-page :is(h1,h2,h3) { color: var(--fg); letter-spacing: -0.01em; }
   .about-page p { color: var(--fg); line-height: 1.85; max-width: 72ch; }
   .about-page .lede { font-size: 1.02rem; color: var(--fg); max-width: 78ch; }
+  .about-page .subtle { color: var(--muted); }
 
-  .about-page .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: .55rem;
-    font-size: 0.82rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .about-page .kicker .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--dot);
-    box-shadow: 0 0 0 4px var(--dot-ring);
+  /* Soft background wash (contained) */
+  .about-page .wash {
+    position: relative;
+    border-radius: 32px;
+    padding: 2px;
+    background: radial-gradient(60% 50% at 20% 10%, rgba(255,255,255,0.10), transparent 60%),
+                radial-gradient(50% 45% at 85% 15%, rgba(255,255,255,0.08), transparent 55%),
+                radial-gradient(50% 60% at 50% 100%, rgba(255,255,255,0.06), transparent 60%);
   }
 
   .about-page .panel {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 28px;
+    border-radius: 30px;
     padding: 2.25rem;
     box-shadow: var(--shadow);
     backdrop-filter: blur(10px);
   }
 
+  .about-page .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .about-page .kicker .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.06);
+  }
+  .about-page[data-theme="light"] .kicker .dot{
+    background: rgba(0,0,0,0.30);
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
+  }
+
+  /* Header row: kicker + toggle */
+  .about-page .toprow{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .about-page .theme-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap: .55rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+    color: var(--muted);
+    padding: .55rem .85rem;
+    cursor:pointer;
+    user-select:none;
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+  }
+  .about-page .theme-toggle:hover{
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  }
+  .about-page[data-theme="light"] .theme-toggle:hover{
+    border-color: rgba(0,0,0,0.16);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+  }
+
+  .about-page .theme-toggle svg{ width: 18px; height: 18px; opacity: 0.9; }
+
+  /* Hero */
   .about-page .hero {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -89,39 +129,30 @@ disable_exploding_nav: true
     align-items: center;
   }
 
-  /* Avatar card */
   .about-page .hero img {
     width: 240px;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center 18%;
     border-radius: 28px;
-
     padding: 6px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.05));
+    background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
     box-shadow:
-      0 22px 50px rgba(0,0,0,0.22),
+      0 22px 50px rgba(0,0,0,0.28),
       inset 0 0 0 1px rgba(255,255,255,0.18);
-  }
-
-  .about-page[data-theme="light"] .hero img {
-    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));
-    box-shadow:
-      0 22px 50px rgba(0,0,0,0.12),
-      inset 0 0 0 1px rgba(0,0,0,0.10);
   }
 
   .about-page h1 { font-size: clamp(2.2rem, 3.4vw, 3.1rem); margin: 0 0 .75rem 0; }
   .about-page h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); margin: 0 0 1rem 0; }
-  .about-page h3 { font-size: 1.12rem; margin: 0 0 0.6rem 0; }
+  .about-page h3 { font-size: 1.15rem; margin: 0 0 0.6rem 0; }
 
+  /* Chips */
   .about-page .meta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-top: 1.25rem;
   }
-
   .about-page .chip {
     display: inline-flex;
     align-items: center;
@@ -129,37 +160,51 @@ disable_exploding_nav: true
     padding: .55rem .85rem;
     border-radius: 999px;
     border: 1px solid var(--border);
-    background: var(--soft);
+    background: var(--panel-2);
     color: var(--muted);
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     line-height: 1;
-    user-select: none;
   }
 
+  /* Sections */
   .about-page section { margin-top: 4.25rem; }
   .about-page .section-head { margin-bottom: 1.25rem; }
 
   .about-page .divider {
     height: 1px;
     width: 100%;
-    background: var(--line);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
     margin: 3.25rem 0 0 0;
   }
+  .about-page[data-theme="light"] .divider{
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.16), transparent);
+  }
 
+  /* Pillars */
   .about-page .pillars {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
     margin-top: 1.25rem;
   }
-
   .about-page .pillar {
     padding: 1.6rem;
     border-radius: 22px;
-    background: var(--soft);
+    background: var(--panel-2);
     border: 1px solid var(--border);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .about-page .pillar:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+  }
+  .about-page[data-theme="light"] .pillar:hover{
+    border-color: rgba(0,0,0,0.14);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.14);
   }
 
+  /* Logos */
   .about-page .logos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -167,253 +212,77 @@ disable_exploding_nav: true
     align-items: center;
     margin-top: 1.25rem;
   }
-
   .about-page .logos .logo {
     display: grid;
     place-items: center;
     padding: 1.15rem;
     border-radius: 18px;
-    background: var(--soft);
+    background: var(--panel-2);
     border: 1px solid var(--border);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
   }
-
+  .about-page .logos .logo:hover{
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+  }
+  .about-page[data-theme="light"] .logos .logo:hover{
+    border-color: rgba(0,0,0,0.14);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.14);
+  }
   .about-page .logos img {
     max-height: 56px;
     width: auto;
     filter: grayscale(100%);
     opacity: 0.85;
+    transition: filter 220ms ease, opacity 220ms ease, transform 220ms ease;
+  }
+  .about-page .logo:hover img{
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: translateY(-1px);
   }
 
-  .about-page[data-theme="light"] .logos img {
-    filter: grayscale(100%);
-    opacity: 0.78;
-  }
-
+  /* Badges */
   .about-page .badges {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1rem;
     margin-top: 1.25rem;
   }
-
   .about-page .badge {
     display: grid;
     place-items: center;
     padding: 1rem;
     border-radius: 18px;
-    background: var(--soft);
+    background: var(--panel-2);
     border: 1px solid var(--border);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .about-page .badge:hover{
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+  }
+  .about-page[data-theme="light"] .badge:hover{
+    border-color: rgba(0,0,0,0.14);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.14);
   }
 
-  .about-page .badges img { height: 92px; width: auto; }
+  .about-page .badges img { height: 96px; width: auto; }
 
+  /* CTA */
   .about-page .cta {
     margin-top: 4rem;
     padding: 2.6rem;
     border-radius: 28px;
-    background: var(--panel-2);
+    background: var(--panel);
     border: 1px solid var(--border);
     box-shadow: var(--shadow);
   }
+  .about-page .cta a { font-weight: 800; }
 
-  .about-page .cta a { font-weight: 700; }
-
-  /* =========================
-     Timeline (Framer-ish)
-     ========================= */
-  .about-page .timeline {
-    position: relative;
-    display: grid;
-    gap: 1rem;
-    margin-top: 1.25rem;
-  }
-
-  .about-page .timeline::before {
-    content: "";
-    position: absolute;
-    left: 14px;
-    top: 6px;
-    bottom: 6px;
-    width: 1px;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(255,255,255,0.22),
-      transparent
-    );
-  }
-  .about-page[data-theme="light"] .timeline::before {
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(0,0,0,0.18),
-      transparent
-    );
-  }
-
-  .about-page .t-item {
-    position: relative;
-    display: grid;
-    grid-template-columns: 34px 1fr;
-    gap: 1rem;
-    align-items: start;
-  }
-
-  .about-page .t-dot {
-    position: relative;
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-    margin-top: 2px;
-    border: 1px solid var(--border);
-    background: var(--soft);
-    box-shadow: 0 10px 26px rgba(0,0,0,0.16);
-  }
-
-  .about-page .t-dot::after {
-    content: "";
-    position: absolute;
-    inset: 7px;
-    border-radius: 999px;
-    background: currentColor;
-    opacity: 0.35;
-    box-shadow: 0 0 0 6px rgba(255,255,255,0.06);
-  }
-  .about-page[data-theme="light"] .t-dot::after {
-    box-shadow: 0 0 0 6px rgba(0,0,0,0.06);
-  }
-
-  .about-page .t-card {
-    padding: 1.45rem;
-    border-radius: 22px;
-    background: var(--soft);
-    border: 1px solid var(--border);
-  }
-
-  .about-page .t-top {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .6rem .85rem;
-    align-items: baseline;
-    margin-bottom: .55rem;
-  }
-
-  .about-page .t-role { font-weight: 800; letter-spacing: -0.01em; }
-  .about-page .t-meta { color: var(--muted); font-size: 0.98rem; }
-
-  .about-page .t-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    margin-top: .9rem;
-  }
-
-  .about-page .t-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: .45rem .7rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.04);
-    color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1;
-  }
-
-  .about-page[data-theme="light"] .t-tag {
-    background: rgba(0,0,0,0.03);
-  }
-
-  /* -----------------------------
-     Interactions + accessibility
-     ----------------------------- */
-  .about-page .pillar,
-  .about-page .logo,
-  .about-page .badge,
-  .about-page .cta,
-  .about-page .t-card {
-    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
-  }
-
-  .about-page .pillar:hover,
-  .about-page .logo:hover,
-  .about-page .badge:hover,
-  .about-page .t-card:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in oklab, var(--border) 60%, currentColor 10%);
-    box-shadow: 0 18px 46px rgba(0,0,0,0.18);
-  }
-
-  .about-page :is(a, button, [tabindex]):focus-visible {
-    outline: 2px solid color-mix(in oklab, currentColor 40%, transparent);
-    outline-offset: 3px;
-    border-radius: 10px;
-  }
-
-  /* -----------------------------
-     Page theme toggle (scoped)
-     ----------------------------- */
-  .about-page .topbar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1.25rem;
-  }
-
-  .about-page .theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: .6rem;
-    padding: .55rem .8rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--soft);
-    color: var(--muted);
-    font-size: 0.92rem;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .about-page .theme-toggle:hover { transform: translateY(-1px); }
-
-  .about-page .theme-toggle .pill {
-    width: 40px;
-    height: 22px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.06);
-    position: relative;
-  }
-
-  .about-page[data-theme="light"] .theme-toggle .pill {
-    background: rgba(0,0,0,0.03);
-  }
-
-  .about-page .theme-toggle .knob {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 18px;
-    height: 18px;
-    border-radius: 999px;
-    background: currentColor;
-    opacity: 0.45;
-    transition: transform 220ms ease;
-  }
-
-  .about-page[data-theme="light"] .theme-toggle .knob {
-    transform: translateX(18px);
-    opacity: 0.55;
-  }
-
-  /* -----------------------------
-     Reveal system (safe fallback)
-     Default: visible (never blank)
-     Motion-enabled: JS adds .motion, then we animate
-     ----------------------------- */
-  @media (prefers-reduced-motion: reduce) {
-    .about-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  }
-
+  /* Reveal system (safe fallback) */
   .about-page .reveal { opacity: 1; transform: none; }
   .about-page .stagger > * { opacity: 1; transform: none; }
 
@@ -439,121 +308,138 @@ disable_exploding_nav: true
   .about-page.motion .stagger.in > *:nth-child(5) { transition-delay: 320ms; }
   .about-page.motion .stagger.in > *:nth-child(6) { transition-delay: 400ms; }
 
-  /* Responsive */
-  @media (max-width: 900px) {
-    .about-page .badges img { height: 104px; }
+  /* Accessibility */
+  .about-page :is(a, button, [tabindex]):focus-visible {
+    outline: 2px solid rgba(255,255,255,0.65);
+    outline-offset: 3px;
+    border-radius: 12px;
   }
+  .about-page[data-theme="light"] :is(a, button, [tabindex]):focus-visible{
+    outline: 2px solid rgba(0,0,0,0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* Mobile */
   @media (max-width: 840px) {
     .about-page { padding: 3rem 1.25rem; }
     .about-page .hero { grid-template-columns: 1fr; }
     .about-page .hero img { width: 200px; }
     .about-page .panel { padding: 1.75rem; }
-    .about-page .timeline::before { left: 13px; }
-    .about-page .t-item { grid-template-columns: 32px 1fr; }
-    .about-page .t-card { padding: 1.25rem; }
+    .about-page .toprow{ align-items:flex-start; }
   }
 </style>
 
-<div class="about-page" data-theme="dark">
-
-  <!-- About-only theme toggle (safe + scoped) -->
-  <div class="topbar">
-    <button class="theme-toggle" id="aboutThemeToggle" type="button" aria-label="Toggle About page theme">
-      <span id="aboutThemeLabel">Dark</span>
-      <span class="pill" aria-hidden="true"><span class="knob"></span></span>
-    </button>
-  </div>
+<div class="about-page wash" data-theme="dark">
 
   <!-- HERO -->
   <div class="panel reveal">
     <div class="hero">
+
       <img src="{{ site.baseurl }}/assets/images/profile/jack-avatar.png" alt="Jack Reed" />
+
       <div>
-        <div class="kicker"><span class="dot"></span>About</div>
+        <div class="toprow">
+          <div class="kicker"><span class="dot"></span>About</div>
+
+          <!-- Page-local theme toggle -->
+          <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme">
+            <span class="icon" aria-hidden="true">
+              <!-- default icon (moon) -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 13.2A8.3 8.3 0 0 1 10.8 3 7.6 7.6 0 1 0 21 13.2Z" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </span>
+            <span class="label">Dark</span>
+          </button>
+        </div>
+
         <h1>Jack Reed</h1>
         <p class="lede">
-          I help people do better work in complex environments — not by installing frameworks, but by improving how teams and leaders think,
-          decide, and learn together.
-        </p>
-
-        <p class="lede" style="color: var(--muted); margin-top: .85rem;">
-          I work at the intersection of Scrum, Agile, Professional Coaching, and systems thinking. Over 14+ years I’ve worked across
-          Transport, Gov.UK, Med-tech, Financial Services, and Government — with the last 8+ years primarily in highly regulated Financial Services.
+          Scrum Master, Agile Coach, and Professional Coach. I focus on the <strong>people side of change</strong> —
+          helping teams and leaders navigate complex work through clarity, experimentation, and systems-aware thinking.
         </p>
 
         <div class="meta stagger" aria-label="Quick facts">
           <span class="chip">14+ years delivery</span>
-          <span class="chip">Empirical change</span>
           <span class="chip">Systems thinking</span>
-          <span class="chip">Team &amp; leadership coaching</span>
+          <span class="chip">Team & leadership coaching</span>
           <span class="chip">Financial Services (8+ years)</span>
         </div>
+
+        <p class="subtle" style="margin-top: 1.2rem;">
+          I write at <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>
+          and hang around the software + Agile community to keep learning, unlearning, and improving.
+        </p>
       </div>
+
     </div>
   </div>
 
   <div class="divider reveal" role="presentation"></div>
 
-  <!-- THINKING -->
+  <!-- PHILOSOPHY -->
   <section class="reveal">
     <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Thinking</div>
-      <h2>How I Think About Change</h2>
+      <div class="kicker"><span class="dot"></span>Philosophy</div>
+      <h2>How I think about change</h2>
     </div>
 
     <p>
-      I’m deeply interested in the people side of change. In my experience, most change efforts fail not because teams lack skill or motivation,
-      but because problems are oversimplified, decisions drift away from reality, and learning gets replaced by compliance.
+      I’m interested in change that actually sticks — not performative agility, not “roll out Scrum”, and not
+      theatre disguised as transformation. My bias is towards <strong>small, high-value experiments</strong> that
+      reduce uncertainty and increase learning speed, even when things already look “fine”.
     </p>
     <p>
-      I take an empirical approach to complex work — creating feedback loops, making work visible, and treating uncertainty as something to explore
-      rather than eliminate. Lasting improvement rarely comes from adopting Scrum “properly”. It comes from understanding the system of work,
-      the incentives within it, and the behaviours it produces.
+      I stay deliberately humble in this work. The system is always teaching us something — if we’re willing to
+      listen, measure, and adapt.
     </p>
   </section>
 
-  <!-- PRACTICE -->
+  <!-- PILLARS -->
   <section class="reveal">
     <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Practice</div>
-      <h2>How I Work</h2>
+      <div class="kicker"><span class="dot"></span>Focus</div>
+      <h2>What I get pulled into</h2>
     </div>
 
     <div class="pillars stagger">
       <div class="pillar">
-        <h3>At the team level</h3>
+        <h3>Team self-management</h3>
         <p>
-          I coach teams toward self-management, where leadership is an attitude rather than a role.
-          We build shared ownership, improve flow, and run small, high-value experiments — even when things are going well.
+          Coaching teams to treat leadership as an attitude. Building the habits that make collaboration resilient:
+          transparency, respectful conflict, and ownership.
         </p>
       </div>
 
       <div class="pillar">
-        <h3>At the product level</h3>
+        <h3>Product value & accountability</h3>
         <p>
-          I support Product Owners and product leaders to maximise value by improving visibility of work, outcomes, constraints,
-          and technical debt — so trade-offs become explicit and decisions improve.
+          Supporting Product Owners to maximise value by improving work visualisation, technical debt transparency,
+          and evidence-driven prioritisation.
         </p>
       </div>
 
       <div class="pillar">
-        <h3>At the organisational level</h3>
+        <h3>Systems & strategic delivery</h3>
         <p>
-          I partner with leadership on strategy and operating-model change using agile-lean thinking and systems modelling.
-          The goal is alignment between structures, incentives, and the behaviours needed to deliver.
+          Partnering with leadership on strategic initiatives using agile-lean thinking, systems modelling,
+          and alignment of ways of working with business goals — beyond “doing Scrum”.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- CONTEXT -->
+  <!-- ORGS -->
   <section class="reveal">
     <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Context</div>
-      <h2>Where I’ve Done It</h2>
+      <div class="kicker"><span class="dot"></span>Experience</div>
+      <h2>Organisations & sectors</h2>
     </div>
 
-    <p class="lede" style="color: var(--muted);">
+    <p class="lede subtle">
       Logos shown represent organisations and sectors I’ve worked with.
     </p>
 
@@ -566,94 +452,23 @@ disable_exploding_nav: true
     </div>
   </section>
 
-  <!-- JOURNEY -->
-  <section class="reveal">
-    <div class="section-head">
-      <div class="kicker"><span class="dot"></span>Journey</div>
-      <h2>Career Timeline</h2>
-    </div>
-
-    <p class="lede" style="color: var(--muted);">
-      A quick view of the environments I’ve worked in and the problems I tend to get pulled into.
-    </p>
-
-    <div class="timeline stagger" aria-label="Career timeline">
-      <div class="t-item">
-        <div class="t-dot" aria-hidden="true"></div>
-        <div class="t-card">
-          <div class="t-top">
-            <div class="t-role">Government / Gov.UK</div>
-            <div class="t-meta">Large-scale services • high accountability • complex stakeholders</div>
-          </div>
-          <p>
-            Coaching teams delivering public-facing services where transparency, outcome focus, and pragmatic decision-making matter more than ceremony.
-          </p>
-          <div class="t-tags" aria-label="Highlights">
-            <span class="t-tag">Service delivery</span>
-            <span class="t-tag">Alignment</span>
-            <span class="t-tag">Lean flow</span>
-            <span class="t-tag">Pragmatic agility</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="t-item">
-        <div class="t-dot" aria-hidden="true"></div>
-        <div class="t-card">
-          <div class="t-top">
-            <div class="t-role">Med-Tech</div>
-            <div class="t-meta">Regulated environments • quality • traceability</div>
-          </div>
-          <p>
-            Supporting delivery where safety, evidence, and compliance shape how change can happen — improving feedback loops without compromising what “good” must look like.
-          </p>
-          <div class="t-tags" aria-label="Highlights">
-            <span class="t-tag">Regulated delivery</span>
-            <span class="t-tag">Quality mindset</span>
-            <span class="t-tag">Risk awareness</span>
-            <span class="t-tag">Continuous improvement</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="t-item">
-        <div class="t-dot" aria-hidden="true"></div>
-        <div class="t-card">
-          <div class="t-top">
-            <div class="t-role">Financial Services</div>
-            <div class="t-meta">Institutional scale • long horizons • governance constraints</div>
-          </div>
-          <p>
-            Helping organisations deliver inside complex systems with multiple teams and dependencies — making progress visible, reducing friction, and increasing learning speed.
-          </p>
-          <div class="t-tags" aria-label="Highlights">
-            <span class="t-tag">Operating models</span>
-            <span class="t-tag">Portfolio delivery</span>
-            <span class="t-tag">Systems thinking</span>
-            <span class="t-tag">Leadership coaching</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CREDENTIALS -->
   <section class="reveal">
     <div class="section-head">
       <div class="kicker"><span class="dot"></span>Credentials</div>
-      <h2>Certifications &amp; Badges</h2>
+      <h2>Certifications & badges</h2>
     </div>
 
     <div class="badges stagger" aria-label="Certifications">
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-iii-psm-iii.png" alt="Professional Scrum Master III" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-ii-psm-ii.png" alt="Professional Scrum Master II" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-i-psm-i.png" alt="Professional Scrum Master I" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ii-pspo-ii.png" alt="Professional Scrum Product Owner II" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ai-essentials-pspo.png" alt="Professional Scrum Product Owner — AI Essentials" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/scaled-professional-scrum-sps.png" alt="Scaled Professional Scrum" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-kanban-i-psk-i.png" alt="Professional Scrum with Kanban I" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-user-experience-i-psu-i.png" alt="Professional Scrum with User Experience I" /></div>
-      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-product-discovery-and-validation.png" alt="Professional Product Discovery &amp; Validation" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-iii-psm-iii.png" alt="PSM III" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-ii-psm-ii.png" alt="PSM II" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-master-i-psm-i.png" alt="PSM I" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ii-pspo-ii.png" alt="PSPO II" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-product-owner-ai-essentials-pspo.png" alt="PSPO-AI" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/scaled-professional-scrum-sps.png" alt="SPS" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-kanban-i-psk-i.png" alt="PSK I" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-scrum-with-user-experience-i-psu-i.png" alt="PSU I" /></div>
+      <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/professional-product-discovery-and-validation.png" alt="Product Discovery & Validation" /></div>
       <div class="badge"><img src="{{ site.baseurl }}/assets/images/badges/icf-member-badge.png" alt="ICF Member" /></div>
     </div>
   </section>
@@ -662,133 +477,86 @@ disable_exploding_nav: true
   <section class="reveal">
     <div class="section-head">
       <div class="kicker"><span class="dot"></span>Also</div>
-      <h2>Beyond Work</h2>
+      <h2>Beyond coaching</h2>
     </div>
+
     <p>
-      Alongside my work in Financial Services, I have a strong interest in investing in businesses — evaluating ideas, backing people, and occasionally
-      supporting growth where I can. I enjoy understanding how value is created over time, both inside organisations and in the wider market.
+      Alongside my work in Financial Services, I’m interested in investing in businesses — reviewing them,
+      backing good operators, and supporting where I can. Occasionally, this even results in a profit.
     </p>
   </section>
 
-  <!-- WRITING -->
+  <!-- CTA -->
   <div class="cta reveal">
     <div class="kicker"><span class="dot"></span>Writing</div>
-    <h2>Writing &amp; Sense-Making</h2>
-    <p class="lede" style="color: var(--muted);">
-      I use my blog as a place to think in public — reflecting on change, systems, leadership, and what actually works in practice.
-      You can find it at <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>.
+    <h2>Writing & sense-making</h2>
+    <p class="lede">
+      I share ideas, lessons, and experiments at
+      <a href="https://jackreed.es" target="_blank" rel="noopener">jackreed.es</a>.
+      If you’re into systems thinking, agility, and the human side of change — you’ll feel at home.
     </p>
   </div>
 
 </div>
 
 <script>
-  // =========================================================
-  // About page theme toggle (scoped, won't affect rest of site)
-  // - Persists in localStorage
-  // - Attempts to sync with any existing global/site theme toggle
-  // =========================================================
   (function () {
     const page = document.querySelector('.about-page');
     if (!page) return;
 
-    const btn = document.getElementById('aboutThemeToggle');
-    const label = document.getElementById('aboutThemeLabel');
-
-    const KEY = 'aboutTheme';
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    // -------------------------
+    // Theme toggle (page-local)
+    // -------------------------
+    const btn = page.querySelector('.theme-toggle');
+    const label = btn ? btn.querySelector('.label') : null;
+    const iconWrap = btn ? btn.querySelector('.icon') : null;
 
     function setTheme(theme) {
       page.setAttribute('data-theme', theme);
       if (label) label.textContent = theme === 'light' ? 'Light' : 'Dark';
-      try { localStorage.setItem(KEY, theme); } catch (e) {}
+
+      // swap icon (sun/moon) - tiny + self-contained
+      if (iconWrap) {
+        iconWrap.innerHTML = theme === 'light'
+          ? '<svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none"><path d="M21 13.2A8.3 8.3 0 0 1 10.8 3 7.6 7.6 0 1 0 21 13.2Z" stroke="currentColor" stroke-width="1.8" /></svg>';
+      }
+
+      try { localStorage.setItem('aboutTheme', theme); } catch (e) {}
     }
 
-    function getTheme() {
-      try {
-        const saved = localStorage.getItem(KEY);
-        if (saved === 'light' || saved === 'dark') return saved;
-      } catch (e) {}
-
-      // If your site already uses a global theme flag, try to mirror it
-      // Common patterns: data-theme on html/body, class "light", or localStorage "theme"
-      const html = document.documentElement;
-      const body = document.body;
-
-      const attrTheme = (html && html.getAttribute('data-theme')) || (body && body.getAttribute('data-theme'));
-      if (attrTheme === 'light' || attrTheme === 'dark') return attrTheme;
-
-      try {
-        const globalLS = localStorage.getItem('theme');
-        if (globalLS === 'light' || globalLS === 'dark') return globalLS;
-      } catch (e) {}
-
-      return prefersLight ? 'light' : 'dark';
+    function getSavedTheme() {
+      try { return localStorage.getItem('aboutTheme'); } catch (e) { return null; }
     }
 
-    // Initialize
-    setTheme(getTheme());
+    // default: match OS preference, unless user already chose
+    const saved = getSavedTheme();
+    if (saved === 'light' || saved === 'dark') {
+      setTheme(saved);
+    } else {
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      setTheme(prefersLight ? 'light' : 'dark');
+    }
 
     if (btn) {
       btn.addEventListener('click', function () {
-        const cur = page.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-        setTheme(cur === 'light' ? 'dark' : 'light');
+        const current = page.getAttribute('data-theme') || 'dark';
+        setTheme(current === 'dark' ? 'light' : 'dark');
       });
     }
 
-    // Try to hook into an existing global toggle (if it exists)
-    // We listen for clicks on likely candidates and re-sync after.
-    const possibleToggles = [
-      '#theme-toggle',
-      '.theme-toggle',
-      '[data-theme-toggle]',
-      'button[aria-label*="Toggle"]',
-      'button[title*="Toggle"]',
-      'input[type="checkbox"][name*="theme"]',
-      'input[type="checkbox"][id*="theme"]'
-    ];
-
-    const globalToggle = document.querySelector(possibleToggles.join(','));
-    if (globalToggle) {
-      globalToggle.addEventListener('click', function () {
-        // allow site toggle JS to run first
-        setTimeout(function () { setTheme(getTheme()); }, 0);
-      });
-      globalToggle.addEventListener('change', function () {
-        setTimeout(function () { setTheme(getTheme()); }, 0);
-      });
-    }
-  })();
-
-  // =========================================================
-  // Reveal (Framer-ish, safe fallback)
-  // =========================================================
-  (function () {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // -------------------------
+    // Reveal (Framer-ish feel)
+    // -------------------------
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return;
 
-    const page = document.querySelector('.about-page');
-    if (!page) return;
-
     page.classList.add('motion');
-
     const targets = Array.from(page.querySelectorAll('.reveal, .stagger'));
     if (!('IntersectionObserver' in window) || targets.length === 0) {
       targets.forEach(el => el.classList.add('in'));
       return;
     }
-
-    // Detect a scroll container (themes often scroll inside a div)
-    const scrollRoot = (function findScrollParent(el) {
-      let p = el.parentElement;
-      while (p) {
-        const s = getComputedStyle(p);
-        const canScroll = /(auto|scroll)/.test(s.overflowY) && p.scrollHeight > p.clientHeight;
-        if (canScroll) return p;
-        p = p.parentElement;
-      }
-      return null;
-    })(page);
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -799,15 +567,14 @@ disable_exploding_nav: true
           }
         });
       },
-      { root: scrollRoot, threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
 
     targets.forEach(el => io.observe(el));
 
     // Safety net: ensure nothing stays hidden
     setTimeout(() => {
-      const stillHidden = targets.some(el => !el.classList.contains('in'));
-      if (stillHidden) targets.forEach(el => el.classList.add('in'));
-    }, 450);
+      targets.forEach(el => el.classList.add('in'));
+    }, 700);
   })();
 </script>
